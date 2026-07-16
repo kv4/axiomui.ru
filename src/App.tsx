@@ -548,18 +548,16 @@ function Contact() {
       `<b>Проект:</b> ${form.message}`,
     ].join("\n");
 
+    const body = new URLSearchParams({
+      chat_id: import.meta.env.VITE_TG_CHAT_ID,
+      text,
+      parse_mode: "HTML",
+    });
+
     try {
       await fetch(
         `https://api.telegram.org/bot${import.meta.env.VITE_TG_BOT_TOKEN}/sendMessage`,
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            chat_id: import.meta.env.VITE_TG_CHAT_ID,
-            text,
-            parse_mode: "HTML",
-          }),
-        }
+        { method: "POST", body, mode: "no-cors" }
       );
     } catch (err) {
       console.error("Telegram send error", err);
