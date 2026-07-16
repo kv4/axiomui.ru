@@ -1,0 +1,20 @@
+name: Deploy to GitHub Pages
+on:
+  push:
+    branches: [main]
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - run: npm install
+      - run: npm run build
+        env:
+          VITE_TG_BOT_TOKEN: ${{ secrets.VITE_TG_BOT_TOKEN }}
+          VITE_TG_CHAT_ID: ${{ secrets.VITE_TG_CHAT_ID }}
+      - uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist

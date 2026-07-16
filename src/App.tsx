@@ -537,8 +537,34 @@ function Contact() {
   const [form, setForm] = useState({ name: "", contact: "", message: "" });
   const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    const text = [
+      "<b>Новая заявка с axiomui.ru</b>",
+      "",
+      `<b>Имя:</b> ${form.name}`,
+      `<b>Контакт:</b> ${form.contact}`,
+      `<b>Проект:</b> ${form.message}`,
+    ].join("\n");
+
+    try {
+      await fetch(
+        `https://api.telegram.org/bot${import.meta.env.VITE_TG_BOT_TOKEN}/sendMessage`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            chat_id: import.meta.env.VITE_TG_CHAT_ID,
+            text,
+            parse_mode: "HTML",
+          }),
+        }
+      );
+    } catch (err) {
+      console.error("Telegram send error", err);
+    }
+
     setSubmitted(true);
   };
 
@@ -636,7 +662,9 @@ function Contact() {
 
               <div className="pt-2 text-center">
                 <a
-                  href="#"
+                  href="https://t.me/chernyakov_k"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 text-[14px] font-bold text-slate-700 transition-colors hover:text-indigo-600"
                 >
                   <TelegramIcon className="h-4.5 w-4.5" />
