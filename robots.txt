@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://axiomui.ru/sitemap.xml
