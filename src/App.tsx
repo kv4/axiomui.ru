@@ -557,7 +557,7 @@ function Contact() {
     try {
       await fetch(
         `https://api.telegram.org/bot${import.meta.env.VITE_TG_BOT_TOKEN}/sendMessage`,
-        { method: "POST", body, mode: "no-cors" }
+        { method: "POST", body }
       );
     } catch (err) {
       console.error("Telegram send error", err);
