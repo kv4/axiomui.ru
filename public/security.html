@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Безопасность ИИ — AxiomUI</title>
+  <meta name="robots" content="noindex" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      color: #1e293b; background: #f8fafc; line-height: 1.65; padding: 2rem 1rem;
+    }
+    .container { max-width: 760px; margin: 0 auto; background: #fff; border-radius: 12px; padding: 2.5rem 2rem; box-shadow: 0 1px 3px rgba(0,0,0,.08); }
+    h1 { font-size: 1.5rem; margin-bottom: .25rem; color: #0f172a; }
+    .date { font-size: .85rem; color: #64748b; margin-bottom: 1.5rem; }
+    h2 { font-size: 1.15rem; margin-top: 1.75rem; margin-bottom: .5rem; color: #0f172a; }
+    h3 { font-size: 1rem; margin-top: 1.25rem; margin-bottom: .35rem; color: #0f172a; }
+    p { margin-bottom: .75rem; font-size: .95rem; color: #334155; }
+    ul, ol { margin-bottom: .75rem; padding-left: 1.25rem; }
+    li { margin-bottom: .35rem; font-size: .95rem; color: #334155; }
+    strong { color: #0f172a; }
+    .back { display: inline-block; margin-bottom: 1.5rem; font-size: .9rem; color: #4f46e5; text-decoration: none; }
+    .back:hover { text-decoration: underline; }
+    .highlight { background: #eef2ff; border-left: 4px solid #4f46e5; padding: .75rem 1rem; border-radius: 6px; margin-bottom: 1rem; }
+    .highlight p { margin-bottom: 0; }
+    .card { border: 1px solid #e2e8f0; border-radius: 10px; padding: 1.25rem; margin-bottom: 1rem; }
+    .card h3 { margin-top: 0; }
+    .badge { display: inline-block; padding: .15rem .6rem; border-radius: 999px; font-size: .8rem; font-weight: 600; margin-bottom: .5rem; }
+    .badge-green { background: #ecfdf5; color: #047857; }
+    .badge-blue { background: #eef2ff; color: #4338ca; }
+    .grid { display: grid; gap: 1rem; }
+    @media (min-width: 640px) { .grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 600px) { body { padding: 1rem; } .container { padding: 1.5rem 1rem; } }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a class="back" href="/">← На главную</a>
+    <h1>Безопасность данных при работе с ИИ</h1>
+    <p class="date">Развеиваем мифы и показываем реальность</p>
+
+    <div class="highlight">
+      <p><strong>Коротко:</strong> Мы не продаём «чёрный ящик». Мы — инженерная компания, которая настраивает ИИ-инструменты под ваши задачи и контур безопасности. Ниже — как именно мы это делаем.</p>
+    </div>
+
+    <h2>Миф: «Облачный ИИ сливает данные»</h2>
+    <p>Многие думают: отправил код в ChatGPT или DeepSeek, а завтра он стал частью публичной модели и доступен другим. <strong>В корпоративном сегменте через API это не так.</strong></p>
+    <p>Крупные провайдеры (OpenAI, Anthropic, DeepSeek, Google) предоставляют <strong>корпоративные API с zero-retention policy</strong> — ваши данные не сохраняются на их серверах и не используются для обучения моделей. Это закреплено юридически в их соглашениях.</p>
+    <p>Все данные передаются по зашифрованным каналам (HTTPS/TLS). Никакой ваш код или коммерческая информация не покидает пределы защищённой сессии.</p>
+
+    <h2>Выбирайте сценарий под свою задачу</h2>
+
+    <div class="grid">
+      <div class="card">
+        <div class="badge badge-green">Бесплатно, входит в тариф</div>
+        <h3>Стандартная безопасность</h3>
+        <p><strong>Для кого:</strong> Малый и средний бизнес, стартапы, проекты без жёстких регламентов.</p>
+        <p><strong>Как работает:</strong> Используем официальные корпоративные API ведущих провайдеров. Все данные — по HTTPS, zero-retention policy закреплена в соглашении.</p>
+        <p><strong>Почему этого достаточно:</strong> Ваши данные защищены на уровне крупных корпоративных контрактов. Для 95% проектов этого более чем достаточно.</p>
+      </div>
+
+      <div class="card">
+        <div class="badge badge-blue">Рассчитывается индивидуально</div>
+        <h3>Приватный контур ИИ</h3>
+        <p><strong>Для кого:</strong> Финтех, медицина, компании со строгим NDA, где служба безопасности запрещает отправку данных во внешние облака.</p>
+        <p><strong>Как работает:</strong> Разворачиваем LLM-модель в вашей инфраструктуре (on-premise) или арендуем выделенные серверы под ваш проект. Агенты работают строго внутри вашего контура.</p>
+        <p><strong>Когда это нужно:</strong> Когда ИИ-агент работает с закрытыми корпоративными CRM, базами данных или документами, содержащими коммерческую тайну.</p>
+      </div>
+    </div>
+
+    <h3>Когда приватный контур имеет смысл</h3>
+    <ul>
+      <li>ИИ-агент подключается к внутренней CRM или ERP</li>
+      <li>Обрабатываются персональные данные клиентов (медицина, финансы)</li>
+      <li>Действуют внутренние регламенты, запрещающие передачу данных вовне</li>
+    </ul>
+
+    <h3>Когда приватный контур избыточен</h3>
+    <ul>
+      <li>Парсинг открытых сайтов и сбор публичной аналитики</li>
+      <li>Работа с общедоступными данными</li>
+      <li>Автоматизация рутинных задач, не связанных с конфиденциальной информацией</li>
+    </ul>
+    <p>В этих случаях стандартная безопасность через корпоративные API — разумный выбор без лишних затрат.</p>
+
+    <h2>Резюме</h2>
+    <p>Вы не обязаны переплачивать за сложную инфраструктуру, если ваши внутренние правила этого не требуют. Если потребуют — мы развернём приватный контур за несколько дней.</p>
+    <p>Хотите обсудить безопасность вашего проекта — <a href="/#contact" class="back">свяжитесь с нами →</a></p>
+  </div>
+</body>
+</html>

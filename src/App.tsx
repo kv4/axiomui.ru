@@ -603,6 +603,16 @@ function Services() {
             <p className="relative mt-8 rounded-lg border border-slate-300 bg-slate-50 p-5 text-[14px] font-medium leading-relaxed text-slate-800">
               <span className="font-bold text-slate-900">Результат:</span> Ваша команда начнет работать быстрее и эффективнее, фокусируясь на бизнес-логике, а не на рутине.
             </p>
+
+            <a
+              href="/security.html"
+              className="relative mt-5 inline-flex items-center gap-1.5 text-[14px] font-bold text-emerald-700 transition-colors hover:text-emerald-600"
+            >
+              О безопасности данных
+              <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round">
+                <path d="M7 17l9.2-9.2M17 17V7H7" />
+              </svg>
+            </a>
           </div>
         </div>
       </div>
@@ -863,6 +873,7 @@ function Footer() {
         </div>
 
         <div className="flex flex-wrap items-center justify-center gap-x-7 gap-y-2 text-[14px] font-medium text-slate-600">
+          <a href="/security.html" className="transition-colors hover:text-indigo-600">Безопасность ИИ</a>
           <a href="/privacy.html" className="transition-colors hover:text-indigo-600">Политика конфиденциальности</a>
           <a href="/terms.html" className="transition-colors hover:text-indigo-600">Условия использования</a>
         </div>
