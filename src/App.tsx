@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 // ─── Icons ────────────────────────────────────────────────────────────────────
 
@@ -885,6 +885,17 @@ function Footer() {
 // ─── App ──────────────────────────────────────────────────────────────────────
 
 export default function App() {
+  useEffect(() => {
+    if (!window.location.hash) return;
+    const id = window.location.hash.slice(1);
+    const retry = (n: number) => {
+      const el = document.getElementById(id);
+      if (el) el.scrollIntoView({ behavior: "smooth" });
+      else if (n > 0) setTimeout(() => retry(n - 1), 200);
+    };
+    retry(10);
+  }, []);
+
   return (
     <div className="relative min-h-screen bg-white text-slate-900">
       <Header />
