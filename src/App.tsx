@@ -176,11 +176,11 @@ function Header() {
         {/* Logo */}
         <a href="#" className="group flex items-center gap-2.5">
           <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-indigo-500 to-violet-600 shadow-md shadow-indigo-500/25 ring-1 ring-indigo-500/15">
-            <span className="text-[14px] font-bold tracking-tight text-white">L</span>
+            <span className="text-[14px] font-bold tracking-tight text-white">Ax</span>
           </div>
           <div className="leading-tight">
-            <div className="text-[16px] font-bold tracking-tight text-slate-900">Legacy &amp; AI</div>
-            <div className="text-[12px] font-medium text-slate-600">Оптимизация и ИТ-консалтинг</div>
+            <div className="text-[16px] font-bold tracking-tight text-slate-900">AxiomUI</div>
+            <div className="text-[12px] font-medium text-slate-600">Аудит legacy-кода и AI-агенты</div>
           </div>
         </a>
 
@@ -678,10 +678,10 @@ function Footer() {
       <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-5 px-5 sm:flex-row lg:px-8">
         <div className="flex items-center gap-2.5">
           <div className="flex h-8 w-8 items-center justify-center rounded-md bg-gradient-to-br from-indigo-500 to-violet-600 shadow-sm ring-1 ring-indigo-500/15">
-            <span className="text-[13px] font-bold text-white">L</span>
+            <span className="text-[11px] font-bold text-white">Ax</span>
           </div>
           <div className="text-[14px] font-medium text-slate-700">
-            <span className="font-bold text-slate-900">Legacy &amp; AI</span>
+            <span className="font-bold text-slate-900">AxiomUI</span>
             <span className="mx-2 text-slate-300">·</span>
             © 2026 All rights reserved.
           </div>
