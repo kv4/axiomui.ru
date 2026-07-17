@@ -688,8 +688,8 @@ function Footer() {
         </div>
 
         <div className="flex flex-wrap items-center justify-center gap-x-7 gap-y-2 text-[14px] font-medium text-slate-600">
-          <a href="#" className="transition-colors hover:text-indigo-600">Политика конфиденциальности</a>
-          <a href="#" className="transition-colors hover:text-indigo-600">Условия использования</a>
+          <a href="/privacy.html" className="transition-colors hover:text-indigo-600">Политика конфиденциальности</a>
+          <a href="/terms.html" className="transition-colors hover:text-indigo-600">Условия использования</a>
         </div>
       </div>
     </footer>
