@@ -537,8 +537,9 @@ function Contact() {
   const [form, setForm] = useState({ name: "", contact: "", message: "" });
   const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    setSubmitted(true);
 
     const text = [
       "<b>Новая заявка с axiomui.ru</b>",
@@ -554,16 +555,10 @@ function Contact() {
       parse_mode: "HTML",
     });
 
-    try {
-      await fetch(
-        `https://api.telegram.org/bot${import.meta.env.VITE_TG_BOT_TOKEN}/sendMessage`,
-        { method: "POST", body }
-      );
-    } catch (err) {
-      console.error("Telegram send error", err);
-    }
-
-    setSubmitted(true);
+    fetch(
+      `https://api.telegram.org/bot${import.meta.env.VITE_TG_BOT_TOKEN}/sendMessage`,
+      { method: "POST", body }
+    ).catch(() => {});
   };
 
   return (
