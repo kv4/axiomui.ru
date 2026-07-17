@@ -150,6 +150,165 @@ const STEPS = [
   },
 ];
 
+// ─── Pricing data ─────────────────────────────────────────────────────────
+
+const SUBSCRIPTIONS = [
+  {
+    name: "Базовый",
+    hours: "15",
+    price: "60 000",
+    note: "4 000 ₽/ч при перерасходе",
+    features: [
+      "Code review критических узлов",
+      "Исправление ошибок и уязвимостей",
+      "Одна консультация (до 1 ч)",
+      "Обновление библиотек и зависимостей",
+    ],
+    best: false,
+  },
+  {
+    name: "Рабочий",
+    hours: "25",
+    price: "100 000",
+    note: "4 000 ₽/ч при перерасходе",
+    features: [
+      "Всё из «Базового»",
+      "Оптимизация производительности",
+      "Документирование архитектуры",
+      "Две консультации (до 1 ч каждая)",
+      "Приоритетная поддержка в рабочее время",
+    ],
+    best: true,
+  },
+  {
+    name: "Полный",
+    hours: "40",
+    price: "150 000",
+    note: "5 000 ₽/ч при перерасходе",
+    features: [
+      "Всё из «Рабочего»",
+      "Рефакторинг и миграции",
+      "Внедрение ИИ-агентов",
+      "Безлимитные консультации",
+      "Приоритет 24/7",
+      "Стратегическое планирование",
+    ],
+    best: false,
+  },
+];
+
+const ONE_TIME = [
+  {
+    name: "Экспресс-анализ",
+    price: "Бесплатно",
+    desc: "30-минутный созвон и предварительная оценка вашего проекта",
+  },
+  {
+    name: "Техническое обследование",
+    price: "от 30 000 ₽",
+    desc: "Полный анализ репозитория, поиск узких мест и отчёт с рекомендациями",
+  },
+];
+
+function Pricing() {
+  return (
+    <section id="pricing" className="relative border-t border-slate-300 bg-white py-20 sm:py-28">
+      <div className="mx-auto max-w-6xl px-5 lg:px-8">
+
+        <SectionHeader eyebrow="Цены" title="Прозрачные тарифы" />
+
+        {/* One-time services */}
+        <div className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2">
+          {ONE_TIME.map((item) => (
+            <div
+              key={item.name}
+              className="flex flex-col rounded-xl border-2 border-indigo-200 bg-white p-7 shadow-sm transition-all hover:border-indigo-400"
+            >
+              <div className="flex items-start justify-between gap-4">
+                <div>
+                  <h3 className="text-lg font-bold text-slate-900">{item.name}</h3>
+                  <p className="mt-1.5 text-[15px] leading-relaxed text-slate-700">{item.desc}</p>
+                </div>
+                <span className="shrink-0 text-lg font-bold text-indigo-600">{item.price}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Subscriptions */}
+        <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-3">
+          {SUBSCRIPTIONS.map((plan) => (
+            <div
+              key={plan.name}
+              className={`relative flex flex-col rounded-xl border-2 p-7 shadow-sm transition-all ${
+                plan.best
+                  ? "border-indigo-500 bg-indigo-600 text-white shadow-lg shadow-indigo-600/25"
+                  : "border-slate-300 bg-white hover:border-indigo-300"
+              }`}
+            >
+              {plan.best && (
+                <div className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-amber-400 px-4 py-0.5 text-[11px] font-bold uppercase tracking-wider text-amber-900 shadow-sm">
+                  Рекомендуем
+                </div>
+              )}
+
+              <div className={`${plan.best ? "text-white" : "text-slate-700"} mb-1 text-[14px] font-semibold uppercase tracking-wider`}>
+                Подписка
+              </div>
+
+              <h3 className={`text-2xl font-bold tracking-tight ${plan.best ? "text-white" : "text-slate-900"}`}>
+                {plan.name}
+              </h3>
+
+              <div className="mt-4 flex items-baseline gap-1">
+                <span className={`text-3xl font-bold ${plan.best ? "text-white" : "text-indigo-600"}`}>
+                  {plan.price}
+                </span>
+                <span className={`text-[15px] font-medium ${plan.best ? "text-indigo-200" : "text-slate-600"}`}>
+                  ₽/мес
+                </span>
+              </div>
+
+              <div className={`mt-0.5 text-[13px] font-medium ${plan.best ? "text-indigo-200" : "text-slate-500"}`}>
+                {plan.hours} часов
+              </div>
+
+              <div className={`mt-4 text-[12px] font-medium ${plan.best ? "text-indigo-200" : "text-slate-500"}`}>
+                {plan.note}
+              </div>
+
+              <ul className="mt-5 space-y-3 border-t pt-5" style={plan.best ? { borderColor: "rgba(255,255,255,0.2)" } : {}}>
+                {plan.features.map((f) => (
+                  <li key={f} className="flex items-start gap-2.5 text-[14px] font-medium leading-relaxed">
+                    <CheckIcon className={`mt-0.5 h-4 w-4 shrink-0 ${plan.best ? "text-indigo-200" : "text-indigo-500"}`} />
+                    <span className={plan.best ? "text-indigo-100" : "text-slate-700"}>{f}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <div className="mt-auto pt-6">
+                <a
+                  href="#contact"
+                  className={`flex w-full items-center justify-center gap-2 rounded-lg px-5 py-3 text-[14px] font-bold transition-all ${
+                    plan.best
+                      ? "bg-white text-indigo-700 hover:bg-indigo-50"
+                      : "border-2 border-indigo-600 bg-white text-indigo-700 hover:bg-indigo-50"
+                  }`}
+                >
+                  {plan.best ? "Выбрать" : "Узнать подробнее"}
+                  <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.25} strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M5 12h14M13 5l7 7-7 7" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 const FAQ_ITEMS = [
   {
     q: "Безопасно ли использовать ИИ? Наш код не уйдет в открытый доступ?",
@@ -723,6 +882,7 @@ export default function App() {
         <Problems />
         <Services />
         <Process />
+        <Pricing />
         <FAQ />
         <Contact />
       </main>
