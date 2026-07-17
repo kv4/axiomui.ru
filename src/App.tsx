@@ -627,7 +627,7 @@ function CasesTeaser() {
       <div className="mx-auto max-w-6xl px-5 lg:px-8">
         <SectionHeader eyebrow="Кейсы" title="Реальные проекты" />
 
-        <div className="mt-12 grid grid-cols-1 gap-6 lg:grid-cols-2">
+        <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           <a href="/cases/react-dashboard.html" className="group block rounded-2xl border-2 border-slate-300 bg-white p-7 shadow-sm transition-all hover:border-indigo-400 hover:shadow-lg hover:shadow-indigo-100/50">
             <div className="mb-2 inline-block rounded-full bg-indigo-100 px-3 py-0.5 text-[11px] font-bold uppercase tracking-wider text-indigo-700">
               Аудит и миграция legacy
@@ -654,6 +654,21 @@ function CasesTeaser() {
               11 ИИ-агентов автоматизировали полный цикл разработки. Code review ускорен на 60%, 138 планов задач созданы без единой просрочки.
             </p>
             <p className="mt-4 text-[14px] font-bold text-emerald-600 group-hover:text-emerald-500">
+              Читать далее →
+            </p>
+          </a>
+
+          <a href="/cases/bank-k8s.html" className="group block rounded-2xl border-2 border-slate-300 bg-white p-7 shadow-sm transition-all hover:border-amber-400 hover:shadow-lg hover:shadow-amber-100/50">
+            <div className="mb-2 inline-block rounded-full bg-amber-100 px-3 py-0.5 text-[11px] font-bold uppercase tracking-wider text-amber-700">
+              DevOps и инфраструктура
+            </div>
+            <h3 className="mt-3 text-xl font-bold text-slate-900 group-hover:text-amber-700">
+              Legacy Drupal в банковском Kubernetes
+            </h3>
+            <p className="mt-2 text-[14px] font-medium leading-relaxed text-slate-700">
+              Rootless-контейнеры, многоэтапная сборка, 40+ env-переменных вместо settings.php. Деплой ускорился с 3 часов до 8 минут.
+            </p>
+            <p className="mt-4 text-[14px] font-bold text-amber-600 group-hover:text-amber-500">
               Читать далее →
             </p>
           </a>

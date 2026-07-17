@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Кейс: Legacy в банковском k8s — AxiomUI</title>
+  <meta name="robots" content="noindex" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      color: #1e293b; background: #f8fafc; line-height: 1.65; padding: 2rem 1rem;
+    }
+    .container { max-width: 760px; margin: 0 auto; background: #fff; border-radius: 12px; padding: 2.5rem 2rem; box-shadow: 0 1px 3px rgba(0,0,0,.08); }
+    .back { display: inline-block; margin-bottom: 1rem; font-size: .9rem; color: #4f46e5; text-decoration: none; }
+    .back:hover { text-decoration: underline; }
+    .case-badge {
+      display: inline-block; padding: .2rem .6rem; border-radius: 999px;
+      font-size: .75rem; font-weight: 700; text-transform: uppercase; letter-spacing: .04em;
+      background: #eef2ff; color: #4338ca; margin-bottom: .5rem;
+    }
+    h1 { font-size: 1.5rem; margin-bottom: .25rem; color: #0f172a; }
+    .meta { font-size: .85rem; color: #64748b; margin-bottom: 1.5rem; }
+    h2 { font-size: 1.15rem; margin-top: 1.75rem; margin-bottom: .5rem; color: #0f172a; }
+    h3 { font-size: 1rem; margin-top: 1.25rem; margin-bottom: .35rem; color: #0f172a; }
+    p { margin-bottom: .75rem; font-size: .95rem; color: #334155; }
+    ul, ol { margin-bottom: .75rem; padding-left: 1.25rem; }
+    li { margin-bottom: .35rem; font-size: .95rem; color: #334155; }
+    strong { color: #0f172a; }
+    .highlight { background: #eef2ff; border-left: 4px solid #4f46e5; padding: .75rem 1rem; border-radius: 6px; margin-bottom: 1rem; }
+    .highlight p { margin-bottom: 0; }
+    table {
+      width: 100%; border-collapse: collapse; margin-bottom: 1rem; font-size: .88rem;
+    }
+    th, td { text-align: left; padding: .45rem .5rem; border-bottom: 1px solid #e2e8f0; }
+    th { background: #f8fafc; font-weight: 700; color: #0f172a; }
+    .result-grid { display: grid; gap: .75rem; margin-bottom: 1rem; }
+    .result-item { background: #f8fafc; border-radius: 8px; padding: .75rem 1rem; }
+    .result-item .label { font-size: .78rem; color: #64748b; }
+    .result-item .value { font-size: 1.05rem; font-weight: 700; color: #0f172a; }
+    @media (min-width: 600px) { .result-grid { grid-template-columns: 1fr 1fr; } }
+    .fact { background: #fef3c7; border-left: 4px solid #f59e0b; padding: .75rem 1rem; border-radius: 6px; margin-bottom: .75rem; }
+    .fact p { margin-bottom: 0; font-size: .9rem; color: #92400e; }
+    .stack { margin-bottom: 1rem; }
+    .stack code {
+      display: inline-block; background: #f1f5f9; padding: .15rem .5rem; border-radius: 4px;
+      font-size: .82rem; color: #334155; margin: .15rem .1rem;
+    }
+    pre {
+      background: #1e293b; color: #e2e8f0; border-radius: 8px; padding: 1rem;
+      font-size: .82rem; overflow-x: auto; margin-bottom: 1rem;
+    }
+    code { font-size: .85em; }
+    @media (max-width: 600px) { body { padding: 1rem; } .container { padding: 1.5rem 1rem; } table { font-size: .8rem; } }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a class="back" href="/cases/index.html">← Все проекты</a>
+    <div class="case-badge">DevOps и инфраструктура</div>
+    <h1>Legacy Drupal в банковском Kubernetes</h1>
+    <p class="meta">Банковский сектор · 2025–2026 · Docker + k8s + rootless</p>
+
+    <div class="highlight">
+      <p><strong>Суть:</strong> Legacy-проект на Drupal 10 развёрнут в банковском Kubernetes с соблюдением всех требований безопасности: rootless-контейнеры, многоэтапная сборка, ротация секретов, fail-fast сценарии. Деплой ускорился с 3 часов до 8 минут.</p>
+    </div>
+
+    <div class="fact">
+      <p>«Деплой из 3+ часов ручной работы по SSH превращён в CI/CD-пайплайн за 8 минут: docker build → push → kubectl apply — zero-downtime через rolling update.»</p>
+    </div>
+
+    <div class="fact">
+      <p>«Многоэтапная сборка (6 этапов) + L2-кеширование BuildKit сократили образ на 60%. Сборочные инструменты и артефакты CI не попали в production.»</p>
+    </div>
+
+    <h2>Контекст и проблема</h2>
+
+    <h3>Исходная система</h3>
+    <p>Платформа корпоративной автоматизации (RPA) на Drupal 10, PHP 8.2, PostgreSQL. До контейнеризации разворачивалась вручную на выделенном сервере через SSH.</p>
+
+    <p><strong>Как выглядел деплой:</strong></p>
+    <pre>SSH → git pull → rm -rf vendor/ → composer install → drush sql-drop → импорт SQL → drush cr → drush updb → drush migrate → drush cron</pre>
+
+    <p><strong>Ключевые проблемы:</strong></p>
+    <ul>
+      <li><strong>Деплой 2–3 часа</strong> — composer install без кэша тянул зависимости из репозиториев</li>
+      <li><strong>Downtime при деплое</strong> — сайт недоступен на время сброса и импорта БД</li>
+      <li><strong>Ручное управление конфигами</strong> — пароли, ключи, соли — всё в settings.php</li>
+      <li><strong>Невоспроизводимость окружения</strong> — dev-сервер отличался от production</li>
+      <li><strong>Одна точка отказа</strong> — одна машина, без масштабирования и изоляции</li>
+    </ul>
+
+    <h3>Требования банка</h3>
+    <table>
+      <tr><th>Требование</th><th>Что означало</th></tr>
+      <tr><td><strong>Rootless-контейнеры</strong></td><td>UID 1000+, порты >1024. nginx не мог слушать 80/443</td></tr>
+      <tr><td><strong>Многоэтапная сборка</strong></td><td>Никаких сборочных инструментов в production-образе</td></tr>
+      <tr><td><strong>Секреты — через внешний store</strong></td><td>Пароли, ключи — не в env-файлах и образах</td></tr>
+      <tr><td><strong>Read-only корневая ФС</strong></td><td>Drupal storage требует запись в файлы — решено через S3</td></tr>
+      <tr><td><strong>12-factor app</strong></td><td>Вся конфигурация — только через переменные окружения</td></tr>
+      <tr><td><strong>Fail-fast запуск</strong></td><td>Если нет БД или секретов — контейнер не должен стартовать</td></tr>
+    </table>
+
+    <h2>Техническое решение</h2>
+
+    <h3>Docker: многоэтапная сборка (6 этапов)</h3>
+    <p>Сборка разделена на изолированные этапы: apt-подготовка (ключ nginx), composer install, компиляция PHP-расширений (imagick через PIE), npm build для React-дашборда, системный фундамент (nginx + supervisor), финальный образ.</p>
+    <p><strong>Двухуровневое кэширование BuildKit:</strong> L1 — слои Docker, инвалидируются через CACHE_DATE; L2 — персистентные кэши для apt и composer. Образ сокращён на ~60% за счёт исключения сборочных инструментов.</p>
+
+    <h3>Rootless: переезд на порт 8080</h3>
+    <p>Все сервисы перенесены на порт 8080. Nginx настроен на <code>absolute_redirect off; port_in_redirect off;</code> — иначе rootless-порт 8080 просачивался в URL при редиректах.</p>
+
+    <h3>12-factor config: самописная библиотека</h3>
+    <p>Для Drupal, который штатно хранит всё в <code>settings.php</code>, написана библиотека <strong>environment-loader</strong> — 13 PHP-провайдеров, которые собирают конфигурацию из env-переменных и <code>/run/secrets/</code>. Поддерживается 40+ переменных: от подключения к БД до настроек Keycloak и Prometheus. Fail-fast в каждом провайдере — если нет HASH_SALT или пароля БД, приложение не стартует.</p>
+
+    <h3>Fail-fast и Health Checks</h3>
+    <p>Kubernetes probes на трёх уровнях: liveness (проверка ответа приложения), readiness (готовность принимать трафик), startup (ожидание инициализации). Docker HEALTHCHECK — дублирование на уровне контейнера. Entrypoint-скрипты с <code>set -e</code> — 9 последовательных этапов инициализации, каждый с fail-fast.</p>
+
+    <h3>Деплой в банковском k8s</h3>
+    <p>Приложение разделено на два сервиса: ideahub-gateway (nginx, NodePort 32599) и ideahub-backend (PHP-FPM, ClusterIP). Файлы хранятся в S3 (MinIO), конфигурация синка — внутри образа. Zero-downtime через rolling update с maintenance mode на время миграций БД.</p>
+
+    <h2>Результаты</h2>
+
+    <div class="result-grid">
+      <div class="result-item"><div class="label">Время деплоя было</div><div class="value">2–3 часа</div></div>
+      <div class="result-item"><div class="label">Время деплоя стало</div><div class="value">8–12 минут</div></div>
+      <div class="result-item"><div class="label">MTTR до</div><div class="value">4–8 часов</div></div>
+      <div class="result-item"><div class="label">MTTR после</div><div class="value">2–5 минут</div></div>
+      <div class="result-item"><div class="label">Этапов сборки</div><div class="value">6</div></div>
+      <div class="result-item"><div class="label">Env-провайдеров</div><div class="value">13</div></div>
+      <div class="result-item"><div class="label">Переменных окружения</div><div class="value">40+</div></div>
+      <div class="result-item"><div class="label">Fail-fast сценариев</div><div class="value">5</div></div>
+    </div>
+
+    <table>
+      <tr><th>Метрика</th><th>Было (SSH)</th><th>Стало (k8s)</th><th>Ускорение</th></tr>
+      <tr><td>Время деплоя</td><td>2–3 ч ручного SSH</td><td>8–12 мин CI/CD</td><td><strong>~15–20x</strong></td></tr>
+      <tr><td>Восстановление (MTTR)</td><td>4–8 ч (поднятие сервера)</td><td>2–5 мин (kubectl)</td><td><strong>~100x</strong></td></tr>
+      <tr><td>Новое окружение</td><td>1–2 дня</td><td>15 мин (Helm)</td><td><strong>~50x</strong></td></tr>
+      <tr><td>Шагов деплоя</td><td>10+ ручных</td><td>1 команда</td><td><strong>~10x</strong></td></tr>
+    </table>
+
+    <h2>Стек технологий</h2>
+    <div class="stack">
+      <code>Kubernetes</code> <code>Docker</code> <code>multi-stage build</code> <code>rootless</code>
+      <code>Drupal 10</code> <code>PHP 8.2</code> <code>nginx</code> <code>PostgreSQL 14</code>
+      <code>BuildKit L2 cache</code> <code>Docker Secrets</code> <code>Helm</code>
+      <code>Azure DevOps</code> <code>12-factor app</code>
+      <code>S3</code> <code>MinIO</code> <code>Keycloak</code> <code>Prometheus</code>
+    </div>
+
+    <p>Похожая задача? <a href="/#contact">Свяжитесь с нами →</a></p>
+  </div>
+</body>
+</html>
