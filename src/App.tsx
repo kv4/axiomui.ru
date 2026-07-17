@@ -99,8 +99,9 @@ function IconAI() {
 
 const NAV_LINKS = [
   { label: "Услуги", href: "#services" },
+  { label: "Кейсы", href: "/cases/index.html" },
   { label: "Процесс", href: "#process" },
-  { label: "Безопасность", href: "#faq" },
+  { label: "Безопасность", href: "/security.html" },
   { label: "FAQ", href: "#faq" },
 ];
 
@@ -620,6 +621,48 @@ function Services() {
   );
 }
 
+function CasesTeaser() {
+  return (
+    <section className="relative border-t border-slate-300 bg-white py-20 sm:py-28">
+      <div className="mx-auto max-w-6xl px-5 lg:px-8">
+        <SectionHeader eyebrow="Кейсы" title="Реальные проекты" />
+
+        <div className="mt-12 grid grid-cols-1 gap-6 lg:grid-cols-2">
+          <a href="/cases/react-dashboard.html" className="group block rounded-2xl border-2 border-slate-300 bg-white p-7 shadow-sm transition-all hover:border-indigo-400 hover:shadow-lg hover:shadow-indigo-100/50">
+            <div className="mb-2 inline-block rounded-full bg-indigo-100 px-3 py-0.5 text-[11px] font-bold uppercase tracking-wider text-indigo-700">
+              Аудит и миграция legacy
+            </div>
+            <h3 className="mt-3 text-xl font-bold text-slate-900 group-hover:text-indigo-700">
+              Аналитическая платформа нового поколения
+            </h3>
+            <p className="mt-2 text-[14px] font-medium leading-relaxed text-slate-700">
+              Замена 157 устаревших Drupal-параграфов на 41 React-компонент с JSONB-хранением и drag-and-drop виджетами. Время добавления нового индикатора сократилось с 2 дней до 15 минут.
+            </p>
+            <p className="mt-4 text-[14px] font-bold text-indigo-600 group-hover:text-indigo-500">
+              Читать далее →
+            </p>
+          </a>
+
+          <a href="/cases/ai-agents.html" className="group block rounded-2xl border-2 border-slate-300 bg-white p-7 shadow-sm transition-all hover:border-emerald-400 hover:shadow-lg hover:shadow-emerald-100/50">
+            <div className="mb-2 inline-block rounded-full bg-emerald-100 px-3 py-0.5 text-[11px] font-bold uppercase tracking-wider text-emerald-700">
+              ИИ-агенты и автоматизация
+            </div>
+            <h3 className="mt-3 text-xl font-bold text-slate-900 group-hover:text-emerald-700">
+              Автоматизация разработки через ИИ-агентов
+            </h3>
+            <p className="mt-2 text-[14px] font-medium leading-relaxed text-slate-700">
+              11 ИИ-агентов автоматизировали полный цикл разработки. Code review ускорен на 60%, 138 планов задач созданы без единой просрочки.
+            </p>
+            <p className="mt-4 text-[14px] font-bold text-emerald-600 group-hover:text-emerald-500">
+              Читать далее →
+            </p>
+          </a>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function Process() {
   return (
     <section id="process" className="relative border-t border-slate-300 bg-slate-50 py-20 sm:py-28">
@@ -873,6 +916,7 @@ function Footer() {
         </div>
 
         <div className="flex flex-wrap items-center justify-center gap-x-7 gap-y-2 text-[14px] font-medium text-slate-600">
+          <a href="/cases/index.html" className="transition-colors hover:text-indigo-600">Проекты</a>
           <a href="/security.html" className="transition-colors hover:text-indigo-600">Безопасность ИИ</a>
           <a href="/privacy.html" className="transition-colors hover:text-indigo-600">Политика конфиденциальности</a>
           <a href="/terms.html" className="transition-colors hover:text-indigo-600">Условия использования</a>
@@ -903,6 +947,7 @@ export default function App() {
         <Hero />
         <Problems />
         <Services />
+        <CasesTeaser />
         <Process />
         <Pricing />
         <FAQ />

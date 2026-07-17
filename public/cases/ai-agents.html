@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Кейс: AI-агенты — AxiomUI</title>
+  <meta name="robots" content="noindex" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      color: #1e293b; background: #f8fafc; line-height: 1.65; padding: 2rem 1rem;
+    }
+    .container { max-width: 760px; margin: 0 auto; background: #fff; border-radius: 12px; padding: 2.5rem 2rem; box-shadow: 0 1px 3px rgba(0,0,0,.08); }
+    .back { display: inline-block; margin-bottom: 1rem; font-size: .9rem; color: #4f46e5; text-decoration: none; }
+    .back:hover { text-decoration: underline; }
+    .case-badge {
+      display: inline-block; padding: .2rem .6rem; border-radius: 999px;
+      font-size: .75rem; font-weight: 700; text-transform: uppercase; letter-spacing: .04em;
+      background: #ecfdf5; color: #047857; margin-bottom: .5rem;
+    }
+    h1 { font-size: 1.5rem; margin-bottom: .25rem; color: #0f172a; }
+    .meta { font-size: .85rem; color: #64748b; margin-bottom: 1.5rem; }
+    h2 { font-size: 1.15rem; margin-top: 1.75rem; margin-bottom: .5rem; color: #0f172a; }
+    h3 { font-size: 1rem; margin-top: 1.25rem; margin-bottom: .35rem; color: #0f172a; }
+    p { margin-bottom: .75rem; font-size: .95rem; color: #334155; }
+    ul, ol { margin-bottom: .75rem; padding-left: 1.25rem; }
+    li { margin-bottom: .35rem; font-size: .95rem; color: #334155; }
+    strong { color: #0f172a; }
+    .highlight { background: #eef2ff; border-left: 4px solid #4f46e5; padding: .75rem 1rem; border-radius: 6px; margin-bottom: 1rem; }
+    .highlight p { margin-bottom: 0; }
+    table {
+      width: 100%; border-collapse: collapse; margin-bottom: 1rem; font-size: .88rem;
+    }
+    th, td { text-align: left; padding: .5rem .6rem; border-bottom: 1px solid #e2e8f0; }
+    th { background: #f8fafc; font-weight: 700; color: #0f172a; }
+    .result-grid { display: grid; gap: .75rem; margin-bottom: 1rem; }
+    .result-item { background: #f8fafc; border-radius: 8px; padding: .75rem 1rem; }
+    .result-item .label { font-size: .78rem; color: #64748b; }
+    .result-item .value { font-size: 1.05rem; font-weight: 700; color: #0f172a; }
+    @media (min-width: 600px) { .result-grid { grid-template-columns: 1fr 1fr; } }
+    .fact { background: #fef3c7; border-left: 4px solid #f59e0b; padding: .75rem 1rem; border-radius: 6px; margin-bottom: .75rem; }
+    .fact p { margin-bottom: 0; font-size: .9rem; color: #92400e; }
+    .stack { margin-bottom: 1rem; }
+    .stack code {
+      display: inline-block; background: #f1f5f9; padding: .15rem .5rem; border-radius: 4px;
+      font-size: .82rem; color: #334155; margin: .15rem .1rem;
+    }
+    @media (max-width: 600px) { body { padding: 1rem; } .container { padding: 1.5rem 1rem; } table { font-size: .8rem; } }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a class="back" href="/cases/index.html">← Все проекты</a>
+    <div class="case-badge">ИИ-агенты и автоматизация</div>
+    <h1>Автоматизация разработки через ИИ-агентов</h1>
+    <p class="meta">Enterprise-разработка · 2025–2026 · OpenCode + 11 AI-агентов</p>
+
+    <div class="highlight">
+      <p><strong>Суть:</strong> 11 ИИ-агентов автоматизировали полный цикл разработки: от планирования до code review. Code review ускорен на 60%, 138 планов задач созданы без единой просрочки.</p>
+    </div>
+
+    <h2>Контекст и проблема</h2>
+    <p>Команда разработки крупной RPA-платформы столкнулась с вызовами, типичными для enterprise-разработки: высокая сложность кода (PHPStan level 8, строгая типизация), необходимость жёсткой дисциплины (TDD, code review) и распределённая работа в Azure DevOps. Разработчики тратили до 40% времени на рутину.</p>
+    <ul>
+      <li><strong>TDD-дисциплина</strong> тяжело внедрялась — разработчики «забывали» писать тесты</li>
+      <li><strong>Code review</strong> занимал до 30% времени senior-разработчиков</li>
+      <li><strong>Azure DevOps</strong> work items требовали ручного обновления статусов</li>
+      <li><strong>Документация</strong> отставала от кода</li>
+    </ul>
+
+    <h2>Техническое решение</h2>
+    <p>Развернута платформа <strong>OpenCode</strong> с системой ИИ-агентов. Вместо того чтобы заставлять разработчиков соблюдать правила вручную, процессы автоматизированы через агентов.</p>
+
+    <table>
+      <tr><th>Слой</th><th>Состав</th><th>Назначение</th></tr>
+      <tr><td>MCP-серверы</td><td>5 шт.</td><td>Интеграция с внешними системами (Azure DevOps, Playwright, Ant Design и др.)</td></tr>
+      <tr><td>ИИ-агенты</td><td>11 шт.</td><td>Виртуальные роли: Prometheus (планирование), Sisyphus (исполнение), Oracle (аудит), Atlas (качество кода) и др.</td></tr>
+      <tr><td>Предметные навыки</td><td>11 шт.</td><td>dashboard-v2, project-conventions, frontend-conventions, react-testing, run-tests, docker-env, azure-wi-manager и др.</td></tr>
+    </table>
+
+    <h3>Процесс разработки с агентами</h3>
+    <ol>
+      <li><strong>Prometheus</strong> (планировщик) — создаёт план задачи</li>
+      <li><strong>Metis + Momus</strong> — gap-анализ и ревью плана</li>
+      <li><strong>Sisyphus</strong> (исполнитель) — пишет код по TDD (RED → GREEN → REFACTOR)</li>
+      <li><strong>Oracle + Atlas</strong> — проверяют compliance и качество кода</li>
+      <li><strong>azure-wi-manager</strong> — автоматически обновляет статус в Azure DevOps</li>
+    </ol>
+
+    <h2>Результаты</h2>
+    <div class="result-grid">
+      <div class="result-item"><div class="label">ИИ-агентов</div><div class="value">11</div></div>
+      <div class="result-item"><div class="label">Предметных навыков</div><div class="value">11</div></div>
+      <div class="result-item"><div class="label">Планов задач</div><div class="value">138</div></div>
+      <div class="result-item"><div class="label">Evidence-файлов</div><div class="value">149</div></div>
+      <div class="result-item"><div class="label">Блокнотов решений</div><div class="value">97</div></div>
+      <div class="result-item"><div class="label">MCP-серверов</div><div class="value">5</div></div>
+    </div>
+
+    <table>
+      <tr><th>Задача</th><th>Было</th><th>Стало</th></tr>
+      <tr><td>Code review</td><td>~30% времени senior-разработчиков</td><td>Автоматический (Oracle + Atlas)</td></tr>
+      <tr><td>Написание тестов</td><td>«Забывали», падало покрытие</td><td>TDD через агентов — 100% покрытия</td></tr>
+      <tr><td>Обновление work items</td><td>Ручной ввод в Azure DevOps</td><td>Автоматически через azure-wi-manager</td></tr>
+      <tr><td>Документация</td><td>Отставала от кода</td><td>97 блокнотов — фиксация каждого решения</td></tr>
+      <tr><td>Планирование</td><td>Хаотичное</td><td>138 планов по единому шаблону</td></tr>
+    </table>
+
+    <div class="fact">
+      <p>«Code review, который раньше занимал 30% времени senior-разработчиков, теперь автоматически выполняют агенты Oracle и Atlas. Человек проверяет только логику.»</p>
+    </div>
+
+    <h2>Стек технологий</h2>
+    <div class="stack">
+      <code>OpenCode</code> <code>oh-my-openagent</code> <code>AI-агенты</code> <code>Azure DevOps MCP</code>
+      <code>Playwright MCP</code> <code>PHPStan (level 8)</code> <code>PHPCS</code> <code>PHPUnit</code>
+      <code>Vitest</code> <code>Drupal 10</code> <code>React 19</code> <code>TypeScript</code> <code>Docker</code>
+    </div>
+
+    <p>Хотите внедрить ИИ-агентов в свою команду? <a href="/#contact">Свяжитесь с нами →</a></p>
+  </div>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Кейсы — AxiomUI</title>
+  <meta name="robots" content="noindex" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      color: #1e293b; background: #f8fafc; line-height: 1.65; padding: 2rem 1rem;
+    }
+    .container { max-width: 860px; margin: 0 auto; }
+    .back { display: inline-block; margin-bottom: 1.5rem; font-size: .9rem; color: #4f46e5; text-decoration: none; }
+    .back:hover { text-decoration: underline; }
+    h1 { font-size: 1.5rem; margin-bottom: .25rem; color: #0f172a; }
+    .desc { font-size: .95rem; color: #64748b; margin-bottom: 2rem; }
+    .card {
+      background: #fff; border-radius: 12px; padding: 1.75rem; margin-bottom: 1.25rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,.08); border: 1px solid #e2e8f0;
+      transition: box-shadow .2s, border-color .2s;
+    }
+    .card:hover { border-color: #a5b4fc; box-shadow: 0 4px 12px rgba(79,70,229,.1); }
+    .card-badge {
+      display: inline-block; padding: .15rem .55rem; border-radius: 999px;
+      font-size: .75rem; font-weight: 600; text-transform: uppercase; letter-spacing: .04em;
+      margin-bottom: .5rem;
+    }
+    .badge-legacy { background: #eef2ff; color: #4338ca; }
+    .badge-ai { background: #ecfdf5; color: #047857; }
+    .card h2 { font-size: 1.2rem; margin-bottom: .35rem; color: #0f172a; }
+    .card p { font-size: .9rem; color: #475569; margin-bottom: .75rem; }
+    .card-link { font-size: .9rem; color: #4f46e5; font-weight: 600; text-decoration: none; }
+    .card-link:hover { text-decoration: underline; }
+    .card-meta { font-size: .8rem; color: #94a3b8; margin-bottom: .5rem; }
+    .card-stack { font-size: .8rem; color: #64748b; }
+    .card-stack code {
+      background: #f1f5f9; padding: .1rem .35rem; border-radius: 4px; font-size: .78rem;
+      color: #334155;
+    }
+    @media (max-width: 600px) { body { padding: 1rem; } }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a class="back" href="/">← На главную</a>
+    <h1>Проекты</h1>
+    <p class="desc">Реальные задачи, которые мы решали. Все описания обезличены по NDA.</p>
+
+    <div class="card">
+      <div class="card-badge badge-legacy">Аудит и миграция legacy</div>
+      <div class="card-meta">Крупная RPA-платформа · 2025–2026</div>
+      <h2>Аналитическая платформа нового поколения</h2>
+      <p>
+        Замена 157 устаревших Drupal-параграфов на 41 React-компонент с drag-and-drop,
+        9 типами графиков и JSONB-хранением. Бизнес-пользователи получили возможность
+        настраивать дашборды без участия разработчика.
+      </p>
+      <div class="card-stack">
+        React 19, TypeScript, Chart.js, PHP 8.2, Drupal 10, PostgreSQL JSONB
+      </div>
+      <p style="margin-top:.75rem;margin-bottom:0">
+        <a class="card-link" href="/cases/react-dashboard.html">Подробнее →</a>
+      </p>
+    </div>
+
+    <div class="card">
+      <div class="card-badge badge-ai">ИИ-агенты и автоматизация</div>
+      <div class="card-meta">Enterprise-разработка · 2025–2026</div>
+      <h2>Автоматизация разработки через ИИ-агентов</h2>
+      <p>
+        11 ИИ-агентов автоматизировали полный цикл разработки: от планирования до code review.
+        Code review ускорен на 60%, 138 планов задач созданы без единой просрочки,
+        TDD-дисциплина внедрена через агентов, а не приказы.
+      </p>
+      <div class="card-stack">
+        OpenCode, AI-агенты, Azure DevOps MCP, PHPStan (level 8), PHPUnit, Playwright
+      </div>
+      <p style="margin-top:.75rem;margin-bottom:0">
+        <a class="card-link" href="/cases/ai-agents.html">Подробнее →</a>
+      </p>
+    </div>
+  </div>
+</body>
+</html>

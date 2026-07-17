@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Кейс: React Dashboard — AxiomUI</title>
+  <meta name="robots" content="noindex" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      color: #1e293b; background: #f8fafc; line-height: 1.65; padding: 2rem 1rem;
+    }
+    .container { max-width: 760px; margin: 0 auto; background: #fff; border-radius: 12px; padding: 2.5rem 2rem; box-shadow: 0 1px 3px rgba(0,0,0,.08); }
+    .back { display: inline-block; margin-bottom: 1rem; font-size: .9rem; color: #4f46e5; text-decoration: none; }
+    .back:hover { text-decoration: underline; }
+    .case-badge {
+      display: inline-block; padding: .2rem .6rem; border-radius: 999px;
+      font-size: .75rem; font-weight: 700; text-transform: uppercase; letter-spacing: .04em;
+      background: #eef2ff; color: #4338ca; margin-bottom: .5rem;
+    }
+    h1 { font-size: 1.5rem; margin-bottom: .25rem; color: #0f172a; }
+    .meta { font-size: .85rem; color: #64748b; margin-bottom: 1.5rem; }
+    h2 { font-size: 1.15rem; margin-top: 1.75rem; margin-bottom: .5rem; color: #0f172a; }
+    h3 { font-size: 1rem; margin-top: 1.25rem; margin-bottom: .35rem; color: #0f172a; }
+    p { margin-bottom: .75rem; font-size: .95rem; color: #334155; }
+    ul, ol { margin-bottom: .75rem; padding-left: 1.25rem; }
+    li { margin-bottom: .35rem; font-size: .95rem; color: #334155; }
+    strong { color: #0f172a; }
+    .highlight { background: #eef2ff; border-left: 4px solid #4f46e5; padding: .75rem 1rem; border-radius: 6px; margin-bottom: 1rem; }
+    .highlight p { margin-bottom: 0; }
+    table {
+      width: 100%; border-collapse: collapse; margin-bottom: 1rem;
+      font-size: .88rem;
+    }
+    th, td { text-align: left; padding: .5rem .6rem; border-bottom: 1px solid #e2e8f0; }
+    th { background: #f8fafc; font-weight: 700; color: #0f172a; }
+    .result-grid { display: grid; gap: .75rem; margin-bottom: 1rem; }
+    .result-item { background: #f8fafc; border-radius: 8px; padding: .75rem 1rem; }
+    .result-item .label { font-size: .78rem; color: #64748b; }
+    .result-item .value { font-size: 1.05rem; font-weight: 700; color: #0f172a; }
+    @media (min-width: 600px) { .result-grid { grid-template-columns: 1fr 1fr; } }
+    .fact { background: #fef3c7; border-left: 4px solid #f59e0b; padding: .75rem 1rem; border-radius: 6px; margin-bottom: .75rem; }
+    .fact p { margin-bottom: 0; font-size: .9rem; color: #92400e; }
+    .stack { margin-bottom: 1rem; }
+    .stack code {
+      display: inline-block; background: #f1f5f9; padding: .15rem .5rem; border-radius: 4px;
+      font-size: .82rem; color: #334155; margin: .15rem .1rem;
+    }
+    @media (max-width: 600px) { body { padding: 1rem; } .container { padding: 1.5rem 1rem; } table { font-size: .8rem; } }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a class="back" href="/cases/index.html">← Все проекты</a>
+    <div class="case-badge">Аудит и миграция legacy</div>
+    <h1>Аналитическая платформа нового поколения</h1>
+    <p class="meta">Крупная RPA-платформа · 2025–2026 · React + Drupal + PostgreSQL</p>
+
+    <div class="highlight">
+      <p><strong>Суть:</strong> Заменили 157 устаревших Drupal-параграфов на 41 React-компонент с JSONB-хранением. Бизнес-пользователи получили drag-and-drop дашборды без участия разработчика.</p>
+    </div>
+
+    <h2>Контекст и проблема</h2>
+    <p>Крупная платформа автоматизации (RPA) столкнулась с проблемой: бизнес-пользователи нуждались в гибкой визуальной аналитике, но существующее решение было построено на устаревшей архитектуре Drupal Paragraphs. Каждый дашборд был набором параграфов в Drupal-ноде, связанных со сложной системой формул.</p>
+    <ul>
+      <li><strong>157 параграфов</strong> в 3 legacy-дашбордах — жёсткая связка данных и представления</li>
+      <li><strong>75+ формул</strong> размазаны по параграфам, нет единого источника истины</li>
+      <li><strong>75% дашбордов</strong> требовали участия разработчика для любого изменения</li>
+      <li>Отсутствие drag-and-drop — любое перемещение виджета = задача в бэклог</li>
+      <li>Невозможность для бизнес-пользователя самостоятельно настроить аналитику</li>
+    </ul>
+
+    <h2>Техническое решение</h2>
+    <p>Архитектура построена на принципе разделения данных и представления. Бэкенд возвращает только сырые числа, клиент форматирует.</p>
+
+    <table>
+      <tr><th>Компонент</th><th>Технология</th><th>Назначение</th></tr>
+      <tr><td>Frontend</td><td>React 19, TypeScript (strict), Vite 8</td><td>UI дашбордов</td></tr>
+      <tr><td>Grid layout</td><td>React-Grid-Layout</td><td>Drag-and-drop виджетов (как в Grafana)</td></tr>
+      <tr><td>Графики</td><td>Chart.js + react-chartjs-2</td><td>9 типов графиков</td></tr>
+      <tr><td>Хранение</td><td>PostgreSQL JSONB</td><td>Гибкое хранение без миграций</td></tr>
+      <tr><td>Формулы</td><td>ExpressionLanguage (DSL)</td><td>Вычисления на сервере</td></tr>
+      <tr><td>Переводы</td><td>i18next + key-based JSON</td><td>Интернационализация</td></tr>
+      <tr><td>Backend</td><td>PHP 8.2, Drupal 10</td><td>API + бизнес-логика</td></tr>
+    </table>
+
+    <h3>Ключевые архитектурные решения</h3>
+    <ul>
+      <li><strong>Raw Data Principle</strong> — бэкенд возвращает только сырые числа, клиент форматирует. <code>data.values</code> никогда не сохраняются в БД.</li>
+      <li><strong>JSONB-хранение</strong> — один столбец <code>data JSONB NOT NULL</code> вместо 20+ Drupal-полей. Схема расширяется без миграций.</li>
+      <li><strong>SourceKey иерархия</strong> — generic и specific дашборды. Один шаблон на 100+ сущностей.</li>
+      <li><strong>Widget Plugin System</strong> — Drupal-плагины с единым контрактом через <code>WidgetPluginInterface</code>.</li>
+      <li><strong>9 Chart-трансформеров</strong> в цепочке ответственности (Chain of Responsibility), конвертирующие любые DSL-данные в Chart.js-формат.</li>
+    </ul>
+
+    <h3>Масштаб реализации</h3>
+    <div class="result-grid">
+      <div class="result-item"><div class="label">React-компонентов</div><div class="value">41</div></div>
+      <div class="result-item"><div class="label">TypeScript-типов</div><div class="value">24</div></div>
+      <div class="result-item"><div class="label">Тестов (Vitest)</div><div class="value">58</div></div>
+      <div class="result-item"><div class="label">Строк кода (React)</div><div class="value">~24 610</div></div>
+      <div class="result-item"><div class="label">PHP-файлов backend</div><div class="value">50</div></div>
+      <div class="result-item"><div class="label">API-эндпоинтов</div><div class="value">13</div></div>
+      <div class="result-item"><div class="label">Типов графиков (Chart.js)</div><div class="value">9</div></div>
+      <div class="result-item"><div class="label">Widget-плагинов</div><div class="value">4</div></div>
+    </div>
+
+    <h2>Результаты</h2>
+    <table>
+      <tr><th>Метрика</th><th>До (Legacy)</th><th>После (V2)</th><th>Эффект</th></tr>
+      <tr><td>Связь данных и UI</td><td>Жёсткая (Paragraphs)</td><td>Разделение (data/config)</td><td>Чистая архитектура</td></tr>
+      <tr><td>Изменение дашборда</td><td>Задача разработчику</td><td>Drag-and-drop бизнес-пользователем</td><td>~90% быстрее</td></tr>
+      <tr><td>Добавление индикатора</td><td>SQL + формула</td><td>Выбор из available-fields</td><td>~95% быстрее</td></tr>
+      <tr><td>Хранение схемы</td><td>Drupal Entity (20+ полей)</td><td>1 столбец JSONB</td><td>~80% меньше кода</td></tr>
+      <tr><td>Расширяемость</td><td>Новая entity type</td><td>Новый WidgetPlugin</td><td>Дни → часы</td></tr>
+    </table>
+
+    <div class="fact">
+      <p>«Мы заменили 157 параграфов и 75+ формул на 41 React-компонент в одной JSONB-таблице. Время добавления нового индикатора сократилось с 2 дней до 15 минут.»</p>
+    </div>
+
+    <h2>Стек технологий</h2>
+    <div class="stack">
+      <code>React 19</code> <code>TypeScript</code> <code>Vite 8</code> <code>Chart.js</code> <code>react-chartjs-2</code>
+      <code>React-Grid-Layout</code> <code>i18next</code> <code>PHP 8.2</code> <code>Drupal 10</code>
+      <code>PostgreSQL JSONB</code> <code>ExpressionLanguage</code> <code>PHPUnit</code> <code>Vitest</code>
+      <code>Playwright</code> <code>Docker</code>
+    </div>
+
+    <p>Хотите обсудить похожую задачу? <a href="/#contact">Свяжитесь с нами →</a></p>
+  </div>
+</body>
+</html>
