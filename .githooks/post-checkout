@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# Auto-install npm dependencies when package.json changed or node_modules is missing
+set -e
+
+CHANGED="$3"
+
+# Only run on branch switches ($3 == 1 means file checkout, not branch switch)
+if [ "$CHANGED" = "1" ]; then
+  exec </dev/null
+
+  if [ ! -d "node_modules" ]; then
+    echo "→ node_modules not found, running npm install..."
+    npm install --silent
+    echo "✓ node_modules restored"
+  fi
+fi

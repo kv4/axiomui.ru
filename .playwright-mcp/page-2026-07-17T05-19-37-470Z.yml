@@ -1,0 +1,234 @@
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - generic [ref=e5]:
+      - link "Ax AxiomUI Аудит legacy-кода и AI-агенты" [ref=e6] [cursor=pointer]:
+        - /url: "#"
+        - generic [ref=e7]: Ax
+        - generic [ref=e9]:
+          - generic [ref=e10]: AxiomUI
+          - generic [ref=e11]: Аудит legacy-кода и AI-агенты
+      - navigation [ref=e12]:
+        - link "Услуги" [ref=e13] [cursor=pointer]:
+          - /url: "#services"
+        - link "Процесс" [ref=e14] [cursor=pointer]:
+          - /url: "#process"
+        - link "Безопасность" [ref=e15] [cursor=pointer]:
+          - /url: "#faq"
+        - link "FAQ" [ref=e16] [cursor=pointer]:
+          - /url: "#faq"
+      - link "Связаться в Telegram" [ref=e17] [cursor=pointer]:
+        - /url: "#contact"
+  - main [ref=e20]:
+    - generic [ref=e23]:
+      - generic [ref=e24]: ИТ-консалтинг для разумного бизнеса
+      - heading "Стабилизируем ваши legacy-системы и сократим издержки на ИТ с помощью ИИ-агентов" [level=1] [ref=e26]
+      - paragraph [ref=e27]: Профессиональный технический аудит кодовой базы, плановое сопровождение без «тушения пожаров» и интеграция современных AI-assisted инструментов в вашу команду разработки.
+      - generic [ref=e28]:
+        - link "Провести экспресс-анализ" [ref=e29] [cursor=pointer]:
+          - /url: "#contact"
+        - link "Узнать подробнее об услугах" [ref=e32] [cursor=pointer]:
+          - /url: "#services"
+      - paragraph [ref=e33]: Анализ проекта займет всего 30 минут в формате созвона. Без обязательств.
+    - generic [ref=e36]:
+      - generic [ref=e37]:
+        - generic [ref=e38]: Проблематика
+        - heading "С какими проблемами чаще всего сталкивается бизнес с legacy-кодом?" [level=2] [ref=e39]
+      - generic [ref=e40]:
+        - generic [ref=e47]:
+          - heading "«Узкое горлышко» в команде" [level=3] [ref=e48]
+          - paragraph [ref=e49]: Система держится на одном разработчике. Если он уйдет — в коде никто не сможет разобраться.
+        - generic [ref=e56]:
+          - heading "Страх изменений" [level=3] [ref=e57]
+          - paragraph [ref=e58]: Любое мелкое исправление или новая фича ломает старый функционал в самых неожиданных местах.
+        - generic [ref=e65]:
+          - heading "Раздутый бюджет поддержки" [level=3] [ref=e66]
+          - paragraph [ref=e67]: Расходы на поддержание работоспособности растут быстрее, чем проект развивается и приносит пользу.
+        - generic [ref=e74]:
+          - heading "Рутина вместо ценности" [level=3] [ref=e75]
+          - paragraph [ref=e76]: Программисты тратят до 40% времени на написание шаблонных тестов, документирование и мелкий рефакторинг.
+    - generic [ref=e78]:
+      - generic [ref=e79]:
+        - generic [ref=e80]: Услуги
+        - heading "Два шага к стабильности и эффективности вашей разработки" [level=2] [ref=e81]
+      - generic [ref=e82]:
+        - generic [ref=e83]:
+          - generic [ref=e84]: Направление 1
+          - heading "Аудит и эволюционная поддержка legacy-кода" [level=3] [ref=e89]
+          - paragraph [ref=e90]: Стабилизируем то, что уже работает и приносит прибыль, не пытаясь переписать всё с нуля.
+          - list [ref=e91]:
+            - listitem [ref=e92]:
+              - generic [ref=e95]:
+                - generic [ref=e96]: Глубокий технический аудит.
+                - text: Выявление уязвимостей, узких мест производительности и скрытых зависимостей
+            - listitem [ref=e97]:
+              - generic [ref=e100]:
+                - generic [ref=e101]: Снятие зависимости от авторов кода.
+                - text: Покрытие критических узлов тестами и документирование архитектуры
+            - listitem [ref=e102]:
+              - generic [ref=e105]:
+                - generic [ref=e106]: Плановое сопровождение.
+                - text: Исправление ошибок, обновление библиотек и постепенный рефакторинг по согласованному регламенту
+          - paragraph [ref=e107]: "Как мы работаем: Мы работаем по плановому графику и не занимаемся ночными аварийными вызовами. Мы настраиваем систему так, чтобы аварии не происходили."
+        - generic [ref=e108]:
+          - generic [ref=e109]: Направление 2
+          - heading "Внедрение ИИ-агентов в процессы разработки AI-Assisted Dev" [level=3] [ref=e115]
+          - paragraph [ref=e116]: Помогаем команде использовать возможности ИИ на полную мощность, снижая стоимость разработки.
+          - list [ref=e117]:
+            - listitem [ref=e118]:
+              - generic [ref=e121]: Интеграция ИИ-ассистентов — Настройка рабочих мест разработчиков для генерации качественного кода по вашим стандартам
+            - listitem [ref=e122]:
+              - generic [ref=e125]: Автоматизация рутинных задач — Внедрение ИИ-агентов для автогенерации тестов, документирования и анализа пулл-реквестов
+            - listitem [ref=e126]:
+              - generic [ref=e129]: Обучение методологии — Снижение времени вывода новых функций на рынок за счет правильного использования LLM-инструментов
+          - paragraph [ref=e130]: "Результат: Ваша команда начнет работать быстрее и эффективнее, фокусируясь на бизнес-логике, а не на рутине."
+    - generic [ref=e132]:
+      - generic [ref=e133]:
+        - generic [ref=e134]: Процесс
+        - heading "Прозрачный процесс работы" [level=2] [ref=e135]
+      - generic [ref=e137]:
+        - generic [ref=e138]:
+          - generic [ref=e139]: "01"
+          - heading "Знакомство (30 минут)" [level=3] [ref=e140]
+          - paragraph [ref=e141]: Коротко обсуждаем стек, масштаб системы и ключевые проблемы в формате созвона.
+        - generic [ref=e142]:
+          - generic [ref=e143]: "02"
+          - heading "Технический аудит" [level=3] [ref=e144]
+          - paragraph [ref=e145]: Детально изучаем кодовую базу и выдаем отчет с картой рисков и планом стабилизации.
+        - generic [ref=e146]:
+          - generic [ref=e147]: "03"
+          - heading "Стабилизация и обслуживание" [level=3] [ref=e148]
+          - paragraph [ref=e149]: Фиксируем ежемесячный пул часов (Retainer) и планомерно приводим систему в порядок.
+        - generic [ref=e150]:
+          - generic [ref=e151]: "04"
+          - heading "Оптимизация с ИИ" [level=3] [ref=e152]
+          - paragraph [ref=e153]: Настраиваем инструменты ИИ-агентов под ваши задачи и обучаем команду работать эффективнее.
+    - generic [ref=e155]:
+      - generic [ref=e156]:
+        - generic [ref=e157]: Цены
+        - heading "Прозрачные тарифы" [level=2] [ref=e158]
+      - generic [ref=e159]:
+        - generic [ref=e161]:
+          - generic [ref=e162]:
+            - heading "Экспресс-анализ" [level=3] [ref=e163]
+            - paragraph [ref=e164]: 30-минутный созвон и предварительная оценка вашего проекта
+          - generic [ref=e165]: Бесплатно
+        - generic [ref=e167]:
+          - generic [ref=e168]:
+            - heading "Техническое обследование" [level=3] [ref=e169]
+            - paragraph [ref=e170]: Полный анализ репозитория, поиск узких мест и отчёт с рекомендациями
+          - generic [ref=e171]: от 30 000 ₽
+      - generic [ref=e172]:
+        - generic [ref=e173]:
+          - generic [ref=e174]: Подписка
+          - heading "Базовый" [level=3] [ref=e175]
+          - generic [ref=e176]:
+            - generic [ref=e177]: 60 000
+            - generic [ref=e178]: ₽/мес
+          - generic [ref=e179]: 15 часов
+          - generic [ref=e180]: 4 000 ₽/ч при перерасходе
+          - list [ref=e181]:
+            - listitem [ref=e182]:
+              - generic [ref=e185]: Code review критических узлов
+            - listitem [ref=e186]:
+              - generic [ref=e189]: Исправление ошибок и уязвимостей
+            - listitem [ref=e190]:
+              - generic [ref=e193]: Одна консультация (до 1 ч)
+            - listitem [ref=e194]:
+              - generic [ref=e197]: Обновление библиотек и зависимостей
+          - link "Узнать подробнее" [ref=e199] [cursor=pointer]:
+            - /url: "#contact"
+        - generic [ref=e202]:
+          - generic [ref=e203]: Рекомендуем
+          - generic [ref=e204]: Подписка
+          - heading "Рабочий" [level=3] [ref=e205]
+          - generic [ref=e206]:
+            - generic [ref=e207]: 100 000
+            - generic [ref=e208]: ₽/мес
+          - generic [ref=e209]: 25 часов
+          - generic [ref=e210]: 4 000 ₽/ч при перерасходе
+          - list [ref=e211]:
+            - listitem [ref=e212]:
+              - generic [ref=e215]: Всё из «Базового»
+            - listitem [ref=e216]:
+              - generic [ref=e219]: Оптимизация производительности
+            - listitem [ref=e220]:
+              - generic [ref=e223]: Документирование архитектуры
+            - listitem [ref=e224]:
+              - generic [ref=e227]: Две консультации (до 1 ч каждая)
+            - listitem [ref=e228]:
+              - generic [ref=e231]: Приоритетная поддержка в рабочее время
+          - link "Выбрать" [ref=e233] [cursor=pointer]:
+            - /url: "#contact"
+        - generic [ref=e236]:
+          - generic [ref=e237]: Подписка
+          - heading "Полный" [level=3] [ref=e238]
+          - generic [ref=e239]:
+            - generic [ref=e240]: 150 000
+            - generic [ref=e241]: ₽/мес
+          - generic [ref=e242]: 40 часов
+          - generic [ref=e243]: 5 000 ₽/ч при перерасходе
+          - list [ref=e244]:
+            - listitem [ref=e245]:
+              - generic [ref=e248]: Всё из «Рабочего»
+            - listitem [ref=e249]:
+              - generic [ref=e252]: Рефакторинг и миграции
+            - listitem [ref=e253]:
+              - generic [ref=e256]: Внедрение ИИ-агентов
+            - listitem [ref=e257]:
+              - generic [ref=e260]: Безлимитные консультации
+            - listitem [ref=e261]:
+              - generic [ref=e264]: Приоритет 24/7
+            - listitem [ref=e265]:
+              - generic [ref=e268]: Стратегическое планирование
+          - link "Узнать подробнее" [ref=e270] [cursor=pointer]:
+            - /url: "#contact"
+    - generic [ref=e274]:
+      - generic [ref=e275]:
+        - generic [ref=e276]: FAQ
+        - heading "Частые вопросы" [level=2] [ref=e277]
+      - generic [ref=e278]:
+        - generic [ref=e279]:
+          - button "Безопасно ли использовать ИИ? Наш код не уйдет в открытый доступ?" [ref=e280]
+          - paragraph [ref=e286]: Мы используем защищенные корпоративные API с юридической гарантией неиспользования данных для обучения публичных моделей, либо разворачиваем локальные (on-premise) LLM-модели на ваших серверах. Весь код остается строго внутри вашего контура безопасности.
+        - generic [ref=e287]:
+          - button "Что если система упадет ночью? Вы приедете чинить?" [ref=e288]
+          - paragraph [ref=e292]: Наша цель — превентивное обслуживание, чтобы падений не происходило. Мы не дежурим по ночам в режиме 24/7. Однако в рамках сопровождения мы настраиваем автоматическое самовосстановление серверов и пишем понятные пошаговые инструкции (Runbooks) для поддержки вашего хостинга, чтобы проблемы решались автоматически или силами дежурного админа.
+        - generic [ref=e293]:
+          - button "Сколько стоят ваши услуги?" [ref=e294]
+          - paragraph [ref=e298]: Первичный аудит оценивается фиксированно по результатам предварительного созвона. Регулярное плановое сопровождение и работы по оптимизации строятся по ежемесячной подписке (пакеты от 15 до 40 часов в месяц).
+    - generic [ref=e301]:
+      - generic [ref=e302]:
+        - generic [ref=e303]: Бесплатный экспресс-анализ
+        - heading "Давайте обсудим ваш проект" [level=2] [ref=e305]
+        - paragraph [ref=e306]: Расскажите о ваших текущих задачах. В течение 30-минутного экспресс-аудита мы подскажем, с чего начать стабилизацию системы и как можно сократить расходы на команду уже сейчас.
+      - generic [ref=e307]:
+        - generic [ref=e308]:
+          - generic [ref=e309]: Имя
+          - textbox "Имя" [ref=e310]:
+            - /placeholder: Константин
+        - generic [ref=e311]:
+          - generic [ref=e312]: Telegram или Email
+          - textbox "@username или name@company.com" [ref=e313]
+        - generic [ref=e314]:
+          - generic [ref=e315]: Краткое описание проекта
+          - textbox "Краткое описание проекта" [ref=e316]:
+            - /placeholder: "Например: Django/Python legacy-проект, упала скорость разработки, нужно покрыть тестами"
+        - generic [ref=e317] [cursor=pointer]:
+          - checkbox "Я согласен на обработку моих персональных данных в соответствии с Политикой конфиденциальности" [ref=e318]
+          - generic [ref=e319]:
+            - text: Я согласен на обработку моих персональных данных в соответствии с
+            - link "Политикой конфиденциальности" [ref=e320]:
+              - /url: /privacy.html
+        - button "Отправить заявку" [disabled] [ref=e321]
+        - link "Или написать напрямую в Telegram" [ref=e325] [cursor=pointer]:
+          - /url: https://t.me/chernyakov_k
+  - contentinfo [ref=e328]:
+    - generic [ref=e329]:
+      - generic [ref=e330]:
+        - generic [ref=e331]: Ax
+        - generic [ref=e333]: AxiomUI·© 2026 All rights reserved.
+      - generic [ref=e334]:
+        - link "Политика конфиденциальности" [ref=e335] [cursor=pointer]:
+          - /url: /privacy.html
+        - link "Условия использования" [ref=e336] [cursor=pointer]:
+          - /url: /terms.html

@@ -1,4 +1,4 @@
-.PHONY: dev build preview install
+.PHONY: dev build preview install hooks
 
 install:
 	npm install
@@ -11,3 +11,6 @@ build:
 
 preview:
 	npm run preview
+
+hooks:
+	git config core.hooksPath .githooks
