@@ -200,9 +200,9 @@ const SUBSCRIPTIONS = [
 
 const ONE_TIME = [
   {
-    name: "Экспресс-анализ",
+    name: "Экспресс-диагностика",
     price: "Бесплатно",
-    desc: "30-минутный созвон и предварительная оценка вашего проекта",
+    desc: "30-минутный созвон, обсуждаем стек, симптомы проблем и рамки проекта. Без доступа к коду.",
   },
   {
     name: "Техническое обследование",
@@ -441,7 +441,7 @@ function Hero() {
               href="#contact"
               className="group inline-flex items-center justify-center gap-2 rounded-lg bg-indigo-600 px-7 py-3.5 text-[15px] font-bold text-white shadow-lg shadow-indigo-600/25 transition-all hover:bg-indigo-500 hover:shadow-indigo-500/35"
             >
-              Провести экспресс-анализ
+               Записаться на диагностику
               <svg className="h-4.5 w-4.5 transition-transform group-hover:translate-x-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
                 <path d="M5 12h14M13 5l7 7-7 7" />
               </svg>
@@ -455,9 +455,9 @@ function Hero() {
           </div>
 
           {/* Trust text */}
-          <p className="mt-6 text-[14px] font-medium text-slate-600">
+            <p className="mt-6 text-[14px] font-medium text-slate-600">
             <span className="mr-2 inline-flex h-2.5 w-2.5 translate-y-[-1px] rounded-full bg-emerald-500"></span>
-            Анализ проекта займет всего 30 минут в формате созвона. Без обязательств.
+            Диагностика займет 30 минут созвона. Без доступа к коду. Без обязательств.
           </p>
         </div>
       </div>
@@ -626,6 +626,10 @@ function CasesTeaser() {
     <section className="relative border-t border-slate-300 bg-white py-20 sm:py-28">
       <div className="mx-auto max-w-6xl px-5 lg:px-8">
         <SectionHeader eyebrow="Кейсы" title="Реальные проекты" />
+
+        <p className="mx-auto mt-6 max-w-3xl text-center text-[15px] font-medium leading-relaxed text-slate-700">
+          Каждый из этих проектов реализован с помощью наших ИИ-агентов. Это позволяет проводить глубокую архитектурную проработку в сжатые сроки — без раздувания команды и бюджета.
+        </p>
 
         <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           <a href="/cases/react-dashboard.html" className="group block rounded-2xl border-2 border-slate-300 bg-white p-7 shadow-sm transition-all hover:border-indigo-400 hover:shadow-lg hover:shadow-indigo-100/50">
@@ -805,13 +809,13 @@ function Contact() {
           <div className="relative text-center">
             <div className="inline-flex items-center gap-2 rounded-full border border-emerald-300 bg-emerald-50 px-4 py-1.5 text-[12px] font-bold uppercase tracking-widest text-emerald-700">
               <span className="h-2 w-2 rounded-full bg-emerald-500"></span>
-              Бесплатный экспресс-анализ
+              Бесплатная диагностика
             </div>
             <h2 className="mt-5 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
               Давайте обсудим ваш проект
             </h2>
             <p className="mx-auto mt-4 max-w-xl text-[15px] font-medium leading-relaxed text-slate-700 sm:text-[16px]">
-              Расскажите о ваших текущих задачах. В течение 30-минутного экспресс-аудита мы подскажем, с чего начать стабилизацию системы и как можно сократить расходы на команду уже сейчас.
+              Расскажите о ваших текущих задачах. На созвоне мы подскажем, с чего начать стабилизацию системы и как можно сократить расходы на команду уже сейчас.
             </p>
           </div>
 
@@ -926,7 +930,7 @@ function Footer() {
           <div className="text-[14px] font-medium text-slate-700">
             <span className="font-bold text-slate-900">AxiomUI</span>
             <span className="mx-2 text-slate-300">·</span>
-            © 2026 All rights reserved.
+            © 2026 AxiomUI
           </div>
         </div>
 
