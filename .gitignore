@@ -5,3 +5,4 @@ dist
 .env
 *.png
 .playwright-mcp
+axiomui-full-site.md
