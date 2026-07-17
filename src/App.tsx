@@ -535,10 +535,12 @@ function FAQ() {
 
 function Contact() {
   const [form, setForm] = useState({ name: "", contact: "", message: "" });
+  const [consent, setConsent] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    if (!consent) return;
     setSubmitted(true);
 
     const text = [
@@ -643,9 +645,23 @@ function Contact() {
                 />
               </div>
 
+              <label className="flex items-start gap-3 cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={consent}
+                  onChange={(e) => setConsent(e.target.checked)}
+                  className="mt-0.5 h-4 w-4 shrink-0 rounded border-2 border-slate-300 text-indigo-600 focus:ring-2 focus:ring-indigo-500/25"
+                />
+                <span className="text-[13px] leading-relaxed text-slate-600">
+                  Я согласен на обработку моих персональных данных в соответствии с{' '}
+                  <a href="/privacy.html" target="_blank" className="text-indigo-600 underline hover:text-indigo-500">Политикой конфиденциальности</a>
+                </span>
+              </label>
+
               <button
                 type="submit"
-                className="group mt-3 flex w-full items-center justify-center gap-2 rounded-lg bg-indigo-600 px-7 py-4 text-[15px] font-bold text-white shadow-lg shadow-indigo-600/25 transition-all hover:bg-indigo-500 hover:shadow-indigo-500/40"
+                disabled={!consent}
+                className="group mt-3 flex w-full items-center justify-center gap-2 rounded-lg bg-indigo-600 px-7 py-4 text-[15px] font-bold text-white shadow-lg shadow-indigo-600/25 transition-all hover:bg-indigo-500 hover:shadow-indigo-500/40 disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-indigo-600 disabled:hover:shadow-indigo-600/25"
               >
                 Отправить заявку
                 <svg className="h-5 w-5 transition-transform group-hover:translate-x-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
