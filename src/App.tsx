@@ -790,7 +790,7 @@ function Contact() {
 
     fetch(
       `https://api.telegram.org/bot${import.meta.env.VITE_TG_BOT_TOKEN}/sendMessage`,
-      { method: "POST", body }
+      { method: "POST", body, mode: "no-cors" }
     ).catch(() => {});
   };
 
