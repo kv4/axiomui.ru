@@ -768,7 +768,6 @@ function Contact() {
   const [form, setForm] = useState({ name: "", contact: "", message: "" });
   const [consent, setConsent] = useState(false);
   const [submitted, setSubmitted] = useState(false);
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!consent) return;
@@ -782,16 +781,32 @@ function Contact() {
       `<b>Проект:</b> ${form.message}`,
     ].join("\n");
 
-    const body = new URLSearchParams({
-      chat_id: import.meta.env.VITE_TG_CHAT_ID,
-      text,
-      parse_mode: "HTML",
-    });
+    const input = document.createElement("input");
+    input.type = "hidden";
+    input.name = "text";
+    input.value = text;
 
-    fetch(
-      `https://api.telegram.org/bot${import.meta.env.VITE_TG_BOT_TOKEN}/sendMessage`,
-      { method: "POST", body, mode: "no-cors" }
-    ).catch(() => {});
+    const chatInput = document.createElement("input");
+    chatInput.type = "hidden";
+    chatInput.name = "chat_id";
+    chatInput.value = import.meta.env.VITE_TG_CHAT_ID;
+
+    const parseInput = document.createElement("input");
+    parseInput.type = "hidden";
+    parseInput.name = "parse_mode";
+    parseInput.value = "HTML";
+
+    const f = document.createElement("form");
+    f.method = "POST";
+    f.action = `https://api.telegram.org/bot${import.meta.env.VITE_TG_BOT_TOKEN}/sendMessage`;
+    f.target = "tg-frame";
+    f.style.display = "none";
+    f.appendChild(input);
+    f.appendChild(chatInput);
+    f.appendChild(parseInput);
+    document.body.appendChild(f);
+    f.submit();
+    document.body.removeChild(f);
   };
 
   return (
@@ -831,6 +846,7 @@ function Contact() {
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="relative mt-10 space-y-5">
+              <iframe name="tg-frame" title="tg" style={{display:"none"}}></iframe>
               <div>
                 <label htmlFor="name" className="mb-2 block text-[14px] font-bold text-slate-800">
                   Имя
