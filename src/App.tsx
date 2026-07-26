@@ -334,8 +334,14 @@ function Header() {
     <header className="sticky top-0 z-50 border-b border-slate-300 bg-white/90 backdrop-blur-xl">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4 lg:px-8">
         {/* Logo */}
-        <a href="#" className="flex items-center">
-          <img src="/logo-full.svg" alt="AxiomUI" className="h-9 w-auto" />
+        <a href="#" className="group flex items-center gap-2.5">
+          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-indigo-500 to-violet-600 shadow-md shadow-indigo-500/25 ring-1 ring-indigo-500/15">
+            <span className="text-[16px] font-bold tracking-tight text-white">A</span>
+          </div>
+          <div className="leading-tight">
+            <div className="text-[16px] font-bold tracking-tight text-slate-900">AxiomUI</div>
+            <div className="text-[12px] font-medium text-slate-600">Аудит legacy-кода и AI-агенты</div>
+          </div>
         </a>
 
         {/* Desktop Nav */}
