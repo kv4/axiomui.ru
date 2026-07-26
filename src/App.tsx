@@ -768,45 +768,22 @@ function Contact() {
   const [form, setForm] = useState({ name: "", contact: "", message: "" });
   const [consent, setConsent] = useState(false);
   const [submitted, setSubmitted] = useState(false);
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!consent) return;
     setSubmitted(true);
 
-    const text = [
-      "<b>Новая заявка с axiomui.ru</b>",
-      "",
-      `<b>Имя:</b> ${form.name}`,
-      `<b>Контакт:</b> ${form.contact}`,
-      `<b>Проект:</b> ${form.message}`,
-    ].join("\n");
-
-    const input = document.createElement("input");
-    input.type = "hidden";
-    input.name = "text";
-    input.value = text;
-
-    const chatInput = document.createElement("input");
-    chatInput.type = "hidden";
-    chatInput.name = "chat_id";
-    chatInput.value = import.meta.env.VITE_TG_CHAT_ID;
-
-    const parseInput = document.createElement("input");
-    parseInput.type = "hidden";
-    parseInput.name = "parse_mode";
-    parseInput.value = "HTML";
-
-    const f = document.createElement("form");
-    f.method = "POST";
-    f.action = `https://api.telegram.org/bot${import.meta.env.VITE_TG_BOT_TOKEN}/sendMessage`;
-    f.target = "tg-frame";
-    f.style.display = "none";
-    f.appendChild(input);
-    f.appendChild(chatInput);
-    f.appendChild(parseInput);
-    document.body.appendChild(f);
-    f.submit();
-    document.body.removeChild(f);
+    try {
+      await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: form.name,
+          contact: form.contact,
+          message: form.message,
+        }),
+      });
+    } catch (_) {}
   };
 
   return (
@@ -846,7 +823,6 @@ function Contact() {
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="relative mt-10 space-y-5">
-              <iframe name="tg-frame" title="tg" style={{display:"none"}}></iframe>
               <div>
                 <label htmlFor="name" className="mb-2 block text-[14px] font-bold text-slate-800">
                   Имя

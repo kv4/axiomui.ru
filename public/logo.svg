@@ -1,0 +1,12 @@
+<svg viewBox="0 0 200 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="a" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4f46e5"/>
+      <stop offset="100%" stop-color="#6366f1"/>
+    </linearGradient>
+  </defs>
+  <rect x="2" y="2" width="44" height="44" rx="10" stroke="url(#a)" stroke-width="3.5" fill="none"/>
+  <text x="28" y="24" text-anchor="middle" dominant-baseline="central" font-family="system-ui, sans-serif" font-size="22" font-weight="700" fill="#4f46e5">A</text>
+  <text x="52" y="38" font-family="system-ui, sans-serif" font-size="20" font-weight="800" fill="#1e293b">Axiom</text>
+  <text x="52" y="52" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#6366f1" letter-spacing="1">UNIFIED INTELLIGENCE</text>
+</svg>

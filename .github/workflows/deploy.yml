@@ -10,9 +10,6 @@ jobs:
       - uses: actions/checkout@v4
       - run: npm install
       - run: npm run build
-        env:
-          VITE_TG_BOT_TOKEN: ${{ secrets.VITE_TG_BOT_TOKEN }}
-          VITE_TG_CHAT_ID: ${{ secrets.VITE_TG_CHAT_ID }}
       - name: Deploy to VPS
         uses: appleboy/scp-action@v0.1.7
         with:
