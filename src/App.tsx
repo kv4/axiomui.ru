@@ -2,6 +2,17 @@ import { useState, useEffect } from "react";
 
 // ─── Icons ────────────────────────────────────────────────────────────────────
 
+function MaxIcon({ className = "h-4 w-4" }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15l-4-4 1.41-1.41L11 14.17l6.59-6.59L19 9l-8 8z"/>
+      <rect x="5" y="6" width="14" height="2" rx="1"/>
+      <rect x="5" y="10" width="10" height="2" rx="1"/>
+      <rect x="5" y="14" width="12" height="2" rx="1"/>
+    </svg>
+  );
+}
+
 function TelegramIcon({ className = "h-4 w-4" }: { className?: string }) {
   return (
     <svg className={className} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -358,13 +369,26 @@ function Header() {
         </nav>
 
         {/* Desktop CTA */}
-        <a
-          href="#contact"
-          className="hidden items-center gap-2 rounded-lg border border-slate-300 bg-white px-4.5 py-2.5 text-[14px] font-semibold text-slate-800 shadow-sm transition-all hover:border-indigo-400 hover:bg-indigo-50 hover:text-indigo-700 md:inline-flex"
-        >
-          <TelegramIcon className="h-4.5 w-4.5" />
-          Связаться в Telegram
-        </a>
+        <div className="hidden items-center gap-2 md:flex">
+          <a
+            href="https://max.ru/id141002165689_bot"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 rounded-lg border border-slate-300 bg-white px-4 py-2.5 text-[14px] font-semibold text-slate-800 shadow-sm transition-all hover:border-indigo-400 hover:bg-indigo-50 hover:text-indigo-700"
+          >
+            <MaxIcon className="h-4.5 w-4.5" />
+            MAX
+          </a>
+          <a
+            href="https://t.me/chernyakov_k"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 rounded-lg border border-slate-300 bg-white px-4 py-2.5 text-[14px] font-semibold text-slate-800 shadow-sm transition-all hover:border-indigo-400 hover:bg-indigo-50 hover:text-indigo-700"
+          >
+            <TelegramIcon className="h-4.5 w-4.5" />
+            Telegram
+          </a>
+        </div>
 
         {/* Mobile toggle */}
         <button
@@ -391,14 +415,28 @@ function Header() {
                 {l.label}
               </a>
             ))}
-            <a
-              href="#contact"
-              onClick={() => setOpen(false)}
-              className="mt-2 inline-flex items-center justify-center gap-2 rounded-lg bg-indigo-600 px-4 py-3 text-[15px] font-semibold text-white shadow-sm shadow-indigo-500/20 hover:bg-indigo-500"
-            >
-              <TelegramIcon className="h-4.5 w-4.5" />
-              Связаться в Telegram
-            </a>
+            <div className="mt-2 flex flex-col gap-2">
+              <a
+                href="https://max.ru/id141002165689_bot"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setOpen(false)}
+                className="inline-flex items-center justify-center gap-2 rounded-lg border border-indigo-200 bg-indigo-50 px-4 py-3 text-[15px] font-semibold text-indigo-700 hover:bg-indigo-100"
+              >
+                <MaxIcon className="h-4.5 w-4.5" />
+                Написать в MAX
+              </a>
+              <a
+                href="https://t.me/chernyakov_k"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setOpen(false)}
+                className="inline-flex items-center justify-center gap-2 rounded-lg bg-indigo-600 px-4 py-3 text-[15px] font-semibold text-white shadow-sm shadow-indigo-500/20 hover:bg-indigo-500"
+              >
+                <TelegramIcon className="h-4.5 w-4.5" />
+                Написать в Telegram
+              </a>
+            </div>
           </nav>
         </div>
       )}
@@ -892,7 +930,17 @@ function Contact() {
                 </svg>
               </button>
 
-              <div className="pt-2 text-center">
+              <div className="flex items-center justify-center gap-5 pt-2">
+                <a
+                  href="https://max.ru/id141002165689_bot"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-[14px] font-bold text-slate-700 transition-colors hover:text-indigo-600"
+                >
+                  <MaxIcon className="h-4.5 w-4.5" />
+                  Написать в MAX
+                </a>
+                <span className="text-slate-300">|</span>
                 <a
                   href="https://t.me/chernyakov_k"
                   target="_blank"
@@ -900,7 +948,7 @@ function Contact() {
                   className="inline-flex items-center gap-2 text-[14px] font-bold text-slate-700 transition-colors hover:text-indigo-600"
                 >
                   <TelegramIcon className="h-4.5 w-4.5" />
-                  Или написать напрямую в Telegram
+                  Написать в Telegram
                 </a>
               </div>
             </form>
