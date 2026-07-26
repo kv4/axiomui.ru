@@ -340,7 +340,7 @@ function Header() {
           </div>
           <div className="leading-tight">
             <div className="text-[16px] font-bold tracking-tight text-slate-900">AxiomUI</div>
-            <div className="text-[12px] font-medium text-slate-600">Аудит legacy-кода и AI-агенты</div>
+            <div className="text-[12px] font-medium text-slate-600">Анализ legacy-кода и AI-решения</div>
           </div>
         </a>
 
