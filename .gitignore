@@ -7,3 +7,6 @@ bots/.env
 *.png
 .playwright-mcp
 axiomui-full-site.md
+
+.omo
+.opencode
