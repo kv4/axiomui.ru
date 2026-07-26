@@ -1,0 +1,14 @@
+{
+  "name": "axiomui-bots",
+  "private": true,
+  "scripts": {
+    "start:telegram": "node telegram/index.js",
+    "start:max": "node max/index.js"
+  },
+  "dependencies": {
+    "@maxhub/max-bot-api": "^0.2.5",
+    "dotenv": "^17.4.2",
+    "express": "^4.22.2",
+    "node-telegram-bot-api": "^0.66.0"
+  }
+}
