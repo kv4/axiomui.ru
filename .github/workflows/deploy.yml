@@ -1,17 +1,11 @@
-name: Deploy to GitHub Pages
+name: Deploy
 on:
   push:
     branches: [main]
+
 jobs:
-  build-and-deploy:
+  deploy-vps:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      pages: write
-      id-token: write
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
       - run: npm install
@@ -19,9 +13,20 @@ jobs:
         env:
           VITE_TG_BOT_TOKEN: ${{ secrets.VITE_TG_BOT_TOKEN }}
           VITE_TG_CHAT_ID: ${{ secrets.VITE_TG_CHAT_ID }}
-      - uses: actions/configure-pages@v5
-      - uses: actions/upload-pages-artifact@v3
+      - name: Deploy to VPS
+        uses: appleboy/scp-action@v0.1.7
         with:
-          path: ./dist
-      - id: deployment
-        uses: actions/deploy-pages@v4
+          host: 46.17.42.111
+          username: admin
+          key: ${{ secrets.VPS_SSH_KEY }}
+          source: "dist/*"
+          target: /home/admin/site
+          strip_components: 0
+          rm: true
+      - name: Reload nginx
+        uses: appleboy/ssh-action@v1.2.2
+        with:
+          host: 46.17.42.111
+          username: admin
+          key: ${{ secrets.VPS_SSH_KEY }}
+          script: sudo nginx -t && sudo systemctl reload nginx
