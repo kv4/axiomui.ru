@@ -386,7 +386,7 @@ function Header() {
             MAX
           </a>
           <a
-            href="https://t.me/chernyakov_k"
+            href="https://t.me/AxiomUIBot"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 rounded-lg border border-slate-300 bg-white px-4 py-2.5 text-[14px] font-semibold text-slate-800 shadow-sm transition-all hover:border-indigo-400 hover:bg-indigo-50 hover:text-indigo-700"
@@ -433,7 +433,7 @@ function Header() {
                 Написать в MAX
               </a>
               <a
-                href="https://t.me/chernyakov_k"
+                href="https://t.me/AxiomUIBot"
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setOpen(false)}
@@ -513,15 +513,25 @@ function TargetAudience() {
   return (
     <section className="relative border-t border-slate-300 bg-slate-50 py-20 sm:py-28">
       <div className="mx-auto max-w-6xl px-5 lg:px-8">
-        <SectionHeader eyebrow="Аудитория" title="Кому мы помогаем" />
+        <SectionHeader eyebrow="Вы здесь" title="Кому подойдут наши услуги" />
         <div className="mt-14 grid grid-cols-1 gap-4 sm:grid-cols-3">
           {[
-            "Стартапам на стадии роста — стабилизируем код до масштабирования",
-            "Продуктовым компаниям — снимаем зависимость от ключевых разработчиков",
-            "Командам без CTO — предоставляем техническую экспертизу по подписке",
-          ].map((text) => (
-            <div key={text} className="rounded-xl border border-slate-300 bg-white p-7 shadow-sm">
-              <p className="text-[15px] font-medium leading-relaxed text-slate-700">{text}</p>
+            [
+              "У вас legacy-код, который «страшно трогать»?",
+              "Проведём аудит, составим план стабилизации и будем планомерно приводить систему в порядок без аварий.",
+            ],
+            [
+              "Вы зависите от одного ключевого разработчика?",
+              "Снимем bus factor: задокументируем архитектуру, напишем тесты, внедрим AI-агентов для code review.",
+            ],
+            [
+              "Хотите внедрить ИИ в разработку, но не знаете, с чего начать?",
+              "Настроим AI-инструменты под ваш стек и обучим команду работать эффективнее.",
+            ],
+          ].map(([title, desc]) => (
+            <div key={title} className="rounded-xl border border-slate-300 bg-white p-7 shadow-sm">
+              <p className="text-[15px] font-bold leading-relaxed text-slate-800">{title}</p>
+              <p className="mt-2 text-[14px] leading-relaxed text-slate-500">{desc}</p>
             </div>
           ))}
         </div>
@@ -753,13 +763,13 @@ function Stats() {
       <div className="mx-auto max-w-6xl px-5 lg:px-8">
         <div className="grid grid-cols-1 gap-8 text-center sm:grid-cols-3">
           <div>
-            <div className="text-3xl font-bold text-indigo-600 sm:text-4xl">4+ года на рынке</div>
+            <div className="text-2xl font-bold text-indigo-600 sm:text-3xl">Аудит legacy-систем</div>
           </div>
           <div>
-            <div className="text-3xl font-bold text-indigo-600 sm:text-4xl">15+ проектов</div>
+            <div className="text-2xl font-bold text-indigo-600 sm:text-3xl">Внедрение ИИ-агентов</div>
           </div>
           <div>
-            <div className="text-3xl font-bold text-indigo-600 sm:text-4xl">3 успешных кейса</div>
+            <div className="text-2xl font-bold text-indigo-600 sm:text-3xl">Плановая поддержка без аварий</div>
           </div>
         </div>
       </div>
@@ -1005,7 +1015,7 @@ function Contact() {
                 </a>
                 <span className="text-slate-300">|</span>
                 <a
-                  href="https://t.me/chernyakov_k"
+                  href="https://t.me/AxiomUIBot"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 text-[14px] font-bold text-slate-700 transition-colors hover:text-indigo-600"
@@ -1073,7 +1083,7 @@ export default function App() {
           <div className="mx-auto max-w-4xl px-5 text-center lg:px-8">
             <h3 className="text-xl font-bold text-slate-900">Готовы обсудить ваш проект?</h3>
             <a
-              href="https://t.me/chernyakov_k"
+              href="https://t.me/AxiomUIBot"
               target="_blank"
               rel="noopener noreferrer"
               className="mt-4 inline-flex items-center gap-2 rounded-lg bg-indigo-600 px-6 py-3 text-[14px] font-bold text-white shadow-sm transition-all hover:bg-indigo-500"
@@ -1091,7 +1101,7 @@ export default function App() {
           <div className="mx-auto max-w-4xl px-5 text-center lg:px-8">
             <h3 className="text-xl font-bold text-slate-900">Готовы обсудить ваш проект?</h3>
             <a
-              href="https://t.me/chernyakov_k"
+              href="https://t.me/AxiomUIBot"
               target="_blank"
               rel="noopener noreferrer"
               className="mt-4 inline-flex items-center gap-2 rounded-lg bg-indigo-600 px-6 py-3 text-[14px] font-bold text-white shadow-sm transition-all hover:bg-indigo-500"

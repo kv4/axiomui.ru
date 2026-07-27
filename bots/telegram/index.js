@@ -69,31 +69,63 @@ server.listen(3001, "127.0.0.1", () => {
 
 const bot = new TelegramBot(tgToken, { polling: true });
 
+const userCooldowns = new Map();
+function checkCooldown(chatId) {
+  const last = userCooldowns.get(chatId);
+  if (last && Date.now() - last < 15 * 60 * 1000) return true;
+  userCooldowns.set(chatId, Date.now());
+  return false;
+}
+
 bot.onText(/\/start/, (msg) => {
   bot.sendMessage(
     msg.chat.id,
-    "AxiomUI — административный бот. Сюда приходят заявки с сайта и из MAX.",
+    "AxiomUI — аудит legacy-кода и внедрение ИИ-агентов. Напишите ваш вопрос, и мы ответим в рабочее время.",
   );
 });
 
 bot.on("message", async (msg) => {
-  if (String(msg.chat.id) !== String(adminChatId)) return;
-  if (!msg.reply_to_message) return;
+  const chatId = msg.chat.id;
 
-  const repliedText = msg.reply_to_message.text || msg.reply_to_message.caption || "";
-  const match = repliedText.match(/🆔\s*(\d+)/);
-  if (!match) return;
+  if (String(chatId) === String(adminChatId)) {
+    if (!msg.reply_to_message) return;
 
-  const maxUserId = parseInt(match[1], 10);
-  const replyText = msg.text;
-  if (!replyText || replyText.startsWith("/")) return;
+    const repliedText = msg.reply_to_message.text || msg.reply_to_message.caption || "";
+    const tgMatch = repliedText.match(/🆔 tg:(\d+)/);
+    const maxMatch = repliedText.match(/🆔\s*(\d+)/);
 
-  const ok = await sendToMax(maxUserId, replyText);
-  bot.sendMessage(
-    adminChatId,
-    ok ? "✅ Ответ отправлен в MAX" : "❌ Ошибка отправки в MAX",
-    { reply_to_message_id: msg.message_id },
-  );
+    if (tgMatch) {
+      const customerChatId = parseInt(tgMatch[1], 10);
+      const replyText = msg.text;
+      if (!replyText || replyText.startsWith("/")) return;
+      await bot.sendMessage(customerChatId, replyText);
+      bot.sendMessage(adminChatId, "✅ Ответ отправлен клиенту в Telegram", { reply_to_message_id: msg.message_id });
+    } else if (maxMatch) {
+      const maxUserId = parseInt(maxMatch[1], 10);
+      const replyText = msg.text;
+      if (!replyText || replyText.startsWith("/")) return;
+      const ok = await sendToMax(maxUserId, replyText);
+      bot.sendMessage(adminChatId, ok ? "✅ Ответ отправлен в MAX" : "❌ Ошибка отправки в MAX", { reply_to_message_id: msg.message_id });
+    }
+
+    return;
+  }
+
+  if (checkCooldown(chatId)) {
+    bot.sendMessage(chatId, "Пожалуйста, подождите немного перед отправкой следующего сообщения.");
+    return;
+  }
+
+  if (!msg.text || msg.text === "/start") return;
+
+  const forwardMsg = `📩 <b>Telegram | Новое сообщение</b>\n👤 <b>Имя:</b> ${msg.from?.first_name || "?"} ${msg.from?.last_name || ""}\n💬 <b>Текст:</b> ${msg.text}\n🆔 tg:${chatId}\n\n<i>Ответь на это сообщение, чтобы отправить ответ</i>`;
+  await fetch(`https://api.telegram.org/bot${tgToken}/sendMessage`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ chat_id: adminChatId, text: forwardMsg, parse_mode: "HTML" }),
+  });
+
+  bot.sendMessage(chatId, "Спасибо за сообщение! Мы свяжемся с вами в ближайшее время.");
 });
 
 console.log("Telegram admin bot started");
