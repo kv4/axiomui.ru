@@ -189,6 +189,7 @@ const SUBSCRIPTIONS = [
       "Документирование архитектуры",
       "Две консультации (до 1 ч каждая)",
       "Приоритетная поддержка в рабочее время",
+      "Внедрение AI-ассистентов в процессы команды",
     ],
     best: true,
   },
@@ -204,6 +205,7 @@ const SUBSCRIPTIONS = [
       "Безлимитные консультации",
       "Приоритетная поддержка с быстрым SLA",
       "Стратегическое планирование",
+      "Полный AI-пайплайн: автогенерация тестов, PR-ревью, документация",
     ],
     best: false,
   },
@@ -216,9 +218,9 @@ const ONE_TIME = [
     desc: "30-минутный созвон, обсуждаем стек, симптомы проблем и рамки проекта. Без доступа к коду.",
   },
   {
-    name: "Техническое обследование",
-    price: "от 30 000 ₽",
-    desc: "Полный анализ репозитория, поиск узких мест и отчёт с рекомендациями",
+    name: "Технический экспресс-аудит",
+    price: "49 000 ₽",
+    desc: "▸ Анализ репозитория на уязвимости и узкие места\n▸ Аудит производительности БД и ключевых эндпоинтов\n▸ Оценка готовности к внедрению ИИ-агентов\n▸ Карта рисков и пошаговый план стабилизации\n▸ Детальный PDF-отчёт с рекомендациями",
   },
 ];
 
@@ -323,6 +325,10 @@ function Pricing() {
 
 const FAQ_ITEMS = [
   {
+    q: "Почему проект называется AxiomUI, если вы занимаетесь бэкендом и ИИ?",
+    a: "UI в названии — историческое наследие. Мы не делаем интерфейсы: наш фокус — аудит legacy-систем, стабилизация бэкенда и внедрение ИИ-агентов в процессы разработки. Название менять не планируем — нас уже знают под ним.",
+  },
+  {
     q: "Безопасно ли использовать ИИ? Наш код не уйдет в открытый доступ?",
     a: "Штатно мы работаем через корпоративные API ведущих провайдеров (OpenAI, DeepSeek, Anthropic) — по условиям их соглашений ваши данные не сохраняются и не используются для обучения моделей (zero-retention policy), плюс всё шифруется. Этого достаточно для 95% проектов. Если же ваша политика безопасности требует, чтобы данные физически не покидали ваш контур — мы развернём выделенную LLM-модель внутри вашей инфраструктуры. Подробнее — на странице «Безопасность ИИ».",
   },
@@ -351,7 +357,7 @@ function Header() {
           </div>
           <div className="leading-tight">
             <div className="text-[16px] font-bold tracking-tight text-slate-900">AxiomUI</div>
-            <div className="text-[12px] font-medium text-slate-600">Анализ legacy-кода и AI-решения</div>
+            <div className="text-[12px] font-medium text-slate-600">Аудит legacy-кода, стабилизация и ИИ-агенты</div>
           </div>
         </a>
 
@@ -470,7 +476,7 @@ function Hero() {
           </h1>
 
           <p className="mt-6 max-w-2xl text-lg font-medium leading-relaxed text-slate-700 sm:text-xl">
-            Профессиональный технический аудит кодовой базы, плановое сопровождение без «тушения пожаров» и интеграция современных AI-assisted инструментов в вашу команду разработки.
+            Аудит legacy-кода, плановое сопровождение и внедрение ИИ-агентов для вашей команды разработки.
           </p>
 
           {/* CTAs */}
@@ -497,6 +503,27 @@ function Hero() {
             <span className="mr-2 inline-flex h-2.5 w-2.5 translate-y-[-1px] rounded-full bg-emerald-500"></span>
             Диагностика займет 30 минут созвона. Без доступа к коду. Без обязательств.
           </p>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function TargetAudience() {
+  return (
+    <section className="relative border-t border-slate-300 bg-slate-50 py-20 sm:py-28">
+      <div className="mx-auto max-w-6xl px-5 lg:px-8">
+        <SectionHeader eyebrow="Аудитория" title="Кому мы помогаем" />
+        <div className="mt-14 grid grid-cols-1 gap-4 sm:grid-cols-3">
+          {[
+            "Стартапам на стадии роста — стабилизируем код до масштабирования",
+            "Продуктовым компаниям — снимаем зависимость от ключевых разработчиков",
+            "Командам без CTO — предоставляем техническую экспертизу по подписке",
+          ].map((text) => (
+            <div key={text} className="rounded-xl border border-slate-300 bg-white p-7 shadow-sm">
+              <p className="text-[15px] font-medium leading-relaxed text-slate-700">{text}</p>
+            </div>
+          ))}
         </div>
       </div>
     </section>
@@ -720,6 +747,26 @@ function CasesTeaser() {
   );
 }
 
+function Stats() {
+  return (
+    <section className="relative border-t border-slate-300 bg-white py-20 sm:py-28">
+      <div className="mx-auto max-w-6xl px-5 lg:px-8">
+        <div className="grid grid-cols-1 gap-8 text-center sm:grid-cols-3">
+          <div>
+            <div className="text-3xl font-bold text-indigo-600 sm:text-4xl">4+ года на рынке</div>
+          </div>
+          <div>
+            <div className="text-3xl font-bold text-indigo-600 sm:text-4xl">15+ проектов</div>
+          </div>
+          <div>
+            <div className="text-3xl font-bold text-indigo-600 sm:text-4xl">3 успешных кейса</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function Process() {
   return (
     <section id="process" className="relative border-t border-slate-300 bg-slate-50 py-20 sm:py-28">
@@ -806,10 +853,19 @@ function Contact() {
   const [form, setForm] = useState({ name: "", contact: "", message: "" });
   const [consent, setConsent] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState("idle"); // status
+  const [statusMessage, setStatusMessage] = useState("");
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!consent) return;
+    if (!form.name.trim() || !form.contact.trim()) {
+      setStatus("error");
+      setStatusMessage("Пожалуйста, заполните имя и контактные данные.");
+      return;
+    }
     setSubmitted(true);
+    setStatus("idle");
+    setStatusMessage("");
 
     try {
       await fetch("/api/contact", {
@@ -821,7 +877,10 @@ function Contact() {
           message: form.message,
         }),
       });
-    } catch (_) {}
+    } catch (_) {
+      setStatus("error");
+      setStatusMessage("Произошла ошибка при отправке. Пожалуйста, попробуйте ещё раз или свяжитесь через Telegram/MAX.");
+    }
   };
 
   return (
@@ -842,7 +901,7 @@ function Contact() {
               Бесплатная диагностика
             </div>
             <h2 className="mt-5 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
-              Давайте обсудим ваш проект
+              Запишитесь на бесплатную 30-минутную диагностику
             </h2>
             <p className="mx-auto mt-4 max-w-xl text-[15px] font-medium leading-relaxed text-slate-700 sm:text-[16px]">
               Расскажите о ваших текущих задачах. На созвоне мы подскажем, с чего начать стабилизацию системы и как можно сократить расходы на команду уже сейчас.
@@ -901,7 +960,7 @@ function Contact() {
                   rows={4}
                   value={form.message}
                   onChange={(e) => setForm({ ...form, message: e.target.value })}
-                  placeholder="Например: Django/Python legacy-проект, упала скорость разработки, нужно покрыть тестами"
+                  placeholder="Опишите стек технологий и основные технические проблемы (например: медленный бэкенд, уход ключевого разработчика, необходимость внедрения ИИ)..."
                   className="w-full resize-none rounded-lg border-2 border-slate-300 bg-white px-5 py-3.5 text-[15px] font-medium text-slate-900 placeholder:text-slate-400 transition-colors focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/25"
                 />
               </div>
@@ -918,6 +977,10 @@ function Contact() {
                   <a href="/privacy.html" target="_blank" className="text-indigo-600 underline hover:text-indigo-500">Политикой конфиденциальности</a>
                 </span>
               </label>
+
+              {status === "error" && (
+                <p className="text-[14px] font-medium text-red-600">{statusMessage}</p>
+              )}
 
               <button
                 type="submit"
@@ -1004,10 +1067,40 @@ export default function App() {
       <Header />
       <main>
         <Hero />
+        <TargetAudience />
         <Problems />
+        <section className="relative border-t border-slate-300 bg-indigo-50 py-11">
+          <div className="mx-auto max-w-4xl px-5 text-center lg:px-8">
+            <h3 className="text-xl font-bold text-slate-900">Готовы обсудить ваш проект?</h3>
+            <a
+              href="https://t.me/chernyakov_k"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-4 inline-flex items-center gap-2 rounded-lg bg-indigo-600 px-6 py-3 text-[14px] font-bold text-white shadow-sm transition-all hover:bg-indigo-500"
+            >
+              <TelegramIcon className="h-4 w-4" />
+              Связаться в Telegram
+            </a>
+          </div>
+        </section>
         <Services />
         <CasesTeaser />
+        <Stats />
         <Process />
+        <section className="relative border-t border-slate-300 bg-indigo-50 py-11">
+          <div className="mx-auto max-w-4xl px-5 text-center lg:px-8">
+            <h3 className="text-xl font-bold text-slate-900">Готовы обсудить ваш проект?</h3>
+            <a
+              href="https://t.me/chernyakov_k"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-4 inline-flex items-center gap-2 rounded-lg bg-indigo-600 px-6 py-3 text-[14px] font-bold text-white shadow-sm transition-all hover:bg-indigo-500"
+            >
+              <TelegramIcon className="h-4 w-4" />
+              Связаться в Telegram
+            </a>
+          </div>
+        </section>
         <Pricing />
         <FAQ />
         <Contact />
