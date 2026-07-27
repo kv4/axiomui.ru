@@ -938,6 +938,7 @@ function Contact() {
                   id="name"
                   type="text"
                   required
+                  autocomplete="name"
                   value={form.name}
                   onChange={(e) => setForm({ ...form, name: e.target.value })}
                   placeholder="Константин"
@@ -953,6 +954,7 @@ function Contact() {
                   id="contact"
                   type="text"
                   required
+                  autocomplete="email"
                   value={form.contact}
                   onChange={(e) => setForm({ ...form, contact: e.target.value })}
                   placeholder="@username или name@company.com"
@@ -968,6 +970,7 @@ function Contact() {
                   id="message"
                   required
                   rows={4}
+                  autocomplete="off"
                   value={form.message}
                   onChange={(e) => setForm({ ...form, message: e.target.value })}
                   placeholder="Опишите стек технологий и основные технические проблемы (например: медленный бэкенд, уход ключевого разработчика, необходимость внедрения ИИ)..."
@@ -978,6 +981,7 @@ function Contact() {
               <label className="flex items-start gap-3 cursor-pointer">
                 <input
                   type="checkbox"
+                  id="consent"
                   checked={consent}
                   onChange={(e) => setConsent(e.target.checked)}
                   className="mt-0.5 h-4 w-4 shrink-0 rounded border-2 border-slate-300 text-indigo-600 focus:ring-2 focus:ring-indigo-500/25"
