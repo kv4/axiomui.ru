@@ -947,11 +947,11 @@ function Contact() {
               </div>
 
               <div>
-                <label htmlFor="contact" className="mb-2 block text-[14px] font-bold text-slate-800">
+                <label htmlFor="contact-field" className="mb-2 block text-[14px] font-bold text-slate-800">
                   Telegram или Email
                 </label>
                 <input
-                  id="contact"
+                  id="contact-field"
                   type="text"
                   required
                   autocomplete="email"
