@@ -67,7 +67,15 @@ server.listen(3001, "127.0.0.1", () => {
   console.log("Contact API listening on :3001");
 });
 
+process.on('unhandledRejection', (err) => {
+  console.error("Unhandled Rejection:", err.message);
+});
+
 const bot = new TelegramBot(tgToken, { polling: true });
+
+bot.on('polling_error', (err) => {
+  console.error("Polling error:", err.message);
+});
 
 const userCooldowns = new Map();
 function checkCooldown(chatId) {

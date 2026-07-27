@@ -44,5 +44,8 @@ bot.on("message_created", async (ctx) => {
   ctx.reply("Спасибо за сообщение! Мы свяжемся с вами в ближайшее время.");
 });
 
-bot.start();
+bot.start().catch(err => {
+  console.error("MAX bot failed to start:", err.message);
+  process.exit(1);
+});
 console.log("MAX bot started");
