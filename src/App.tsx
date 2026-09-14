@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import OneTimeServices from "./components/OneTimeServices";
 
 // ─── Icons ────────────────────────────────────────────────────────────────────
 
@@ -211,19 +212,6 @@ const SUBSCRIPTIONS = [
   },
 ];
 
-const ONE_TIME = [
-  {
-    name: "Экспресс-диагностика",
-    price: "Бесплатно",
-    desc: "30-минутный созвон, обсуждаем стек, симптомы проблем и рамки проекта. Без доступа к коду.",
-  },
-  {
-    name: "Технический экспресс-аудит",
-    price: "49 000 ₽",
-    desc: "▸ Анализ репозитория на уязвимости и узкие места\n▸ Аудит производительности БД и ключевых эндпоинтов\n▸ Оценка готовности к внедрению ИИ-агентов\n▸ Карта рисков и пошаговый план стабилизации\n▸ Детальный PDF-отчёт с рекомендациями",
-  },
-];
-
 function Pricing() {
   return (
     <section id="pricing" className="relative border-t border-slate-300 bg-white py-20 sm:py-28">
@@ -232,22 +220,7 @@ function Pricing() {
         <SectionHeader eyebrow="Цены" title="Прозрачные тарифы" />
 
         {/* One-time services */}
-        <div className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2">
-          {ONE_TIME.map((item) => (
-            <div
-              key={item.name}
-              className="flex flex-col rounded-xl border-2 border-indigo-200 bg-white p-7 shadow-sm transition-all hover:border-indigo-400"
-            >
-              <div className="flex items-start justify-between gap-4">
-                <div>
-                  <h3 className="text-lg font-bold text-slate-900">{item.name}</h3>
-                  <p className="mt-1.5 text-[15px] leading-relaxed text-slate-700">{item.desc}</p>
-                </div>
-                <span className="shrink-0 text-lg font-bold text-indigo-600">{item.price}</span>
-              </div>
-            </div>
-          ))}
-        </div>
+        <OneTimeServices />
 
         {/* Subscriptions */}
         <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-3">
@@ -338,7 +311,7 @@ const FAQ_ITEMS = [
   },
   {
     q: "Сколько стоят ваши услуги?",
-    a: "Первичный аудит оценивается фиксированно по результатам предварительного созвона. Регулярное плановое сопровождение и работы по оптимизации строятся по ежемесячной подписке (пакеты от 15 до 40 часов в месяц).",
+    a: "Экспресс-аудит стоит фиксированно по размеру системы: один сайт — 90 000 ₽, сайт + портал/ERP (или 4–8 интеграций) — 120 000 ₽, несколько систем (или 9+ интеграций) — 150 000 ₽. Размер системы определим по короткой анкете, цена фиксируется до начала работ и не меняется. Регулярное сопровождение и оптимизация — по ежемесячной подписке (пакеты от 15 до 40 часов в месяц).",
   },
 ];
 
@@ -712,7 +685,7 @@ function CasesTeaser() {
               Аудит и миграция legacy
             </div>
             <h3 className="mt-3 text-xl font-bold text-slate-900 group-hover:text-indigo-700">
-              Аналитическая платформа нового поколения
+              Аналитические дашборды переписали на React
             </h3>
             <p className="mt-2 text-[14px] font-medium leading-relaxed text-slate-700">
               Замена 157 устаревших Drupal-параграфов на 41 React-компонент с JSONB-хранением и drag-and-drop виджетами. Время добавления нового индикатора сократилось с 2 дней до 15 минут.
