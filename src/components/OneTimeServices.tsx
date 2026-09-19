@@ -15,7 +15,7 @@ type OneTimeService = {
 const ONE_TIME_SERVICES: OneTimeService[] = [
   {
     eyebrow: "Разовая услуга",
-    name: "Экспресс-диагностика",
+    name: "Диагностика",
     price: "Бесплатно",
     priceNote: "30-минутный созвон",
     features: [

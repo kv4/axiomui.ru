@@ -62,11 +62,11 @@
     <p class="meta">Банковский сектор · 2025–2026 · Docker + k8s + rootless</p>
 
     <div class="highlight">
-      <p><strong>Суть:</strong> Legacy-проект на Drupal 10 развёрнут в банковском Kubernetes с соблюдением всех требований безопасности: rootless-контейнеры, многоэтапная сборка, ротация секретов, fail-fast сценарии. Деплой ускорился с 3 часов до 8 минут.</p>
+      <p><strong>Суть:</strong> Legacy-проект на Drupal 10 развёрнут в банковском Kubernetes с соблюдением всех требований безопасности: rootless-контейнеры, многоэтапная сборка, ротация секретов, fail-fast сценарии. Деплой ускорился с 2–3 часов до 8–12 минут.</p>
     </div>
 
     <div class="fact">
-      <p>«Деплой из 3+ часов ручной работы по SSH превращён в CI/CD-пайплайн за 8 минут: docker build → push → kubectl apply — zero-downtime через rolling update.»</p>
+      <p>«Деплой с 2–3 часов ручной работы по SSH сокращён до 8–12 минут: docker build → push → kubectl apply — без простоя через rolling update.»</p>
     </div>
 
     <div class="fact">
@@ -117,7 +117,7 @@
     <p>Kubernetes probes на трёх уровнях: liveness (проверка ответа приложения), readiness (готовность принимать трафик), startup (ожидание инициализации). Docker HEALTHCHECK — дублирование на уровне контейнера. Entrypoint-скрипты с <code>set -e</code> — 9 последовательных этапов инициализации, каждый с fail-fast.</p>
 
     <h3>Деплой в банковском k8s</h3>
-    <p>Приложение разделено на два сервиса: ideahub-gateway (nginx, NodePort 32599) и ideahub-backend (PHP-FPM, ClusterIP). Файлы хранятся в S3 (MinIO), конфигурация синка — внутри образа. Zero-downtime через rolling update с maintenance mode на время миграций БД.</p>
+    <p>Приложение разделено на два сервиса: шлюз (nginx) и бэкенд (PHP-FPM). Файлы хранятся в S3 (MinIO), конфигурация синка — внутри образа. Zero-downtime через rolling update с maintenance mode на время миграций БД.</p>
 
     <h2>Результаты</h2>
 

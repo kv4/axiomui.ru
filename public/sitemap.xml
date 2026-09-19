@@ -5,4 +5,29 @@
     <lastmod>2026-07-17</lastmod>
     <priority>1.0</priority>
   </url>
+  <url>
+    <loc>https://axiomui.ru/cases/index.html</loc>
+    <lastmod>2026-09-11</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://axiomui.ru/cases/ai-agents.html</loc>
+    <lastmod>2026-09-07</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://axiomui.ru/cases/bank-k8s.html</loc>
+    <lastmod>2026-09-07</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://axiomui.ru/cases/react-dashboard.html</loc>
+    <lastmod>2026-09-11</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://axiomui.ru/security.html</loc>
+    <lastmod>2026-09-07</lastmod>
+    <priority>0.5</priority>
+  </url>
 </urlset>

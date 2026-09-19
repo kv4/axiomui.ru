@@ -121,7 +121,7 @@ const PROBLEM_CARDS = [
   {
     icon: <IconBottleneck />,
     title: "«Узкое горлышко» в команде",
-    text: "Система держится на одном разработчике. Если он уйдет — в коде никто не сможет разобраться.",
+    text: "Система держится на одном разработчике. Если он уйдёт — в коде никто не сможет разобраться.",
   },
   {
     icon: <IconLock />,
@@ -154,12 +154,12 @@ const STEPS = [
   {
     num: "03",
     title: "Стабилизация и обслуживание",
-    text: "Фиксируем ежемесячный пул часов (Retainer) и планомерно приводим систему в порядок.",
+    text: "Фиксируем ежемесячный пул часов и шаг за шагом наводим порядок в системе.",
   },
   {
     num: "04",
     title: "Оптимизация с ИИ",
-    text: "Настраиваем инструменты ИИ-агентов под ваши задачи и обучаем команду работать эффективнее.",
+    text: "Настраиваем инструменты ИИ под ваши процессы и показываем, какие задачи отдавать агентам.",
   },
 ];
 
@@ -190,7 +190,7 @@ const SUBSCRIPTIONS = [
       "Документирование архитектуры",
       "Две консультации (до 1 ч каждая)",
       "Приоритетная поддержка в рабочее время",
-      "Внедрение AI-ассистентов в процессы команды",
+      "Внедрение ИИ-ассистентов в процессы команды",
     ],
     best: true,
   },
@@ -204,9 +204,9 @@ const SUBSCRIPTIONS = [
       "Проектирование рефакторинга и миграций",
       "Внедрение ИИ-агентов",
       "Безлимитные консультации",
-      "Приоритетная поддержка с быстрым SLA",
-      "Стратегическое планирование",
-      "Полный AI-пайплайн: автогенерация тестов, PR-ревью, документация",
+      "Приоритетная поддержка",
+      "План развития архитектуры системы",
+      "ИИ-агенты для тестов, ревью и документации",
     ],
     best: false,
   },
@@ -302,12 +302,12 @@ const FAQ_ITEMS = [
     a: "UI в названии — историческое наследие. Мы не делаем интерфейсы: наш фокус — аудит legacy-систем, стабилизация бэкенда и внедрение ИИ-агентов в процессы разработки. Название менять не планируем — нас уже знают под ним.",
   },
   {
-    q: "Безопасно ли использовать ИИ? Наш код не уйдет в открытый доступ?",
-    a: "Штатно мы работаем через корпоративные API ведущих провайдеров (OpenAI, DeepSeek, Anthropic) — по условиям их соглашений ваши данные не сохраняются и не используются для обучения моделей (zero-retention policy), плюс всё шифруется. Этого достаточно для 95% проектов. Если же ваша политика безопасности требует, чтобы данные физически не покидали ваш контур — мы развернём выделенную LLM-модель внутри вашей инфраструктуры. Подробнее — на странице «Безопасность ИИ».",
+    q: "Безопасно ли использовать ИИ? Наш код не уйдёт в открытый доступ?",
+    a: "Штатно мы работаем через корпоративные API провайдеров (OpenAI, DeepSeek, Anthropic) — по условиям их соглашений ваши данные не сохраняются и не используются для обучения моделей, плюс всё шифруется. Для большинства проектов этого достаточно. Если же ваша политика безопасности требует, чтобы данные физически не покидали ваш контур — мы развернём выделенную LLM-модель внутри вашей инфраструктуры. Подробнее — на странице «Безопасность ИИ».",
   },
   {
-    q: "Что если система упадет ночью? Вы приедете чинить?",
-    a: "Наша цель — превентивное обслуживание, чтобы падений не происходило. Мы не дежурим по ночам в режиме 24/7. Однако в рамках сопровождения мы настраиваем автоматическое самовосстановление серверов и пишем понятные пошаговые инструкции (Runbooks) для поддержки вашего хостинга, чтобы проблемы решались автоматически или силами дежурного админа.",
+    q: "Что если система упадёт ночью? Вы приедете чинить?",
+    a: "Наша цель — превентивное обслуживание, чтобы падений не происходило. Мы не дежурим по ночам в режиме 24/7. Но при сопровождении мы настраиваем автоматическое самовосстановление серверов и пишем понятные пошаговые инструкции для дежурных. Типовые проблемы решаются автоматически или силами вашего администратора.",
   },
   {
     q: "Сколько стоят ваши услуги?",
@@ -437,19 +437,15 @@ function Hero() {
           {/* Badge */}
           <div className="inline-flex items-center gap-2 rounded-full border border-indigo-300 bg-indigo-50 px-4 py-2 text-[13px] font-bold text-indigo-700 shadow-sm">
             <span className="h-2 w-2 rounded-full bg-indigo-500" />
-            ИТ-консалтинг для разумного бизнеса
+            Аудит и стабилизация legacy-систем
           </div>
 
           <h1 className="mt-7 max-w-4xl text-4xl font-bold leading-[1.1] tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
-            Стабилизируем ваши legacy-системы{" "}
-            <span className="bg-gradient-to-r from-indigo-600 to-violet-600 bg-clip-text text-transparent">
-              и сократим издержки на ИТ
-            </span>{" "}
-            с помощью ИИ-агентов
+            Стабилизируем legacy-систему и посчитаем, во что она обходится
           </h1>
 
           <p className="mt-6 max-w-2xl text-lg font-medium leading-relaxed text-slate-700 sm:text-xl">
-            Аудит legacy-кода, плановое сопровождение и внедрение ИИ-агентов для вашей команды разработки.
+            Сначала аудит и карта рисков, потом плановое сопровождение и ИИ-агенты в вашей команде.
           </p>
 
           {/* CTAs */}
@@ -474,7 +470,7 @@ function Hero() {
           {/* Trust text */}
             <p className="mt-6 text-[14px] font-medium text-slate-600">
             <span className="mr-2 inline-flex h-2.5 w-2.5 translate-y-[-1px] rounded-full bg-emerald-500"></span>
-            Диагностика займет 30 минут созвона. Без доступа к коду. Без обязательств.
+            Диагностика — 30 минут по видеосвязи. Без доступа к коду. Без обязательств.
           </p>
         </div>
       </div>
@@ -495,11 +491,11 @@ function TargetAudience() {
             ],
             [
               "Вы зависите от одного ключевого разработчика?",
-              "Снимем bus factor: задокументируем архитектуру, напишем тесты, внедрим AI-агентов для code review.",
+              "Снимем зависимость от одного человека: документация, тесты, автоматическое ревью.",
             ],
             [
               "Хотите внедрить ИИ в разработку, но не знаете, с чего начать?",
-              "Настроим AI-инструменты под ваш стек и обучим команду работать эффективнее.",
+              "Настроим ИИ-инструменты под ваш стек и покажем, какие задачи отдавать агентам.",
             ],
           ].map(([title, desc]) => (
             <div key={title} className="rounded-xl border border-slate-300 bg-white p-7 shadow-sm">
@@ -562,14 +558,14 @@ function Problems() {
 
 function Services() {
   return (
-    <section id="services" className="relative border-t border-slate-300 bg-white py-20 sm:py-28">
+    <section id="services" className="relative overflow-hidden border-t border-slate-300 bg-white py-20 sm:py-28">
       <div className="pointer-events-none absolute right-0 top-40 -z-10 h-[400px] w-[400px] rounded-full bg-emerald-100/60 blur-[120px]" />
       <div className="pointer-events-none absolute left-0 bottom-20 -z-10 h-[400px] w-[400px] rounded-full bg-indigo-100/50 blur-[120px]" />
 
       <div className="mx-auto max-w-6xl px-5 lg:px-8">
         <SectionHeader
           eyebrow="Услуги"
-          title="Два шага к стабильности и эффективности вашей разработки"
+          title="Два направления: аудит legacy и ИИ-агенты в разработке"
         />
 
         <div className="mt-14 grid grid-cols-1 gap-5 lg:grid-cols-2">
@@ -628,17 +624,17 @@ function Services() {
 
             <h3 className="relative mt-6 text-2xl font-bold leading-snug text-slate-900 sm:text-[26px]">
               Внедрение ИИ-агентов в процессы разработки{" "}
-              <span className="text-[15px] font-bold text-emerald-600">AI-Assisted Dev</span>
+              <span className="text-[15px] font-bold text-emerald-600">ИИ в разработке</span>
             </h3>
             <p className="relative mt-4 text-[15px] font-medium leading-relaxed text-slate-700">
-              Помогаем команде использовать возможности ИИ на полную мощность, снижая стоимость разработки.
+              Внедряем ИИ-агентов в рутину: тесты, документация, ревью.
             </p>
 
             <ul className="relative mt-7 space-y-4">
               {[
                 ["Интеграция ИИ-ассистентов", "Настройка рабочих мест разработчиков для генерации качественного кода по вашим стандартам"],
                 ["Автоматизация рутинных задач", "Внедрение ИИ-агентов для автогенерации тестов, документирования и анализа пулл-реквестов"],
-                ["Обучение методологии", "Снижение времени вывода новых функций на рынок за счет правильного использования LLM-инструментов"],
+                ["Обучение методологии", "Агенты забирают рутину, и новые функции выходят быстрее"],
               ].map(([bold, text]) => (
                 <li key={bold} className="flex gap-3">
                   <CheckIcon className="mt-0.5 h-5.5 w-5.5 flex-shrink-0 text-emerald-600" />
@@ -650,7 +646,7 @@ function Services() {
             </ul>
 
             <p className="relative mt-8 rounded-lg border border-slate-300 bg-slate-50 p-5 text-[14px] font-medium leading-relaxed text-slate-800">
-              <span className="font-bold text-slate-900">Результат:</span> Ваша команда начнет работать быстрее и эффективнее, фокусируясь на бизнес-логике, а не на рутине.
+              <span className="font-bold text-slate-900">Результат:</span> Тесты, документацию и ревью делают агенты — в нашем кейсе ревью ускорилось на 60%.
             </p>
 
             <a
@@ -676,7 +672,7 @@ function CasesTeaser() {
         <SectionHeader eyebrow="Кейсы" title="Реальные проекты" />
 
         <p className="mx-auto mt-6 max-w-3xl text-center text-[15px] font-medium leading-relaxed text-slate-700">
-          Каждый из этих проектов реализован с помощью наших ИИ-агентов. Это позволяет проводить глубокую архитектурную проработку в сжатые сроки — без раздувания команды и бюджета.
+          Эти проекты сделаны без расширения команды: рутину выполняли ИИ-агенты.
         </p>
 
         <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -703,7 +699,7 @@ function CasesTeaser() {
               Автоматизация разработки через ИИ-агентов
             </h3>
             <p className="mt-2 text-[14px] font-medium leading-relaxed text-slate-700">
-              11 ИИ-агентов автоматизировали полный цикл разработки. Code review ускорен на 60%, 138 планов задач созданы без единой просрочки.
+              11 ИИ-агентов вели разработку — от плана задачи до ревью. Code review ускорен на 60%, 138 планов задач созданы без единой просрочки.
             </p>
             <p className="mt-4 text-[14px] font-bold text-emerald-600 group-hover:text-emerald-500">
               Читать далее →
@@ -718,7 +714,7 @@ function CasesTeaser() {
               Legacy Drupal в банковском Kubernetes
             </h3>
             <p className="mt-2 text-[14px] font-medium leading-relaxed text-slate-700">
-              Rootless-контейнеры, многоэтапная сборка, 40+ env-переменных вместо settings.php. Деплой ускорился с 3 часов до 8 минут.
+              Rootless-контейнеры, многоэтапная сборка, 40+ env-переменных вместо settings.php. Деплой ускорился с 2–3 часов до 8–12 минут.
             </p>
             <p className="mt-4 text-[14px] font-bold text-amber-600 group-hover:text-amber-500">
               Читать далее →
@@ -887,7 +883,7 @@ function Contact() {
               Запишитесь на бесплатную 30-минутную диагностику
             </h2>
             <p className="mx-auto mt-4 max-w-xl text-[15px] font-medium leading-relaxed text-slate-700 sm:text-[16px]">
-              Расскажите о ваших текущих задачах. На созвоне мы подскажем, с чего начать стабилизацию системы и как можно сократить расходы на команду уже сейчас.
+              Расскажите о ваших текущих задачах. На созвоне мы подскажем, с чего начать стабилизацию системы и как можно сократить расходы на команду.
             </p>
           </div>
 
@@ -1025,7 +1021,7 @@ function Footer() {
         </div>
 
         <div className="flex flex-wrap items-center justify-center gap-x-7 gap-y-2 text-[14px] font-medium text-slate-600">
-          <a href="/cases/index.html" className="transition-colors hover:text-indigo-600">Проекты</a>
+          <a href="/cases/index.html" className="transition-colors hover:text-indigo-600">Кейсы</a>
           <a href="/security.html" className="transition-colors hover:text-indigo-600">Безопасность ИИ</a>
           <a href="/privacy.html" className="transition-colors hover:text-indigo-600">Политика конфиденциальности</a>
           <a href="/terms.html" className="transition-colors hover:text-indigo-600">Условия использования</a>
@@ -1074,20 +1070,6 @@ export default function App() {
         <CasesTeaser />
         <Stats />
         <Process />
-        <section className="relative border-t border-slate-300 bg-indigo-50 py-11">
-          <div className="mx-auto max-w-4xl px-5 text-center lg:px-8">
-            <h3 className="text-xl font-bold text-slate-900">Готовы обсудить ваш проект?</h3>
-            <a
-              href="https://t.me/AxiomUIBot"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-4 inline-flex items-center gap-2 rounded-lg bg-indigo-600 px-6 py-3 text-[14px] font-bold text-white shadow-sm transition-all hover:bg-indigo-500"
-            >
-              <TelegramIcon className="h-4 w-4" />
-              Связаться в Telegram
-            </a>
-          </div>
-        </section>
         <Pricing />
         <FAQ />
         <Contact />
