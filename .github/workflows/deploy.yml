@@ -21,15 +21,20 @@ jobs:
           strip_components: 0
           rm: true
       - name: Deploy cases subpages
-        uses: appleboy/scp-action@v0.1.7
+        uses: appleboy/ssh-action@v1.2.2
         with:
           host: 46.17.42.111
           username: admin
           key: ${{ secrets.VPS_SSH_KEY }}
-          source: "dist/cases/*"
-          target: /home/admin/site/cases
-          strip_components: 0
-          rm: true
+          script: |
+            set -e
+            rm -rf /tmp/axm-cases
+            git clone --depth 1 https://github.com/kv4/axiomui.ru.git /tmp/axm-cases
+            rm -rf /home/admin/site/cases
+            mkdir -p /home/admin/site/cases
+            cp /tmp/axm-cases/public/cases/*.html /home/admin/site/cases/
+            rm -rf /tmp/axm-cases
+            ls -la /home/admin/site/cases/
       - name: Deploy bots
         uses: appleboy/scp-action@v0.1.7
         with:
