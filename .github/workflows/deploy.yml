@@ -20,6 +20,16 @@ jobs:
           target: /home/admin/site
           strip_components: 0
           rm: true
+      - name: Deploy cases subpages
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: 46.17.42.111
+          username: admin
+          key: ${{ secrets.VPS_SSH_KEY }}
+          source: "dist/cases"
+          target: /home/admin/site/cases
+          strip_components: 1
+          rm: true
       - name: Deploy bots
         uses: appleboy/scp-action@v0.1.7
         with:
