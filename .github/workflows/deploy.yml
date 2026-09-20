@@ -34,8 +34,17 @@ jobs:
             cp /tmp/axm-portfolio/public/portfolio/*.html /home/admin/site/portfolio/
             rm -rf /tmp/axm-portfolio
             ls -la /home/admin/site/portfolio/
-            sudo nginx -T 2>/dev/null | grep -n -B6 -A12 "case" > /home/admin/site/axmdiag-7k2q9x.txt || echo "no case rules found" > /home/admin/site/axmdiag-7k2q9x.txt
-            sudo nginx -T 2>/dev/null | grep -n "listen\|server_name\|root\|include /etc" >> /home/admin/site/axmdiag-7k2q9x.txt || true
+            D=/home/admin/site/axmdiag-7k2q9x.css
+            echo "== nginx -T (locations/roots/proxy) ==" > $D
+            sudo nginx -T 2>/dev/null | grep -nE "server_name|listen |root |location|proxy_pass|try_files|include /etc" >> $D || true
+            echo "== site dir ==" >> $D
+            ls -la /home/admin/site/ >> $D 2>&1 || true
+            echo "== pm2 ==" >> $D
+            pm2 list >> $D 2>&1 || true
+            echo "== bots server env port ==" >> $D
+            grep -rn "listen\|PORT" /home/admin/bots/telegram/index.js >> $D 2>/dev/null | head -5 || true
+            echo "== direct node test ==" >> $D
+            for p in 3000 3001 8080; do echo "port $p /cases/index.html: $(curl -s -o /dev/null -w '%{http_code}' --connect-timeout 3 http://127.0.0.1:$p/cases/index.html)" >> $D; echo "port $p /axmdiag: $(curl -s -o /dev/null -w '%{http_code}' --connect-timeout 3 http://127.0.0.1:$p/axmdiag-7k2q9x.css)" >> $D; done
       - name: Deploy bots
         uses: appleboy/scp-action@v0.1.7
         with:
