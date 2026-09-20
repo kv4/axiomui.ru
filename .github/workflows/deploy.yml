@@ -34,17 +34,16 @@ jobs:
             cp /tmp/axm-portfolio/public/portfolio/*.html /home/admin/site/portfolio/
             rm -rf /tmp/axm-portfolio
             ls -la /home/admin/site/portfolio/
-            D=/home/admin/site/axmdiag-7k2q9x.css
-            echo "== nginx -T (locations/roots/proxy) ==" > $D
-            sudo nginx -T 2>/dev/null | grep -nE "server_name|listen |root |location|proxy_pass|try_files|include /etc" >> $D || true
-            echo "== site dir ==" >> $D
+            D=/home/admin/site/dist/axmdiag-7k2q9x.css
+            mkdir -p /home/admin/site/dist
+            echo "===== FULL nginx -T =====" > $D
+            sudo nginx -T >> $D 2>&1 || true
+            echo "===== ls /home/admin/site =====" >> $D
             ls -la /home/admin/site/ >> $D 2>&1 || true
-            echo "== pm2 ==" >> $D
-            pm2 list >> $D 2>&1 || true
-            echo "== bots server env port ==" >> $D
-            grep -rn "listen\|PORT" /home/admin/bots/telegram/index.js >> $D 2>/dev/null | head -5 || true
-            echo "== direct node test ==" >> $D
-            for p in 3000 3001 8080; do echo "port $p /cases/index.html: $(curl -s -o /dev/null -w '%{http_code}' --connect-timeout 3 http://127.0.0.1:$p/cases/index.html)" >> $D; echo "port $p /axmdiag: $(curl -s -o /dev/null -w '%{http_code}' --connect-timeout 3 http://127.0.0.1:$p/axmdiag-7k2q9x.css)" >> $D; done
+            echo "===== ls /home/admin/site/dist =====" >> $D
+            ls -la /home/admin/site/dist/ >> $D 2>&1 || true
+            echo "===== pm2 jlist =====" >> $D
+            (pm2 jlist 2>/dev/null || ~/.npm-global/bin/pm2 jlist 2>/dev/null || npx pm2 jlist 2>/dev/null || echo pm2-not-found) >> $D
       - name: Deploy bots
         uses: appleboy/scp-action@v0.1.7
         with:
