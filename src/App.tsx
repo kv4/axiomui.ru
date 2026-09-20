@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import OneTimeServices from "./components/OneTimeServices";
+import { ReportBar, RiskLegend, Blueprint } from "./components/DesignElements";
 
 // ─── Icons ────────────────────────────────────────────────────────────────────
 
@@ -22,25 +23,9 @@ function TelegramIcon({ className = "h-4 w-4" }: { className?: string }) {
   );
 }
 
-function CheckIcon({ className = "h-5 w-5" }: { className?: string }) {
-  return (
-    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.25} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <path d="M20 6L9 17l-5-5" />
-    </svg>
-  );
-}
-
-function ChevronDownIcon({ className = "h-5 w-5" }: { className?: string }) {
-  return (
-    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <path d="M6 9l6 6 6-6" />
-    </svg>
-  );
-}
-
 function MenuIcon({ className = "h-6 w-6" }: { className?: string }) {
   return (
-    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" aria-hidden="true">
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
       <path d="M4 7h16M4 12h16M4 17h16" />
     </svg>
   );
@@ -48,61 +33,16 @@ function MenuIcon({ className = "h-6 w-6" }: { className?: string }) {
 
 function CloseIcon({ className = "h-6 w-6" }: { className?: string }) {
   return (
-    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" aria-hidden="true">
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
       <path d="M6 6l12 12M18 6L6 18" />
     </svg>
   );
 }
 
-function IconBottleneck() {
+function ArrowIcon({ className = "h-4 w-4" }: { className?: string }) {
   return (
-    <svg className="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.75} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <circle cx="12" cy="12" r="2.5" />
-      <path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2" />
-    </svg>
-  );
-}
-
-function IconLock() {
-  return (
-    <svg className="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.75} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <rect x="4" y="11" width="16" height="10" rx="2" />
-      <path d="M8 11V7a4 4 0 0 1 8 0v4" />
-    </svg>
-  );
-}
-
-function IconBudget() {
-  return (
-    <svg className="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.75} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <path d="M3 17l6-6 4 4 8-8" />
-      <path d="M14 7h7v7" />
-    </svg>
-  );
-}
-
-function IconRoutine() {
-  return (
-    <svg className="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.75} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <circle cx="12" cy="12" r="9" />
-      <path d="M12 7v5l3 3" />
-    </svg>
-  );
-}
-
-function IconCode() {
-  return (
-    <svg className="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.75} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <path d="M8 9l-4 3 4 3M16 9l4 3-4 3M14 5l-4 14" />
-    </svg>
-  );
-}
-
-function IconAI() {
-  return (
-    <svg className="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.75} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6l1.4 1.4M17 17l1.4 1.4M5.6 18.4L7 17M17 7l1.4-1.4" />
-      <circle cx="12" cy="12" r="4" />
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.25} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M5 12h14M13 5l7 7-7 7" />
     </svg>
   );
 }
@@ -119,22 +59,22 @@ const NAV_LINKS = [
 
 const PROBLEM_CARDS = [
   {
-    icon: <IconBottleneck />,
+    code: "П-01",
     title: "«Узкое горлышко» в команде",
     text: "Система держится на одном разработчике. Если он уйдёт — в коде никто не сможет разобраться.",
   },
   {
-    icon: <IconLock />,
+    code: "П-02",
     title: "Страх изменений",
     text: "Любое мелкое исправление или новая фича ломает старый функционал в самых неожиданных местах.",
   },
   {
-    icon: <IconBudget />,
+    code: "П-03",
     title: "Раздутый бюджет поддержки",
     text: "Расходы на поддержание работоспособности растут быстрее, чем проект развивается и приносит пользу.",
   },
   {
-    icon: <IconRoutine />,
+    code: "П-04",
     title: "Рутина вместо ценности",
     text: "Программисты тратят до 40% времени на написание шаблонных тестов, документирование и мелкий рефакторинг.",
   },
@@ -214,7 +154,7 @@ const SUBSCRIPTIONS = [
 
 function Pricing() {
   return (
-    <section id="pricing" className="relative border-t border-slate-300 bg-white py-20 sm:py-28">
+    <section id="pricing" className="border-t border-hairline bg-paper py-20 sm:py-28">
       <div className="mx-auto max-w-6xl px-5 lg:px-8">
 
         <SectionHeader eyebrow="Цены" title="Прозрачные тарифы" />
@@ -223,52 +163,50 @@ function Pricing() {
         <OneTimeServices />
 
         {/* Subscriptions */}
-        <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-3">
+        <div className="mt-6 grid grid-cols-1 border border-hairline bg-surface sm:grid-cols-3">
           {SUBSCRIPTIONS.map((plan) => (
             <div
               key={plan.name}
-              className={`relative flex flex-col rounded-xl border-2 p-7 shadow-sm transition-all ${
-                plan.best
-                  ? "border-indigo-500 bg-indigo-600 text-white shadow-lg shadow-indigo-600/25"
-                  : "border-slate-300 bg-white hover:border-indigo-300"
+              className={`flex flex-col border-hairline p-7 sm:[&:not(:first-child)]:border-l ${
+                plan.best ? "bg-ink text-paper" : "bg-surface"
               }`}
             >
               {plan.best && (
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-amber-400 px-4 py-0.5 text-[11px] font-bold uppercase tracking-wider text-amber-900 shadow-sm">
+                <div className="mb-3 self-start bg-signal px-2 py-1 font-mono text-[9.5px] font-bold uppercase tracking-[0.1em] text-paper">
                   Рекомендуем
                 </div>
               )}
 
-              <div className={`${plan.best ? "text-white" : "text-slate-700"} mb-1 text-[14px] font-semibold uppercase tracking-wider`}>
+              <div className={`font-mono text-[11px] uppercase tracking-[0.1em] ${plan.best ? "text-paper/70" : "text-ink-50"}`}>
                 Подписка
               </div>
 
-              <h3 className={`text-2xl font-bold tracking-tight ${plan.best ? "text-white" : "text-slate-900"}`}>
+              <h3 className={`mt-1 text-2xl font-black uppercase tracking-tight ${plan.best ? "text-paper" : "text-ink"}`}>
                 {plan.name}
               </h3>
 
               <div className="mt-4 flex items-baseline gap-1">
-                <span className={`text-3xl font-bold ${plan.best ? "text-white" : "text-indigo-600"}`}>
+                <span className={`text-3xl font-black tracking-tight ${plan.best ? "text-paper" : "text-ink"}`}>
                   {plan.price}
                 </span>
-                <span className={`text-[15px] font-medium ${plan.best ? "text-indigo-200" : "text-slate-600"}`}>
+                <span className={`text-[15px] font-medium ${plan.best ? "text-paper/70" : "text-ink-70"}`}>
                   ₽/мес
                 </span>
               </div>
 
-              <div className={`mt-0.5 text-[13px] font-medium ${plan.best ? "text-indigo-200" : "text-slate-500"}`}>
+              <div className={`mt-0.5 font-mono text-[12px] uppercase tracking-[0.08em] ${plan.best ? "text-paper/70" : "text-ink-50"}`}>
                 {plan.hours} часов
               </div>
 
-              <div className={`mt-4 text-[12px] font-medium ${plan.best ? "text-indigo-200" : "text-slate-500"}`}>
+              <div className={`mt-3 font-mono text-[11px] tracking-[0.05em] ${plan.best ? "text-paper/70" : "text-ink-50"}`}>
                 {plan.note}
               </div>
 
-              <ul className="mt-5 space-y-3 border-t pt-5" style={plan.best ? { borderColor: "rgba(255,255,255,0.2)" } : {}}>
+              <ul className={`mt-5 space-y-2.5 border-t pt-5 ${plan.best ? "border-white/20" : "border-hairline"}`}>
                 {plan.features.map((f) => (
                   <li key={f} className="flex items-start gap-2.5 text-[14px] font-medium leading-relaxed">
-                    <CheckIcon className={`mt-0.5 h-4 w-4 shrink-0 ${plan.best ? "text-indigo-200" : "text-indigo-500"}`} />
-                    <span className={plan.best ? "text-indigo-100" : "text-slate-700"}>{f}</span>
+                    <span className={`mt-0.5 font-mono font-bold ${plan.best ? "text-signal" : "text-signal"}`}>+</span>
+                    <span className={plan.best ? "text-paper/90" : "text-ink-70"}>{f}</span>
                   </li>
                 ))}
               </ul>
@@ -276,16 +214,10 @@ function Pricing() {
               <div className="mt-auto pt-6">
                 <a
                   href="#contact"
-                  className={`flex w-full items-center justify-center gap-2 rounded-lg px-5 py-3 text-[14px] font-bold transition-all ${
-                    plan.best
-                      ? "bg-white text-indigo-700 hover:bg-indigo-50"
-                      : "border-2 border-indigo-600 bg-white text-indigo-700 hover:bg-indigo-50"
-                  }`}
+                  className={`ax-btn w-full ${plan.best ? "ax-btn-ghost border-paper bg-paper !text-ink hover:!bg-signal hover:!border-signal hover:!text-paper" : "ax-btn-ghost"}`}
                 >
                   {plan.best ? "Выбрать" : "Узнать подробнее"}
-                  <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.25} strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M5 12h14M13 5l7 7-7 7" />
-                  </svg>
+                  <ArrowIcon />
                 </a>
               </div>
             </div>
@@ -321,26 +253,27 @@ function Header() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-slate-300 bg-white/90 backdrop-blur-xl">
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4 lg:px-8">
+    <header className="sticky top-0 z-50 border-b border-hairline bg-paper">
+      <div className="mx-auto flex min-h-16 max-w-6xl items-center justify-between gap-6 px-5 lg:px-8">
         {/* Logo */}
-        <a href="#" className="group flex items-center gap-2.5">
-          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-indigo-500 to-violet-600 shadow-md shadow-indigo-500/25 ring-1 ring-indigo-500/15">
-            <span className="text-[16px] font-bold tracking-tight text-white">A</span>
-          </div>
-          <div className="leading-tight">
-            <div className="text-[16px] font-bold tracking-tight text-slate-900">AxiomUI</div>
-            <div className="text-[12px] font-medium text-slate-600">Аудит legacy-кода, стабилизация и ИИ-агенты</div>
-          </div>
+        <a href="#" className="group flex items-center gap-3.5 no-underline">
+          <span className="relative flex h-9 w-9 items-center justify-center border-2 border-ink font-mono text-[15px] font-bold text-ink">
+            A
+            <span className="absolute -bottom-1.5 -right-1.5 h-2 w-2 bg-signal" />
+          </span>
+          <span className="leading-tight">
+            <span className="block text-[16px] font-black uppercase tracking-tight text-ink">AxiomUI</span>
+            <span className="block font-mono text-[9.5px] uppercase tracking-[0.09em] text-ink-50">Аудит legacy-кода, стабилизация и ИИ-агенты</span>
+          </span>
         </a>
 
         {/* Desktop Nav */}
-        <nav className="hidden items-center gap-8 md:flex">
+        <nav className="hidden items-center md:flex" aria-label="Основная навигация">
           {NAV_LINKS.map((l) => (
             <a
               key={l.href}
               href={l.href}
-              className="text-[15px] font-semibold text-slate-700 transition-colors hover:text-indigo-600"
+              className="border-l border-hairline px-3.5 py-2 font-mono text-[11px] uppercase tracking-[0.08em] text-ink-70 no-underline transition-colors hover:bg-recessed hover:text-ink"
             >
               {l.label}
             </a>
@@ -353,18 +286,18 @@ function Header() {
             href="https://max.ru/id141002165689_bot"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-lg border border-slate-300 bg-white px-4 py-2.5 text-[14px] font-semibold text-slate-800 shadow-sm transition-all hover:border-indigo-400 hover:bg-indigo-50 hover:text-indigo-700"
+            className="inline-flex items-center gap-2 border border-hairline bg-surface px-4 py-2.5 font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-ink no-underline transition-colors hover:border-ink hover:bg-recessed"
           >
-            <MaxIcon className="h-4.5 w-4.5" />
+            <MaxIcon className="h-4 w-4" />
             MAX
           </a>
           <a
             href="https://t.me/AxiomUIBot"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-lg border border-slate-300 bg-white px-4 py-2.5 text-[14px] font-semibold text-slate-800 shadow-sm transition-all hover:border-indigo-400 hover:bg-indigo-50 hover:text-indigo-700"
+            className="inline-flex items-center gap-2 border border-hairline bg-surface px-4 py-2.5 font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-ink no-underline transition-colors hover:border-ink hover:bg-recessed"
           >
-            <TelegramIcon className="h-4.5 w-4.5" />
+            <TelegramIcon className="h-4 w-4" />
             Telegram
           </a>
         </div>
@@ -373,7 +306,7 @@ function Header() {
         <button
           type="button"
           onClick={() => setOpen(!open)}
-          className="rounded-md p-2 text-slate-800 hover:bg-slate-100 md:hidden"
+          className="p-2 text-ink hover:bg-recessed md:hidden"
           aria-label="Меню"
         >
           {open ? <CloseIcon /> : <MenuIcon />}
@@ -382,27 +315,27 @@ function Header() {
 
       {/* Mobile menu */}
       {open && (
-        <div className="border-t border-slate-200 bg-white px-5 py-4 md:hidden">
+        <div className="border-t border-hairline bg-surface px-5 py-4 md:hidden">
           <nav className="flex flex-col gap-1">
             {NAV_LINKS.map((l) => (
               <a
                 key={l.href}
                 href={l.href}
                 onClick={() => setOpen(false)}
-                className="rounded-md px-2 py-3 text-[15px] font-semibold text-slate-800 transition-colors hover:bg-slate-50 hover:text-indigo-600"
+                className="border-b border-hairline px-2 py-3 font-mono text-[12px] font-bold uppercase tracking-[0.08em] text-ink no-underline hover:text-signal"
               >
                 {l.label}
               </a>
             ))}
-            <div className="mt-2 flex flex-col gap-2">
+            <div className="mt-3 flex flex-col gap-2">
               <a
                 href="https://max.ru/id141002165689_bot"
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setOpen(false)}
-                className="inline-flex items-center justify-center gap-2 rounded-lg border border-indigo-200 bg-indigo-50 px-4 py-3 text-[15px] font-semibold text-indigo-700 hover:bg-indigo-100"
+                className="ax-btn ax-btn-ghost w-full"
               >
-                <MaxIcon className="h-4.5 w-4.5" />
+                <MaxIcon className="h-4 w-4" />
                 Написать в MAX
               </a>
               <a
@@ -410,9 +343,9 @@ function Header() {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setOpen(false)}
-                className="inline-flex items-center justify-center gap-2 rounded-lg bg-indigo-600 px-4 py-3 text-[15px] font-semibold text-white shadow-sm shadow-indigo-500/20 hover:bg-indigo-500"
+                className="ax-btn ax-btn-solid w-full"
               >
-                <TelegramIcon className="h-4.5 w-4.5" />
+                <TelegramIcon className="h-4 w-4" />
                 Написать в Telegram
               </a>
             </div>
@@ -425,54 +358,38 @@ function Header() {
 
 function Hero() {
   return (
-    <section className="relative overflow-hidden">
-      {/* Background effects */}
-      <div className="pointer-events-none absolute inset-0 bg-grid opacity-70" />
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-[500px] bg-radial-glow" />
-      <div className="pointer-events-none absolute left-1/2 top-1/3 -z-10 h-[300px] w-[800px] -translate-x-1/2 rounded-full bg-indigo-200/50 blur-[120px]" />
-      <div className="pointer-events-none absolute right-0 top-40 -z-10 h-[280px] w-[280px] rounded-full bg-violet-200/60 blur-[100px]" />
+    <section className="border-b border-hairline">
+      <div className="mx-auto grid max-w-6xl items-center gap-14 px-5 pb-16 pt-14 sm:pt-20 lg:grid-cols-[7fr_5fr] lg:pb-20 lg:pt-24 lg:px-8">
+        <div>
+          <div className="ax-kicker ax-mono text-ink-70">Аудит и стабилизация legacy-систем</div>
 
-      <div className="relative mx-auto max-w-6xl px-5 pb-20 pt-14 sm:pt-20 lg:px-8 lg:pb-28 lg:pt-24">
-        <div className="flex flex-col items-center text-center">
-          {/* Badge */}
-          <div className="inline-flex items-center gap-2 rounded-full border border-indigo-300 bg-indigo-50 px-4 py-2 text-[13px] font-bold text-indigo-700 shadow-sm">
-            <span className="h-2 w-2 rounded-full bg-indigo-500" />
-            Аудит и стабилизация legacy-систем
-          </div>
-
-          <h1 className="mt-7 max-w-4xl text-4xl font-bold leading-[1.1] tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
-            Стабилизируем legacy-систему и посчитаем, во что она обходится
+          <h1 className="mt-7 text-balance text-[clamp(2.3rem,5.2vw,4.4rem)] font-black uppercase leading-[0.97] tracking-[-0.03em] text-ink">
+            Стабилизируем legacy-систему и посчитаем, во что она обходится<span className="text-signal">.</span>
           </h1>
 
-          <p className="mt-6 max-w-2xl text-lg font-medium leading-relaxed text-slate-700 sm:text-xl">
+          <p className="mt-6 max-w-2xl text-lg font-medium leading-relaxed text-ink-70">
             Сначала аудит и карта рисков, потом плановое сопровождение и ИИ-агенты в вашей команде.
           </p>
 
           {/* CTAs */}
           <div className="mt-10 flex w-full flex-col items-stretch gap-3 sm:w-auto sm:flex-row sm:items-center">
-            <a
-              href="#contact"
-              className="group inline-flex items-center justify-center gap-2 rounded-lg bg-indigo-600 px-7 py-3.5 text-[15px] font-bold text-white shadow-lg shadow-indigo-600/25 transition-all hover:bg-indigo-500 hover:shadow-indigo-500/35"
-            >
-               Записаться на диагностику
-              <svg className="h-4.5 w-4.5 transition-transform group-hover:translate-x-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
-                <path d="M5 12h14M13 5l7 7-7 7" />
-              </svg>
+            <a href="#contact" className="ax-btn ax-btn-solid">
+              Записаться на диагностику
+              <ArrowIcon />
             </a>
-            <a
-              href="#services"
-              className="inline-flex items-center justify-center gap-2 rounded-lg border-2 border-slate-300 bg-white px-7 py-3.5 text-[15px] font-bold text-slate-800 shadow-sm transition-all hover:border-slate-400 hover:bg-slate-50"
-            >
+            <a href="#services" className="ax-btn ax-btn-ghost">
               Узнать подробнее об услугах
             </a>
           </div>
 
           {/* Trust text */}
-            <p className="mt-6 text-[14px] font-medium text-slate-600">
-            <span className="mr-2 inline-flex h-2.5 w-2.5 translate-y-[-1px] rounded-full bg-emerald-500"></span>
+          <p className="ax-mono mt-6 flex items-center gap-2.5 normal-case tracking-normal text-ink-50">
+            <span className="inline-block h-2.5 w-2.5 bg-mark-green" />
             Диагностика — 30 минут по видеосвязи. Без доступа к коду. Без обязательств.
           </p>
         </div>
+
+        <Blueprint />
       </div>
     </section>
   );
@@ -480,10 +397,10 @@ function Hero() {
 
 function TargetAudience() {
   return (
-    <section className="relative border-t border-slate-300 bg-slate-50 py-20 sm:py-28">
+    <section className="border-b border-hairline bg-surface py-20 sm:py-28">
       <div className="mx-auto max-w-6xl px-5 lg:px-8">
         <SectionHeader eyebrow="Вы здесь" title="Кому подойдут наши услуги" />
-        <div className="mt-14 grid grid-cols-1 gap-4 sm:grid-cols-3">
+        <div className="grid grid-cols-1 gap-0 border-t-2 border-ink sm:grid-cols-3">
           {[
             [
               "У вас legacy-код, который «страшно трогать»?",
@@ -497,10 +414,11 @@ function TargetAudience() {
               "Хотите внедрить ИИ в разработку, но не знаете, с чего начать?",
               "Настроим ИИ-инструменты под ваш стек и покажем, какие задачи отдавать агентам.",
             ],
-          ].map(([title, desc]) => (
-            <div key={title} className="rounded-xl border border-slate-300 bg-white p-7 shadow-sm">
-              <p className="text-[15px] font-bold leading-relaxed text-slate-800">{title}</p>
-              <p className="mt-2 text-[14px] leading-relaxed text-slate-500">{desc}</p>
+          ].map(([title, desc], i) => (
+            <div key={title} className="border border-t-0 border-hairline bg-surface p-7 sm:[&:not(:first-child)]:border-l-0">
+              <div className="ax-mono font-bold text-signal">0{i + 1}</div>
+              <p className="mt-3 text-[15.5px] font-bold leading-relaxed text-ink">{title}</p>
+              <p className="mt-2 text-[14px] leading-relaxed text-ink-70">{desc}</p>
             </div>
           ))}
         </div>
@@ -509,15 +427,13 @@ function TargetAudience() {
   );
 }
 
-function SectionHeader({ eyebrow, title, eyebrowColor }: { eyebrow?: string; title: string; eyebrowColor?: string }) {
+function SectionHeader({ eyebrow, title }: { eyebrow?: string; title: string }) {
   return (
-    <div className="mx-auto max-w-2xl text-center">
+    <div className="mb-10 border-t-2 border-ink pt-4 sm:mb-14">
       {eyebrow && (
-        <div className={`text-[13px] font-bold uppercase tracking-widest ${eyebrowColor || "text-indigo-600"}`}>
-          {eyebrow}
-        </div>
+        <div className="ax-mono font-bold text-signal">{eyebrow}</div>
       )}
-      <h2 className="mt-4 text-3xl font-bold leading-tight tracking-tight text-slate-900 sm:text-4xl lg:text-[40px]">
+      <h2 className="mt-3 max-w-3xl text-balance text-[clamp(1.65rem,3.4vw,2.6rem)] font-black uppercase leading-[1.03] tracking-[-0.02em] text-ink">
         {title}
       </h2>
     </div>
@@ -526,28 +442,28 @@ function SectionHeader({ eyebrow, title, eyebrowColor }: { eyebrow?: string; tit
 
 function Problems() {
   return (
-    <section id="problems" className="relative border-t border-slate-300 bg-slate-50 py-20 sm:py-28">
+    <section id="problems" className="border-b border-hairline bg-paper py-20 sm:py-28">
       <div className="mx-auto max-w-6xl px-5 lg:px-8">
         <SectionHeader
           eyebrow="Проблематика"
           title="С какими проблемами чаще всего сталкивается бизнес с legacy-кодом?"
         />
 
-        <div className="mt-14 grid grid-cols-1 gap-4 sm:grid-cols-2">
+        <div className="grid grid-cols-1 gap-0 border-y-2 border-ink sm:grid-cols-2">
           {PROBLEM_CARDS.map((card, i) => (
             <div
-              key={i}
-              className="group rounded-xl border border-slate-300 bg-white p-7 shadow-sm transition-all hover:border-indigo-300 hover:shadow-lg hover:shadow-indigo-100/60"
+              key={card.code}
+              className={`border border-x-0 border-hairline bg-surface p-7 sm:p-8 ${
+                i % 2 === 0 ? "sm:border-l-0" : "sm:border-r-0"
+              } ${i > 1 ? "border-t" : "sm:border-t-0"} ${i === 1 ? "sm:border-b-0" : ""} ${i < 2 ? "border-b sm:border-b" : ""}`}
             >
-              <div className="flex items-start gap-4">
-                <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-lg border border-indigo-200 bg-indigo-50 text-indigo-600 transition-colors group-hover:border-indigo-300 group-hover:bg-indigo-100 group-hover:text-indigo-700">
-                  {card.icon}
-                </div>
-                <div>
-                  <h3 className="text-[18px] font-bold text-slate-900">{card.title}</h3>
-                  <p className="mt-2.5 text-[15px] font-medium leading-relaxed text-slate-700">{card.text}</p>
-                </div>
+              <div className="flex justify-between font-mono text-[10.5px] uppercase tracking-[0.09em] text-ink-50">
+                <span>
+                  Симптом <b className="font-bold text-signal">{card.code}</b>
+                </span>
               </div>
+              <h3 className="mt-3.5 text-[19px] font-extrabold leading-snug tracking-[-0.01em] text-ink">{card.title}</h3>
+              <p className="mt-2.5 text-[15px] leading-relaxed text-ink-70">{card.text}</p>
             </div>
           ))}
         </div>
@@ -558,105 +474,86 @@ function Problems() {
 
 function Services() {
   return (
-    <section id="services" className="relative overflow-hidden border-t border-slate-300 bg-white py-20 sm:py-28">
-      <div className="pointer-events-none absolute right-0 top-40 -z-10 h-[400px] w-[400px] rounded-full bg-emerald-100/60 blur-[120px]" />
-      <div className="pointer-events-none absolute left-0 bottom-20 -z-10 h-[400px] w-[400px] rounded-full bg-indigo-100/50 blur-[120px]" />
-
+    <section id="services" className="border-b border-hairline bg-paper py-20 sm:py-28">
       <div className="mx-auto max-w-6xl px-5 lg:px-8">
         <SectionHeader
           eyebrow="Услуги"
           title="Два направления: аудит legacy и ИИ-агенты в разработке"
         />
 
-        <div className="mt-14 grid grid-cols-1 gap-5 lg:grid-cols-2">
+        <div className="grid grid-cols-1 gap-0 border-y-2 border-ink lg:grid-cols-2">
           {/* Card 1: Legacy */}
-          <div className="group relative flex flex-col overflow-hidden rounded-2xl border border-slate-300 bg-white p-8 shadow-sm transition-all hover:border-indigo-400 hover:shadow-xl hover:shadow-indigo-100/70 sm:p-10">
-            <div className="pointer-events-none absolute -right-20 -top-20 h-60 w-60 rounded-full bg-indigo-100/70 blur-[80px] transition-opacity group-hover:opacity-100" />
+          <div className="border border-x-0 border-hairline bg-surface p-8 sm:p-10 lg:border-r-0">
+            <span className="inline-block border border-signal px-2.5 py-1.5 font-mono text-[10.5px] font-bold uppercase tracking-[0.1em] text-signal">
+              Направление 1
+            </span>
 
-            <div className="relative flex items-center gap-3">
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-indigo-200 bg-indigo-50 text-indigo-600">
-                <IconCode />
-              </div>
-              <div className="text-[13px] font-bold uppercase tracking-widest text-indigo-600">
-                Направление 1
-              </div>
-            </div>
-
-            <h3 className="relative mt-6 text-2xl font-bold leading-snug text-slate-900 sm:text-[26px]">
+            <h3 className="mt-5 text-[clamp(1.35rem,2.2vw,1.65rem)] font-black uppercase leading-[1.12] tracking-[-0.015em] text-ink">
               Аудит и эволюционная поддержка legacy-кода
             </h3>
-            <p className="relative mt-4 text-[15px] font-medium leading-relaxed text-slate-700">
+            <p className="mt-4 text-[15px] leading-relaxed text-ink-70">
               Стабилизируем то, что уже работает и приносит прибыль, не пытаясь переписать всё с нуля.
             </p>
 
-            <ul className="relative mt-7 space-y-4">
+            <ul className="mt-6 border-t border-hairline">
               {[
                 ["Глубокий технический аудит", "Выявление уязвимостей, узких мест производительности и скрытых зависимостей"],
                 ["Снятие зависимости от авторов кода", "Покрытие критических узлов тестами и документирование архитектуры"],
                 ["Плановое сопровождение", "Исправление ошибок, обновление библиотек и постепенный рефакторинг по согласованному регламенту"],
               ].map(([bold, text]) => (
-                <li key={bold} className="flex gap-3">
-                  <CheckIcon className="mt-0.5 h-5.5 w-5.5 flex-shrink-0 text-indigo-600" />
-                  <span className="text-[15px] font-medium leading-relaxed text-slate-800">
-                    <span className="font-bold text-slate-900">{bold}.</span> {text}
+                <li key={bold} className="grid grid-cols-[26px_1fr] gap-2.5 border-b border-hairline py-3.5 text-[15px]">
+                  <span className="mt-0.5 font-mono font-bold text-signal">+</span>
+                  <span className="text-ink-70">
+                    <b className="font-bold text-ink">{bold}.</b> {text}
                   </span>
                 </li>
               ))}
             </ul>
 
-            <p className="relative mt-8 rounded-lg border border-slate-300 bg-slate-50 p-5 text-[14px] font-medium leading-relaxed text-slate-800">
-              <span className="font-bold text-slate-900">Как мы работаем:</span> Мы работаем по плановому графику и не занимаемся ночными аварийными вызовами. Мы настраиваем систему так, чтобы аварии не происходили.
+            <p className="mt-6 border border-hairline bg-recessed p-4 text-[14px] leading-relaxed text-ink-70">
+              <b className="font-bold text-ink">Как мы работаем:</b> Мы работаем по плановому графику и не занимаемся ночными аварийными вызовами. Мы настраиваем систему так, чтобы аварии не происходили.
             </p>
           </div>
 
           {/* Card 2: AI */}
-          <div className="group relative flex flex-col overflow-hidden rounded-2xl border border-slate-300 bg-white p-8 shadow-sm transition-all hover:border-emerald-400 hover:shadow-xl hover:shadow-emerald-100/70 sm:p-10">
-            <div className="pointer-events-none absolute -right-20 -top-20 h-60 w-60 rounded-full bg-emerald-100/70 blur-[80px] transition-opacity group-hover:opacity-100" />
+          <div className="border border-x-0 border-t-0 border-hairline bg-surface p-8 sm:p-10 lg:border-t lg:border-l">
+            <span className="inline-block border border-ink px-2.5 py-1.5 font-mono text-[10.5px] font-bold uppercase tracking-[0.1em] text-ink">
+              Направление 2
+            </span>
 
-            <div className="relative flex items-center gap-3">
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-emerald-200 bg-emerald-50 text-emerald-600">
-                <IconAI />
-              </div>
-              <div className="text-[13px] font-bold uppercase tracking-widest text-emerald-600">
-                Направление 2
-              </div>
-            </div>
-
-            <h3 className="relative mt-6 text-2xl font-bold leading-snug text-slate-900 sm:text-[26px]">
+            <h3 className="mt-5 text-[clamp(1.35rem,2.2vw,1.65rem)] font-black uppercase leading-[1.12] tracking-[-0.015em] text-ink">
               Внедрение ИИ-агентов в процессы разработки{" "}
-              <span className="text-[15px] font-bold text-emerald-600">ИИ в разработке</span>
+              <span className="font-mono text-[13px] font-bold normal-case tracking-normal text-signal">ИИ в разработке</span>
             </h3>
-            <p className="relative mt-4 text-[15px] font-medium leading-relaxed text-slate-700">
+            <p className="mt-4 text-[15px] leading-relaxed text-ink-70">
               Внедряем ИИ-агентов в рутину: тесты, документация, ревью.
             </p>
 
-            <ul className="relative mt-7 space-y-4">
+            <ul className="mt-6 border-t border-hairline">
               {[
                 ["Интеграция ИИ-ассистентов", "Настройка рабочих мест разработчиков для генерации качественного кода по вашим стандартам"],
                 ["Автоматизация рутинных задач", "Внедрение ИИ-агентов для автогенерации тестов, документирования и анализа пулл-реквестов"],
                 ["Обучение методологии", "Агенты забирают рутину, и новые функции выходят быстрее"],
               ].map(([bold, text]) => (
-                <li key={bold} className="flex gap-3">
-                  <CheckIcon className="mt-0.5 h-5.5 w-5.5 flex-shrink-0 text-emerald-600" />
-                  <span className="text-[15px] font-medium leading-relaxed text-slate-800">
-                    <span className="font-bold text-slate-900">{bold}</span> — {text}
+                <li key={bold} className="grid grid-cols-[26px_1fr] gap-2.5 border-b border-hairline py-3.5 text-[15px]">
+                  <span className="mt-0.5 font-mono font-bold text-signal">+</span>
+                  <span className="text-ink-70">
+                    <b className="font-bold text-ink">{bold}</b> — {text}
                   </span>
                 </li>
               ))}
             </ul>
 
-            <p className="relative mt-8 rounded-lg border border-slate-300 bg-slate-50 p-5 text-[14px] font-medium leading-relaxed text-slate-800">
-              <span className="font-bold text-slate-900">Результат:</span> Тесты, документацию и ревью делают агенты — в нашем кейсе ревью ускорилось на 60%.
+            <p className="mt-6 border border-hairline bg-recessed p-4 text-[14px] leading-relaxed text-ink-70">
+              <b className="font-bold text-ink">Результат:</b> Тесты, документацию и ревью делают агенты — в нашем кейсе ревью ускорилось на 60%.
             </p>
 
             <a
               href="/security.html"
-              className="relative mt-5 inline-flex items-center gap-1.5 text-[14px] font-bold text-emerald-700 transition-colors hover:text-emerald-600"
+              className="mt-5 inline-flex items-center gap-2 border-b-2 border-signal pb-1 font-mono text-[12px] font-bold uppercase tracking-[0.06em] text-ink no-underline hover:text-signal"
             >
               О безопасности данных
-              <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round">
-                <path d="M7 17l9.2-9.2M17 17V7H7" />
-              </svg>
+              <ArrowIcon className="h-3.5 w-3.5" />
             </a>
           </div>
         </div>
@@ -667,56 +564,56 @@ function Services() {
 
 function CasesTeaser() {
   return (
-    <section className="relative border-t border-slate-300 bg-white py-20 sm:py-28">
+    <section className="border-b border-hairline bg-surface py-20 sm:py-28">
       <div className="mx-auto max-w-6xl px-5 lg:px-8">
         <SectionHeader eyebrow="Кейсы" title="Реальные проекты" />
 
-        <p className="mx-auto mt-6 max-w-3xl text-center text-[15px] font-medium leading-relaxed text-slate-700">
+        <p className="-mt-6 mb-10 max-w-3xl text-[15px] leading-relaxed text-ink-70 sm:mb-14">
           Эти проекты сделаны без расширения команды: рутину выполняли ИИ-агенты.
         </p>
 
-        <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          <a href="/cases/react-dashboard.html" className="group block rounded-2xl border-2 border-slate-300 bg-white p-7 shadow-sm transition-all hover:border-indigo-400 hover:shadow-lg hover:shadow-indigo-100/50">
-            <div className="mb-2 inline-block rounded-full bg-indigo-100 px-3 py-0.5 text-[11px] font-bold uppercase tracking-wider text-indigo-700">
+        <div className="grid grid-cols-1 gap-0 border-y-2 border-ink sm:grid-cols-3">
+          <a href="/cases/react-dashboard.html" className="group flex flex-col border border-x-0 border-hairline bg-surface p-7 no-underline transition-colors hover:bg-recessed sm:border-l-0">
+            <div className="mb-2 inline-block self-start border border-hairline bg-paper px-2 py-1 font-mono text-[10px] font-bold uppercase tracking-[0.09em] text-ink-70">
               Аудит и миграция legacy
             </div>
-            <h3 className="mt-3 text-xl font-bold text-slate-900 group-hover:text-indigo-700">
+            <h3 className="mt-2 text-[19px] font-extrabold leading-snug text-ink group-hover:text-signal">
               Аналитические дашборды переписали на React
             </h3>
-            <p className="mt-2 text-[14px] font-medium leading-relaxed text-slate-700">
+            <p className="mt-2.5 flex-1 text-[14px] leading-relaxed text-ink-70">
               Замена 157 устаревших Drupal-параграфов на 41 React-компонент с JSONB-хранением и drag-and-drop виджетами. Время добавления нового индикатора сократилось с 2 дней до 15 минут.
             </p>
-            <p className="mt-4 text-[14px] font-bold text-indigo-600 group-hover:text-indigo-500">
+            <p className="mt-4 border-t-2 border-ink pt-3 font-mono text-[12px] font-bold uppercase tracking-[0.06em] text-ink group-hover:text-signal">
               Читать далее →
             </p>
           </a>
 
-          <a href="/cases/ai-agents.html" className="group block rounded-2xl border-2 border-slate-300 bg-white p-7 shadow-sm transition-all hover:border-emerald-400 hover:shadow-lg hover:shadow-emerald-100/50">
-            <div className="mb-2 inline-block rounded-full bg-emerald-100 px-3 py-0.5 text-[11px] font-bold uppercase tracking-wider text-emerald-700">
+          <a href="/cases/ai-agents.html" className="group flex flex-col border border-x-0 border-hairline bg-surface p-7 no-underline transition-colors hover:bg-recessed sm:border-x">
+            <div className="mb-2 inline-block self-start border border-hairline bg-paper px-2 py-1 font-mono text-[10px] font-bold uppercase tracking-[0.09em] text-ink-70">
               ИИ-агенты и автоматизация
             </div>
-            <h3 className="mt-3 text-xl font-bold text-slate-900 group-hover:text-emerald-700">
+            <h3 className="mt-2 text-[19px] font-extrabold leading-snug text-ink group-hover:text-signal">
               Автоматизация разработки через ИИ-агентов
             </h3>
-            <p className="mt-2 text-[14px] font-medium leading-relaxed text-slate-700">
+            <p className="mt-2.5 flex-1 text-[14px] leading-relaxed text-ink-70">
               11 ИИ-агентов вели разработку — от плана задачи до ревью. Code review ускорен на 60%, 138 планов задач созданы без единой просрочки.
             </p>
-            <p className="mt-4 text-[14px] font-bold text-emerald-600 group-hover:text-emerald-500">
+            <p className="mt-4 border-t-2 border-ink pt-3 font-mono text-[12px] font-bold uppercase tracking-[0.06em] text-ink group-hover:text-signal">
               Читать далее →
             </p>
           </a>
 
-          <a href="/cases/bank-k8s.html" className="group block rounded-2xl border-2 border-slate-300 bg-white p-7 shadow-sm transition-all hover:border-amber-400 hover:shadow-lg hover:shadow-amber-100/50">
-            <div className="mb-2 inline-block rounded-full bg-amber-100 px-3 py-0.5 text-[11px] font-bold uppercase tracking-wider text-amber-700">
+          <a href="/cases/bank-k8s.html" className="group flex flex-col border border-x-0 border-hairline bg-surface p-7 no-underline transition-colors hover:bg-recessed sm:border-r-0">
+            <div className="mb-2 inline-block self-start border border-hairline bg-paper px-2 py-1 font-mono text-[10px] font-bold uppercase tracking-[0.09em] text-ink-70">
               DevOps и инфраструктура
             </div>
-            <h3 className="mt-3 text-xl font-bold text-slate-900 group-hover:text-amber-700">
+            <h3 className="mt-2 text-[19px] font-extrabold leading-snug text-ink group-hover:text-signal">
               Legacy Drupal в банковском Kubernetes
             </h3>
-            <p className="mt-2 text-[14px] font-medium leading-relaxed text-slate-700">
+            <p className="mt-2.5 flex-1 text-[14px] leading-relaxed text-ink-70">
               Rootless-контейнеры, многоэтапная сборка, 40+ env-переменных вместо settings.php. Деплой ускорился с 2–3 часов до 8–12 минут.
             </p>
-            <p className="mt-4 text-[14px] font-bold text-amber-600 group-hover:text-amber-500">
+            <p className="mt-4 border-t-2 border-ink pt-3 font-mono text-[12px] font-bold uppercase tracking-[0.06em] text-ink group-hover:text-signal">
               Читать далее →
             </p>
           </a>
@@ -728,19 +625,14 @@ function CasesTeaser() {
 
 function Stats() {
   return (
-    <section className="relative border-t border-slate-300 bg-white py-20 sm:py-28">
-      <div className="mx-auto max-w-6xl px-5 lg:px-8">
-        <div className="grid grid-cols-1 gap-8 text-center sm:grid-cols-3">
-          <div>
-            <div className="text-2xl font-bold text-indigo-600 sm:text-3xl">Аудит legacy-систем</div>
+    <section className="border-b border-hairline bg-paper">
+      <div className="mx-auto grid max-w-6xl grid-cols-1 divide-y divide-hairline border-x border-hairline sm:grid-cols-3 sm:divide-x sm:divide-y-0">
+        {["Аудит legacy-систем", "Внедрение ИИ-агентов", "Плановая поддержка без аварий"].map((s) => (
+          <div key={s} className="flex items-center gap-3 bg-surface px-6 py-6">
+            <span className="inline-block h-2 w-2 shrink-0 bg-signal" />
+            <span className="font-mono text-[12.5px] font-bold uppercase tracking-[0.06em] text-ink">{s}</span>
           </div>
-          <div>
-            <div className="text-2xl font-bold text-indigo-600 sm:text-3xl">Внедрение ИИ-агентов</div>
-          </div>
-          <div>
-            <div className="text-2xl font-bold text-indigo-600 sm:text-3xl">Плановая поддержка без аварий</div>
-          </div>
-        </div>
+        ))}
       </div>
     </section>
   );
@@ -748,7 +640,7 @@ function Stats() {
 
 function Process() {
   return (
-    <section id="process" className="relative border-t border-slate-300 bg-slate-50 py-20 sm:py-28">
+    <section id="process" className="border-b border-hairline bg-surface py-20 sm:py-28">
       <div className="mx-auto max-w-6xl px-5 lg:px-8">
         <SectionHeader
           eyebrow="Процесс"
@@ -756,24 +648,21 @@ function Process() {
         />
 
         {/* Timeline */}
-        <div className="relative mt-14">
-          {/* Connecting line (desktop) */}
-          <div className="absolute left-0 right-0 top-8 hidden h-px bg-gradient-to-r from-transparent via-slate-400 to-transparent lg:block" />
-
-          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4 lg:gap-5">
-            {STEPS.map((step) => (
-              <div
-                key={step.num}
-                className="relative flex flex-col rounded-xl border border-slate-300 bg-white p-7 shadow-sm transition-all hover:border-indigo-300 hover:shadow-md hover:shadow-indigo-100/50"
-              >
-                <div className="flex h-13 w-13 items-center justify-center rounded-lg border-2 border-indigo-300 bg-white font-mono text-[14px] font-bold text-indigo-600 shadow-sm">
-                  {step.num}
-                </div>
-                <h3 className="mt-6 text-[17px] font-bold text-slate-900">{step.title}</h3>
-                <p className="mt-2.5 text-[15px] font-medium leading-relaxed text-slate-700">{step.text}</p>
+        <div className="grid grid-cols-1 gap-0 border-y-2 border-ink sm:grid-cols-2 lg:grid-cols-4">
+          {STEPS.map((step, i) => (
+            <div
+              key={step.num}
+              className={`flex flex-col border border-x-0 border-hairline bg-surface p-7 ${
+                i === 0 ? "sm:border-l-0" : "sm:border-l"
+              } ${i > 0 ? "border-t sm:border-t-0" : ""} ${i === 1 ? "sm:border-r-0 lg:border-r" : ""} ${i === 2 ? "sm:border-b-0" : ""}`}
+            >
+              <div className="text-[52px] font-black leading-none tracking-[-0.04em] text-ink">
+                0<span className="text-signal">{step.num[1]}</span>
               </div>
-            ))}
-          </div>
+              <h3 className="mt-4 text-[16.5px] font-extrabold leading-snug text-ink">{step.title}</h3>
+              <p className="mt-2 text-[14.5px] leading-relaxed text-ink-70">{step.text}</p>
+            </div>
+          ))}
         </div>
       </div>
     </section>
@@ -784,39 +673,38 @@ function FAQ() {
   const [openIdx, setOpenIdx] = useState<number | null>(0);
 
   return (
-    <section id="faq" className="relative border-t border-slate-300 bg-white py-20 sm:py-28">
+    <section id="faq" className="border-b border-hairline bg-paper py-20 sm:py-28">
       <div className="mx-auto max-w-3xl px-5 lg:px-8">
         <SectionHeader
           eyebrow="FAQ"
           title="Частые вопросы"
         />
 
-        <div className="mt-12 divide-y divide-slate-300 overflow-hidden rounded-2xl border border-slate-300 bg-white shadow-sm">
+        <div className="border-y-2 border-ink bg-surface">
           {FAQ_ITEMS.map((item, i) => {
             const isOpen = openIdx === i;
             return (
-              <div key={i} className="transition-colors hover:bg-slate-50">
+              <div key={i} className="border-b border-hairline last:border-b-0">
                 <button
                   type="button"
                   onClick={() => setOpenIdx(isOpen ? null : i)}
-                  className="flex w-full items-start justify-between gap-4 px-7 py-6 text-left"
+                  aria-expanded={isOpen}
+                  className="grid w-full grid-cols-[1fr_40px] items-center gap-4 px-6 py-5 text-left transition-colors hover:bg-recessed sm:px-7"
                 >
-                  <span className="text-[16px] font-bold leading-snug text-slate-900 sm:text-[17px]">
+                  <span className="text-[16px] font-extrabold leading-snug text-ink">
                     {item.q}
                   </span>
-                  <ChevronDownIcon
-                    className={`mt-0.5 h-5.5 w-5.5 flex-shrink-0 text-slate-500 transition-transform duration-200 ${
-                      isOpen ? "rotate-180 text-indigo-600" : ""
-                    }`}
-                  />
+                  <span className={`text-right font-mono text-[18px] font-bold ${isOpen ? "text-signal" : "text-ink"}`}>
+                    {isOpen ? "−" : "+"}
+                  </span>
                 </button>
                 <div
-                  className={`grid overflow-hidden px-7 transition-all duration-300 ease-in-out ${
+                  className={`grid overflow-hidden px-6 transition-all duration-300 ease-in-out sm:px-7 ${
                     isOpen ? "grid-rows-[1fr] pb-6 opacity-100" : "grid-rows-[0fr] opacity-0"
                   }`}
                 >
                   <div className="min-h-0">
-                    <p className="text-[15px] font-medium leading-relaxed text-slate-700">{item.a}</p>
+                    <p className="max-w-2xl text-[15px] leading-relaxed text-ink-70">{item.a}</p>
                   </div>
                 </div>
               </div>
@@ -863,142 +751,135 @@ function Contact() {
   };
 
   return (
-    <section id="contact" className="relative border-t border-slate-300 bg-slate-50 py-20 sm:py-28">
-      <div className="pointer-events-none absolute inset-x-0 top-20 -z-10 flex justify-center">
-        <div className="h-[500px] w-[800px] rounded-full bg-indigo-200/40 blur-[120px]" />
-      </div>
-
-      <div className="mx-auto max-w-3xl px-5 lg:px-8">
-        <div className="relative overflow-hidden rounded-2xl border-2 border-indigo-200 bg-white p-8 shadow-xl shadow-indigo-100/60 sm:p-11">
-          {/* Decorative corner gradients */}
-          <div className="pointer-events-none absolute -right-32 -top-32 h-64 w-64 rounded-full bg-indigo-100 blur-[80px]" />
-          <div className="pointer-events-none absolute -bottom-32 -left-32 h-64 w-64 rounded-full bg-violet-100 blur-[80px]" />
-
-          <div className="relative text-center">
-            <div className="inline-flex items-center gap-2 rounded-full border border-emerald-300 bg-emerald-50 px-4 py-1.5 text-[12px] font-bold uppercase tracking-widest text-emerald-700">
-              <span className="h-2 w-2 rounded-full bg-emerald-500"></span>
+    <section id="contact" className="border-b border-hairline bg-surface py-20 sm:py-28">
+      <div className="mx-auto max-w-6xl px-5 lg:px-8">
+        <div className="grid grid-cols-1 border-y-2 border-ink lg:grid-cols-[5fr_7fr]">
+          <div className="bg-ink p-8 text-paper sm:p-11">
+            <div className="ax-mono flex items-center gap-2.5 text-[#B4AFA2]">
+              <span className="inline-block h-2 w-2 bg-mark-green" />
               Бесплатная диагностика
             </div>
-            <h2 className="mt-5 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+            <h2 className="mt-5 text-[clamp(1.6rem,3vw,2.3rem)] font-black uppercase leading-[1.05] tracking-[-0.02em] text-paper">
               Запишитесь на бесплатную 30-минутную диагностику
             </h2>
-            <p className="mx-auto mt-4 max-w-xl text-[15px] font-medium leading-relaxed text-slate-700 sm:text-[16px]">
+            <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-[#B4AFA2]">
               Расскажите о ваших текущих задачах. На созвоне мы подскажем, с чего начать стабилизацию системы и как можно сократить расходы на команду.
             </p>
-          </div>
-
-          {submitted ? (
-            <div className="relative mt-11 rounded-xl border-2 border-emerald-300 bg-emerald-50 p-9 text-center">
-              <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full border-2 border-emerald-400 bg-white text-emerald-600 shadow-sm">
-                <CheckIcon className="h-8 w-8" />
-              </div>
-              <h3 className="mt-5 text-lg font-bold text-slate-900">Заявка отправлена</h3>
-              <p className="mt-2.5 text-[15px] font-medium text-slate-700">
-                Мы свяжемся с вами в ближайшее время, обычно в течение 24 часов.
-              </p>
-            </div>
-          ) : (
-            <form onSubmit={handleSubmit} className="relative mt-10 space-y-5">
-              <div>
-                <label htmlFor="name" className="mb-2 block text-[14px] font-bold text-slate-800">
-                  Имя
-                </label>
-                <input
-                  id="name"
-                  type="text"
-                  required
-                  autocomplete="name"
-                  value={form.name}
-                  onChange={(e) => setForm({ ...form, name: e.target.value })}
-                  placeholder="Константин"
-                  className="w-full rounded-lg border-2 border-slate-300 bg-white px-5 py-3.5 text-[15px] font-medium text-slate-900 placeholder:text-slate-400 transition-colors focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/25"
-                />
-              </div>
-
-              <div>
-                <label htmlFor="contact-field" className="mb-2 block text-[14px] font-bold text-slate-800">
-                  Telegram или Email
-                </label>
-                <input
-                  id="contact-field"
-                  type="text"
-                  required
-                  autocomplete="email"
-                  value={form.contact}
-                  onChange={(e) => setForm({ ...form, contact: e.target.value })}
-                  placeholder="@username или name@company.com"
-                  className="w-full rounded-lg border-2 border-slate-300 bg-white px-5 py-3.5 text-[15px] font-medium text-slate-900 placeholder:text-slate-400 transition-colors focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/25"
-                />
-              </div>
-
-              <div>
-                <label htmlFor="message" className="mb-2 block text-[14px] font-bold text-slate-800">
-                  Краткое описание проекта
-                </label>
-                <textarea
-                  id="message"
-                  required
-                  rows={4}
-                  autocomplete="off"
-                  value={form.message}
-                  onChange={(e) => setForm({ ...form, message: e.target.value })}
-                  placeholder="Опишите стек технологий и основные технические проблемы (например: медленный бэкенд, уход ключевого разработчика, необходимость внедрения ИИ)..."
-                  className="w-full resize-none rounded-lg border-2 border-slate-300 bg-white px-5 py-3.5 text-[15px] font-medium text-slate-900 placeholder:text-slate-400 transition-colors focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/25"
-                />
-              </div>
-
-              <label className="flex items-start gap-3 cursor-pointer">
-                <input
-                  type="checkbox"
-                  id="consent"
-                  checked={consent}
-                  onChange={(e) => setConsent(e.target.checked)}
-                  className="mt-0.5 h-4 w-4 shrink-0 rounded border-2 border-slate-300 text-indigo-600 focus:ring-2 focus:ring-indigo-500/25"
-                />
-                <span className="text-[13px] leading-relaxed text-slate-600">
-                  Я согласен на обработку моих персональных данных в соответствии с{' '}
-                  <a href="/privacy.html" target="_blank" className="text-indigo-600 underline hover:text-indigo-500">Политикой конфиденциальности</a>
-                </span>
-              </label>
-
-              {status === "error" && (
-                <p className="text-[14px] font-medium text-red-600">{statusMessage}</p>
-              )}
-
-              <button
-                type="submit"
-                disabled={!consent}
-                className="group mt-3 flex w-full items-center justify-center gap-2 rounded-lg bg-indigo-600 px-7 py-4 text-[15px] font-bold text-white shadow-lg shadow-indigo-600/25 transition-all hover:bg-indigo-500 hover:shadow-indigo-500/40 disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-indigo-600 disabled:hover:shadow-indigo-600/25"
-              >
-                Отправить заявку
-                <svg className="h-5 w-5 transition-transform group-hover:translate-x-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M5 12h14M13 5l7 7-7 7" />
-                </svg>
-              </button>
-
-              <div className="flex items-center justify-center gap-5 pt-2">
-                <a
-                  href="https://max.ru/id141002165689_bot"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-[14px] font-bold text-slate-700 transition-colors hover:text-indigo-600"
-                >
-                  <MaxIcon className="h-4.5 w-4.5" />
-                  Написать в MAX
-                </a>
-                <span className="text-slate-300">|</span>
+            <div className="mt-8 border-t border-[#3D3A34] pt-6">
+              <div className="ax-mono text-[#8C877B]">Мессенджеры</div>
+              <div className="mt-3 flex flex-col gap-2.5">
                 <a
                   href="https://t.me/AxiomUIBot"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-[14px] font-bold text-slate-700 transition-colors hover:text-indigo-600"
+                  className="inline-flex items-center gap-2.5 self-start border-b border-[#55503F] pb-1 text-[16px] font-semibold text-paper no-underline hover:border-signal hover:text-white"
                 >
                   <TelegramIcon className="h-4.5 w-4.5" />
                   Написать в Telegram
                 </a>
+                <a
+                  href="https://max.ru/id141002165689_bot"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2.5 self-start border-b border-[#55503F] pb-1 text-[16px] font-semibold text-paper no-underline hover:border-signal hover:text-white"
+                >
+                  <MaxIcon className="h-4.5 w-4.5" />
+                  Написать в MAX
+                </a>
               </div>
-            </form>
-          )}
+            </div>
+          </div>
+
+          <div className="bg-surface p-8 sm:p-11">
+            {submitted ? (
+              <div className="mt-4 border-2 border-mark-green bg-paper p-9">
+                <div className="flex items-center gap-3">
+                  <span className="inline-block h-4 w-4 bg-mark-green" />
+                  <h3 className="text-lg font-black uppercase text-ink">Заявка отправлена</h3>
+                </div>
+                <p className="mt-3 text-[15px] leading-relaxed text-ink-70">
+                  Мы свяжемся с вами в ближайшее время, обычно в течение 24 часов.
+                </p>
+              </div>
+            ) : (
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div>
+                  <label htmlFor="name" className="ax-mono mb-2 block text-ink-50">
+                    Имя
+                  </label>
+                  <input
+                    id="name"
+                    type="text"
+                    required
+                    autoComplete="name"
+                    value={form.name}
+                    onChange={(e) => setForm({ ...form, name: e.target.value })}
+                    placeholder="Константин"
+                    className="w-full border-0 border-b-2 border-ink bg-paper px-1 py-3 text-[16px] text-ink placeholder:text-[#A8A294] focus:border-signal focus:outline-none"
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="contact-field" className="ax-mono mb-2 block text-ink-50">
+                    Telegram или Email
+                  </label>
+                  <input
+                    id="contact-field"
+                    type="text"
+                    required
+                    autoComplete="email"
+                    value={form.contact}
+                    onChange={(e) => setForm({ ...form, contact: e.target.value })}
+                    placeholder="@username или name@company.com"
+                    className="w-full border-0 border-b-2 border-ink bg-paper px-1 py-3 text-[16px] text-ink placeholder:text-[#A8A294] focus:border-signal focus:outline-none"
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="message" className="ax-mono mb-2 block text-ink-50">
+                    Краткое описание проекта
+                  </label>
+                  <textarea
+                    id="message"
+                    required
+                    rows={4}
+                    autoComplete="off"
+                    value={form.message}
+                    onChange={(e) => setForm({ ...form, message: e.target.value })}
+                    placeholder="Опишите стек технологий и основные технические проблемы (например: медленный бэкенд, уход ключевого разработчика, необходимость внедрения ИИ)..."
+                    className="w-full resize-none border-0 border-b-2 border-ink bg-paper px-1 py-3 text-[16px] text-ink placeholder:text-[#A8A294] focus:border-signal focus:outline-none"
+                  />
+                </div>
+
+                <label className="flex cursor-pointer items-start gap-3">
+                  <input
+                    type="checkbox"
+                    id="consent"
+                    checked={consent}
+                    onChange={(e) => setConsent(e.target.checked)}
+                    className="mt-1 h-4 w-4 shrink-0 accent-[#161310]"
+                  />
+                  <span className="text-[13px] leading-relaxed text-ink-50">
+                    Я согласен на обработку моих персональных данных в соответствии с{' '}
+                    <a href="/privacy.html" target="_blank" className="text-ink underline hover:text-signal">Политикой конфиденциальности</a>
+                  </span>
+                </label>
+
+                {status === "error" && (
+                  <p className="font-mono text-[13px] font-bold text-signal">{statusMessage}</p>
+                )}
+
+                <button
+                  type="submit"
+                  disabled={!consent}
+                  className="ax-btn ax-btn-solid w-full"
+                >
+                  Отправить заявку
+                  <ArrowIcon className="h-5 w-5" />
+                </button>
+              </form>
+            )}
+          </div>
         </div>
       </div>
     </section>
@@ -1007,24 +888,24 @@ function Contact() {
 
 function Footer() {
   return (
-    <footer className="border-t border-slate-300 bg-white py-11">
-      <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-5 px-5 sm:flex-row lg:px-8">
-        <div className="flex items-center gap-2.5">
-          <div className="flex h-8 w-8 items-center justify-center rounded-md bg-gradient-to-br from-indigo-500 to-violet-600 shadow-sm ring-1 ring-indigo-500/15">
-            <span className="text-[11px] font-bold text-white">Ax</span>
-          </div>
-          <div className="text-[14px] font-medium text-slate-700">
-            <span className="font-bold text-slate-900">AxiomUI</span>
-            <span className="mx-2 text-slate-300">·</span>
+    <footer className="bg-paper py-8">
+      <div className="mx-auto flex max-w-6xl flex-col items-start justify-between gap-5 px-5 sm:flex-row sm:items-center lg:px-8">
+        <div className="flex items-center gap-3">
+          <span className="relative flex h-8 w-8 items-center justify-center border-2 border-ink font-mono text-[12px] font-bold text-ink">
+            Ax
+          </span>
+          <div className="text-[14px] font-medium text-ink-70">
+            <span className="font-black uppercase text-ink">AxiomUI</span>
+            <span className="mx-2 text-hairline">·</span>
             © 2026 AxiomUI
           </div>
         </div>
 
-        <div className="flex flex-wrap items-center justify-center gap-x-7 gap-y-2 text-[14px] font-medium text-slate-600">
-          <a href="/cases/index.html" className="transition-colors hover:text-indigo-600">Кейсы</a>
-          <a href="/security.html" className="transition-colors hover:text-indigo-600">Безопасность ИИ</a>
-          <a href="/privacy.html" className="transition-colors hover:text-indigo-600">Политика конфиденциальности</a>
-          <a href="/terms.html" className="transition-colors hover:text-indigo-600">Условия использования</a>
+        <div className="flex flex-wrap items-center gap-x-7 gap-y-2 font-mono text-[11px] uppercase tracking-[0.06em] text-ink-50">
+          <a href="/cases/index.html" className="no-underline hover:text-signal">Кейсы</a>
+          <a href="/security.html" className="no-underline hover:text-signal">Безопасность ИИ</a>
+          <a href="/privacy.html" className="no-underline hover:text-signal">Политика конфиденциальности</a>
+          <a href="/terms.html" className="no-underline hover:text-signal">Условия использования</a>
         </div>
       </div>
     </footer>
@@ -1046,20 +927,21 @@ export default function App() {
   }, []);
 
   return (
-    <div className="relative min-h-screen bg-white text-slate-900">
+    <div className="relative min-h-screen bg-paper text-ink">
+      <ReportBar />
       <Header />
       <main>
         <Hero />
         <TargetAudience />
         <Problems />
-        <section className="relative border-t border-slate-300 bg-indigo-50 py-11">
-          <div className="mx-auto max-w-4xl px-5 text-center lg:px-8">
-            <h3 className="text-xl font-bold text-slate-900">Готовы обсудить ваш проект?</h3>
+        <section className="border-b border-hairline bg-recessed py-10">
+          <div className="mx-auto flex max-w-4xl flex-col items-center gap-5 px-5 text-center lg:px-8">
+            <h3 className="text-xl font-black uppercase tracking-tight text-ink">Готовы обсудить ваш проект?</h3>
             <a
               href="https://t.me/AxiomUIBot"
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-4 inline-flex items-center gap-2 rounded-lg bg-indigo-600 px-6 py-3 text-[14px] font-bold text-white shadow-sm transition-all hover:bg-indigo-500"
+              className="ax-btn ax-btn-solid"
             >
               <TelegramIcon className="h-4 w-4" />
               Связаться в Telegram
@@ -1071,6 +953,7 @@ export default function App() {
         <Stats />
         <Process />
         <Pricing />
+        <RiskLegend />
         <FAQ />
         <Contact />
       </main>

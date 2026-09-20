@@ -47,17 +47,9 @@ const ONE_TIME_SERVICES: OneTimeService[] = [
   },
 ];
 
-function OneTimeCheckIcon({ className = "h-4 w-4" }: { className?: string }) {
-  return (
-    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round">
-      <path d="M20 6L9 17l-5-5" />
-    </svg>
-  );
-}
-
 function OneTimeArrowIcon() {
   return (
-    <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.25} strokeLinecap="round" strokeLinejoin="round">
+    <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.25} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
       <path d="M5 12h14M13 5l7 7-7 7" />
     </svg>
   );
@@ -65,60 +57,67 @@ function OneTimeArrowIcon() {
 
 export default function OneTimeServices() {
   return (
-    <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2">
-      {ONE_TIME_SERVICES.map((item) => (
+    <div className="grid grid-cols-1 gap-0 border-2 border-ink lg:grid-cols-2">
+      {ONE_TIME_SERVICES.map((item, idx) => (
         <div
           key={item.name}
-          className="relative flex flex-col rounded-xl border-2 border-indigo-200 bg-white p-7 shadow-sm transition-all hover:border-indigo-400"
+          className={`flex flex-col border-hairline bg-surface p-8 sm:p-9 ${
+            idx === 0 ? "border-b lg:border-b-0 lg:border-r" : "border-t lg:border-t-0 lg:border-l"
+          } ${idx === 0 ? "lg:border-r" : ""}`}
         >
-          <div className="text-[14px] font-semibold uppercase tracking-wider text-slate-700">
+          <div className="ax-mono text-ink-50">
             {item.eyebrow}
           </div>
 
-          <h3 className="mt-1 text-2xl font-bold tracking-tight text-slate-900">
+          <h3 className="mt-1.5 text-[26px] font-black uppercase tracking-[-0.015em] text-ink">
             {item.name}
           </h3>
 
           {/* Блок цены: у диагностики — крупная цена, у аудита — лесенка категорий */}
           {item.price ? (
             <div className="mt-4 flex items-baseline gap-2">
-              <span className="text-3xl font-bold text-indigo-600">{item.price}</span>
+              <span className="text-[32px] font-black tracking-tight text-signal">{item.price}</span>
             </div>
           ) : (
-            <div className="mt-4 divide-y divide-slate-200 border-y border-slate-200">
-              {item.categories?.map((tier) => (
-                <div key={tier.label} className="flex items-baseline justify-between gap-4 py-2.5">
-                  <span className="text-[15px] font-medium text-slate-700">{tier.label}</span>
-                  <span className="text-[15px] font-bold text-slate-900">{tier.price}</span>
+            <div className="mt-4 border-t border-b border-hairline">
+              {item.categories?.map((tier, i) => (
+                <div
+                  key={tier.label}
+                  className={`flex items-baseline justify-between gap-4 py-2.5 ${i > 0 ? "border-t border-hairline" : ""}`}
+                >
+                  <span className="font-mono text-[10.5px] font-bold uppercase tracking-[0.08em] text-signal">
+                    К-{i + 1}
+                    <span className="ml-2.5 font-sans text-[14.5px] font-semibold normal-case tracking-normal text-ink">
+                      {tier.label}
+                    </span>
+                  </span>
+                  <span className="whitespace-nowrap text-[17px] font-black text-ink">{tier.price}</span>
                 </div>
               ))}
             </div>
           )}
 
-          <div className="mt-1.5 text-[13px] font-medium text-slate-500">
+          <div className="mt-2 font-mono text-[11px] leading-relaxed tracking-[0.03em] text-ink-50">
             {item.categoriesNote ?? item.priceNote}
           </div>
 
-          <ul className="mt-5 space-y-3 border-t border-slate-200 pt-5">
+          <ul className="mt-5 border-t border-hairline">
             {item.features.map((f) => (
-              <li key={f} className="flex items-start gap-2.5 text-[14px] font-medium leading-relaxed text-slate-700">
-                <OneTimeCheckIcon className="mt-0.5 h-4 w-4 shrink-0 text-indigo-500" />
+              <li key={f} className="grid grid-cols-[24px_1fr] gap-2 border-b border-hairline py-2.5 text-[14.5px] leading-relaxed text-ink-70">
+                <span className="mt-0.5 font-mono font-bold text-signal">+</span>
                 <span>{f}</span>
               </li>
             ))}
           </ul>
 
           {item.note && (
-            <p className="mt-4 rounded-lg border border-slate-300 bg-slate-50 p-4 text-[13px] font-medium leading-relaxed text-slate-700">
+            <p className="mt-4 border border-hairline bg-recessed p-4 text-[13px] leading-relaxed text-ink-70">
               {item.note}
             </p>
           )}
 
           <div className="mt-auto pt-6">
-            <a
-              href="#contact"
-              className="flex w-full items-center justify-center gap-2 rounded-lg border-2 border-indigo-600 bg-white px-5 py-3 text-[14px] font-bold text-indigo-700 transition-all hover:bg-indigo-50"
-            >
+            <a href="#contact" className="ax-btn ax-btn-ghost w-full">
               {item.cta}
               <OneTimeArrowIcon />
             </a>
