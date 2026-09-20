@@ -28,13 +28,13 @@ jobs:
           key: ${{ secrets.VPS_SSH_KEY }}
           script: |
             set -e
-            rm -rf /tmp/axm-cases
-            git clone --depth 1 https://github.com/kv4/axiomui.ru.git /tmp/axm-cases
-            rm -rf /home/admin/site/cases
-            mkdir -p /home/admin/site/cases
-            cp /tmp/axm-cases/public/cases/*.html /home/admin/site/cases/
-            rm -rf /tmp/axm-cases
-            ls -la /home/admin/site/cases/
+            rm -rf /tmp/axm-portfolio
+            git clone --depth 1 https://github.com/kv4/axiomui.ru.git /tmp/axm-portfolio
+            rm -rf /home/admin/site/portfolio
+            mkdir -p /home/admin/site/portfolio
+            cp /tmp/axm-portfolio/public/cases/*.html /home/admin/site/portfolio/
+            rm -rf /tmp/axm-portfolio
+            ls -la /home/admin/site/portfolio/
       - name: Deploy bots
         uses: appleboy/scp-action@v0.1.7
         with:

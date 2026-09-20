@@ -51,7 +51,7 @@ function ArrowIcon({ className = "h-4 w-4" }: { className?: string }) {
 
 const NAV_LINKS = [
   { label: "Услуги", href: "#services" },
-  { label: "Кейсы", href: "/cases/index.html" },
+  { label: "Кейсы", href: "/portfolio/index.html" },
   { label: "Процесс", href: "#process" },
   { label: "Безопасность", href: "/security.html" },
   { label: "FAQ", href: "#faq" },
@@ -573,7 +573,7 @@ function CasesTeaser() {
         </p>
 
         <div className="grid grid-cols-1 gap-0 border-y-2 border-ink sm:grid-cols-3">
-          <a href="/cases/react-dashboard.html" className="group flex flex-col border border-x-0 border-hairline bg-surface p-7 no-underline transition-colors hover:bg-recessed sm:border-l-0">
+          <a href="/portfolio/react-dashboard.html" className="group flex flex-col border border-x-0 border-hairline bg-surface p-7 no-underline transition-colors hover:bg-recessed sm:border-l-0">
             <div className="mb-2 inline-block self-start border border-hairline bg-paper px-2 py-1 font-mono text-[10px] font-bold uppercase tracking-[0.09em] text-ink-70">
               Аудит и миграция legacy
             </div>
@@ -588,7 +588,7 @@ function CasesTeaser() {
             </p>
           </a>
 
-          <a href="/cases/ai-agents.html" className="group flex flex-col border border-x-0 border-hairline bg-surface p-7 no-underline transition-colors hover:bg-recessed sm:border-x">
+          <a href="/portfolio/ai-agents.html" className="group flex flex-col border border-x-0 border-hairline bg-surface p-7 no-underline transition-colors hover:bg-recessed sm:border-x">
             <div className="mb-2 inline-block self-start border border-hairline bg-paper px-2 py-1 font-mono text-[10px] font-bold uppercase tracking-[0.09em] text-ink-70">
               ИИ-агенты и автоматизация
             </div>
@@ -603,7 +603,7 @@ function CasesTeaser() {
             </p>
           </a>
 
-          <a href="/cases/bank-k8s.html" className="group flex flex-col border border-x-0 border-hairline bg-surface p-7 no-underline transition-colors hover:bg-recessed sm:border-r-0">
+          <a href="/portfolio/bank-k8s.html" className="group flex flex-col border border-x-0 border-hairline bg-surface p-7 no-underline transition-colors hover:bg-recessed sm:border-r-0">
             <div className="mb-2 inline-block self-start border border-hairline bg-paper px-2 py-1 font-mono text-[10px] font-bold uppercase tracking-[0.09em] text-ink-70">
               DevOps и инфраструктура
             </div>
@@ -902,7 +902,7 @@ function Footer() {
         </div>
 
         <div className="flex flex-wrap items-center gap-x-7 gap-y-2 font-mono text-[11px] uppercase tracking-[0.06em] text-ink-50">
-          <a href="/cases/index.html" className="no-underline hover:text-signal">Кейсы</a>
+          <a href="/portfolio/index.html" className="no-underline hover:text-signal">Кейсы</a>
           <a href="/security.html" className="no-underline hover:text-signal">Безопасность ИИ</a>
           <a href="/privacy.html" className="no-underline hover:text-signal">Политика конфиденциальности</a>
           <a href="/terms.html" className="no-underline hover:text-signal">Условия использования</a>
