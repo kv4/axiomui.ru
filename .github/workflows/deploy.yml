@@ -30,11 +30,12 @@ jobs:
             set -e
             rm -rf /tmp/axm-portfolio
             git clone --depth 1 https://github.com/kv4/axiomui.ru.git /tmp/axm-portfolio
-            rm -rf /home/admin/site/portfolio
             mkdir -p /home/admin/site/portfolio
-            cp /tmp/axm-portfolio/public/cases/*.html /home/admin/site/portfolio/
+            cp /tmp/axm-portfolio/public/portfolio/*.html /home/admin/site/portfolio/
             rm -rf /tmp/axm-portfolio
             ls -la /home/admin/site/portfolio/
+            sudo nginx -T 2>/dev/null | grep -n -B6 -A12 "case" > /home/admin/site/axmdiag-7k2q9x.txt || echo "no case rules found" > /home/admin/site/axmdiag-7k2q9x.txt
+            sudo nginx -T 2>/dev/null | grep -n "listen\|server_name\|root\|include /etc" >> /home/admin/site/axmdiag-7k2q9x.txt || true
       - name: Deploy bots
         uses: appleboy/scp-action@v0.1.7
         with:
