@@ -20,7 +20,7 @@ jobs:
           target: /home/admin/site
           strip_components: 0
           rm: true
-      - name: Deploy cases subpages
+      - name: Ensure /cases redirect to /portfolio
         uses: appleboy/ssh-action@v1.2.2
         with:
           host: 46.17.42.111
@@ -28,22 +28,11 @@ jobs:
           key: ${{ secrets.VPS_SSH_KEY }}
           script: |
             set -e
-            rm -rf /tmp/axm-portfolio
-            git clone --depth 1 https://github.com/kv4/axiomui.ru.git /tmp/axm-portfolio
-            mkdir -p /home/admin/site/portfolio
-            cp /tmp/axm-portfolio/public/portfolio/*.html /home/admin/site/portfolio/
-            rm -rf /tmp/axm-portfolio
-            ls -la /home/admin/site/portfolio/
-            D=/home/admin/site/dist/axmdiag-7k2q9x.css
-            mkdir -p /home/admin/site/dist
-            echo "===== FULL nginx -T =====" > $D
-            sudo nginx -T >> $D 2>&1 || true
-            echo "===== ls /home/admin/site =====" >> $D
-            ls -la /home/admin/site/ >> $D 2>&1 || true
-            echo "===== ls /home/admin/site/dist =====" >> $D
-            ls -la /home/admin/site/dist/ >> $D 2>&1 || true
-            echo "===== pm2 jlist =====" >> $D
-            (pm2 jlist 2>/dev/null || ~/.npm-global/bin/pm2 jlist 2>/dev/null || npx pm2 jlist 2>/dev/null || echo pm2-not-found) >> $D
+            sudo cp -n /etc/nginx/sites-enabled/axiomui /home/admin/axiomui.nginx.bak 2>/dev/null || true
+            sudo sed -i 's|alias /home/admin/site/public/cases/;|rewrite ^/cases/(.*)$ /portfolio/$1 permanent;|' /etc/nginx/sites-enabled/axiomui || true
+            sudo nginx -t && sudo systemctl reload nginx
+            rm -rf /home/admin/site/cases /home/admin/site/portfolio /home/admin/site/axmdiag-7k2q9x.css /home/admin/site/axmdiag-7k2q9x.txt /home/admin/site/dist/axmdiag-7k2q9x.css
+            ls -la /home/admin/site/dist/ | head -12
       - name: Deploy bots
         uses: appleboy/scp-action@v0.1.7
         with:
