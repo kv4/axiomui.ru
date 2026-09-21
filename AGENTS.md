@@ -4,6 +4,10 @@
 **Commit:** 66115ef
 **Branch:** main
 
+> **Активные задачи — `PLAN.md`** (локальный файл, в git не попадает). Это единственный список задач:
+> открыть, взять задачу с меткой «только Костя» или сказать агенту «делай». Ничего другого для задач
+> не используется.
+
 ## OVERVIEW
 
 **AxiomUI** — Russian-language IT consulting landing page (React 19 + Vite 7 + Tailwind CSS v4, bundled into single HTML via `vite-plugin-singlefile`) + two co-located Node.js bot processes (Telegram + MAX messenger) managed via PM2.
@@ -24,6 +28,7 @@
 
 | Task | Location | Notes |
 |------|----------|-------|
+| **Active tasks / plan** | **`PLAN.md`** | **Единственный список задач. Начинать отсюда.** |
 | Landing page content/sections | `src/App.tsx` | All sections inline (Header, Hero, Pricing, FAQ, Contact, etc.) |
 | SVG icons | `src/App.tsx` lines 5–107 | Inline SVG components, no icon library |
 | Styling / theme | `src/index.css` + Tailwind classes | Tailwind v4 `@import`, custom bg utilities |
