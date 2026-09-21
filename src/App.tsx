@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import OneTimeServices from "./components/OneTimeServices";
-import { ReportBar, RiskLegend, Blueprint } from "./components/DesignElements";
+import { Blueprint } from "./components/DesignElements";
 
 // ─── Icons ────────────────────────────────────────────────────────────────────
 
@@ -928,7 +928,6 @@ export default function App() {
 
   return (
     <div className="relative min-h-screen bg-paper text-ink">
-      <ReportBar />
       <Header />
       <main>
         <Hero />
@@ -953,7 +952,6 @@ export default function App() {
         <Stats />
         <Process />
         <Pricing />
-        <RiskLegend />
         <FAQ />
         <Contact />
       </main>
