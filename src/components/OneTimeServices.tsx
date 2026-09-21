@@ -28,7 +28,7 @@ const ONE_TIME_SERVICES: OneTimeService[] = [
   },
   {
     eyebrow: "Разовая услуга",
-    name: "Технический экспресс-аудит",
+    name: "Технический аудит",
     priceNote: "10 рабочих дней · фиксированный результат",
     categories: [
       { label: "Один сайт", price: "90 000 ₽" },
