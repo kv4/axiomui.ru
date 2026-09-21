@@ -10,15 +10,15 @@
 
 ## OVERVIEW
 
-**AxiomUI** — Russian-language IT consulting landing page (React 19 + Vite 7 + Tailwind CSS v4, bundled into single HTML via `vite-plugin-singlefile`) + two co-located Node.js bot processes (Telegram + MAX messenger) managed via PM2.
+**AxiomUI** — Russian-language IT consulting landing page (React 19 + Vite 7 + Tailwind CSS v4, bundled into single HTML via `vite-plugin-singlefile`) + two co-located Node.js processes managed via PM2: `contact` (приём заявок с сайта → письмо по SMTP) и `max-bot` (MAX → письмо).
 
 ## STRUCTURE
 
 ```
 ./
 ├── src/             # React SPA — all components in App.tsx (1018 lines)
-├── bots/            # Node.js bot processes (separate package.json)
-├── public/          # Static HTML pages (cases, security, privacy, terms)
+├── bots/            # Node-процессы: приём заявок (SMTP) + MAX (отдельный package.json)
+├── public/          # Static HTML pages (portfolio, security, privacy, terms)
 ├── .github/         # CI/CD — push-to-main build+SCP deploy
 ├── .opencode/       # OpenCode IDE config (MCP servers, plugins)
 └── .omo/            # AI agent checkpoint state
@@ -32,9 +32,10 @@
 | Landing page content/sections | `src/App.tsx` | All sections inline (Header, Hero, Pricing, FAQ, Contact, etc.) |
 | SVG icons | `src/App.tsx` lines 5–107 | Inline SVG components, no icon library |
 | Styling / theme | `src/index.css` + Tailwind classes | Tailwind v4 `@import`, custom bg utilities |
-| Contact form handler | `bots/telegram/index.js` | HTTP server on :3001, forwards to Telegram admin |
-| MAX bot handler | `bots/max/index.js` | MAX messenger → Telegram bridge |
-| Static sub-pages | `public/cases/`, `public/security.html`, etc. | Raw HTML, no React |
+| Contact form handler | `bots/contact/index.js` | HTTP :3001, POST /api/contact → файл + письмо по SMTP |
+| Mail transport | `bots/mailer.js` | nodemailer, настройки из `bots/.env` (шаблон — `bots/.env.example`) |
+| MAX bot handler | `bots/max/index.js` | MAX → письмо владельцу |
+| Static sub-pages | `public/portfolio/`, `public/security.html`, etc. | Raw HTML, no React |
 | Deployment config | `.github/workflows/deploy.yml` | Build → SCP VPS → PM2 reload |
 | MCP server config | `.opencode/opencode.json` | Azure DevOps, Playwright, Ant Design |
 | Utility (unused) | `src/utils/cn.ts` | `cn()` = clsx + tailwind-merge — dead code |
@@ -52,8 +53,8 @@ LSP/codegraph unavailable. Key files and their roles:
 | `Contact` | Component | `src/App.tsx:805` | Contact form (POST /api/contact) |
 | `FAQ` | Component | `src/App.tsx:757` | Accordion FAQ |
 | `cn` | Utility | `src/utils/cn.ts:4` | Tailwind class merger — **unused** |
-| telegram bot | Script | `bots/telegram/index.js` | HTTP server + Telegram polling + MAX bridge |
-| max bot | Script | `bots/max/index.js` | MAX bot → Telegram notification bridge |
+| contact | Script | `bots/contact/index.js` | Приём заявок с сайта → файл + письмо по SMTP |
+| max bot | Script | `bots/max/index.js` | MAX → письмо владельцу |
 
 ## CONVENTIONS
 
@@ -69,8 +70,9 @@ LSP/codegraph unavailable. Key files and their roles:
 
 - **Adding to App.tsx** — do NOT add new components/sections to App.tsx. Create a separate file in `src/components/` instead.
 - **Dead code** — `src/utils/cn.ts` is imported nowhere. Either use it or remove it.
-- **Bot role mixing** — `bots/telegram/index.js` mixes HTTP server + bot polling + MAX bridge. New bot functionality should go in separate modules.
-- **Form without backend** — Contact form POSTs to `/api/contact` with no error handling (empty catch). If adding a real backend, update the form handler.
+- **Bot role mixing** — не смешивать HTTP-приём заявок и мессенджеры в одном файле: приём — `bots/contact/`, MAX — `bots/max/`, общий SMTP — `bots/mailer.js`.
+- **Отправка уведомлений в Telegram** — не возвращать без прокси: с VPS `api.telegram.org` недоступен (проверено 21.09.2026). Уведомления идут письмом по SMTP.
+- **Form without backend** — устранено 21.09.2026: форма проверяет `response.ok` и показывает ошибку. Не возвращать «ложный успех» при сбое отправки.
 
 ## COMMANDS
 
@@ -78,13 +80,13 @@ LSP/codegraph unavailable. Key files and their roles:
 npm install          # Install frontend deps
 npm run dev          # Vite dev server
 npm run build        # Vite production build → dist/
-cd bots && npm install && npm run start:telegram   # Start Telegram bot
+cd bots && npm install && npm run start:contact   # Start contact API (заявки → SMTP)
 cd bots && npm install && npm run start:max        # Start MAX bot
 ```
 
 ## NOTES
 
 - The `.opencode/` and `.omo/` directories are AI tooling artifacts, not application code.
-- The contact form's `/api/contact` endpoint is served by the Telegram bot HTTP server on port 3001 (proxied by nginx).
-- All bot env vars use `dotenv` — configure in `bots/.env` (gitignored). Frontend env vars (unused) in root `.env`.
+- The contact form's `/api/contact` endpoint is served by `bots/contact/` on port 3001 (proxied by nginx); уведомление владельцу уходит письмом по SMTP.
+- All bot env vars use `dotenv` — configure in `bots/.env` (gitignored); шаблон — `bots/.env.example`. Frontend env vars (unused) in root `.env`.
 - **Язык общения** — весь диалог с пользователем ведётся на **русском языке**. Любой агент, читающий этот файл, обязан отвечать пользователю по-русски и учитывать, что проект ориентирован на русскоязычную аудиторию (контент, комментарии, нейминг).

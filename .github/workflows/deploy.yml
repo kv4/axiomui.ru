@@ -40,7 +40,7 @@ jobs:
           username: admin
           key: ${{ secrets.VPS_SSH_KEY }}
           source: "bots/"
-          target: /home/admin
+          target: /home/admin/bots
           strip_components: 1
       - name: Reload site and bots
         uses: appleboy/ssh-action@v1.2.2
@@ -51,6 +51,8 @@ jobs:
           script: |
             cd /home/admin/bots
             npm install --omit=dev
+            pm2 delete telegram-bot || true
+            rm -rf /home/admin/bots/telegram
             pm2 startOrReload pm2.config.js --update-env
             pm2 save
             sudo nginx -t && sudo systemctl reload nginx
