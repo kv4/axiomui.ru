@@ -22,7 +22,7 @@ src/
 | All UI sections | `App.tsx` | Header(341), Hero(447), Pricing(225), FAQ(757), Contact(805) |
 | SVG icons | `App.tsx:5–107` | Hand-written JSX `<svg>`, no icon library |
 | Styling | `index.css` | Tailwind v4 `@import`, custom bg utilities |
-| Contact form | `App.tsx:805` | POSTs to `/api/contact` (handled by bots/telegram) |
+| Contact form | `App.tsx` | POSTs to `/api/contact` (handled by `bots/contact/index.js` → письмо по SMTP) |
 
 ## CONVENTIONS
 

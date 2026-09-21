@@ -4,25 +4,6 @@ import { Blueprint } from "./components/DesignElements";
 
 // ─── Icons ────────────────────────────────────────────────────────────────────
 
-function MaxIcon({ className = "h-4 w-4" }: { className?: string }) {
-  return (
-    <svg className={className} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15l-4-4 1.41-1.41L11 14.17l6.59-6.59L19 9l-8 8z"/>
-      <rect x="5" y="6" width="14" height="2" rx="1"/>
-      <rect x="5" y="10" width="10" height="2" rx="1"/>
-      <rect x="5" y="14" width="12" height="2" rx="1"/>
-    </svg>
-  );
-}
-
-function TelegramIcon({ className = "h-4 w-4" }: { className?: string }) {
-  return (
-    <svg className={className} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-      <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.161c-.206 1.084-1.097 3.781-1.55 5.06-.195.55-.422.734-.69.75-.58.036-1.02-.384-1.582-.753-.878-.576-1.382-.934-2.237-1.498-.988-.65-.348-1.007.216-1.59.148-.154 2.708-2.476 2.758-2.686.007-.03.013-.14-.053-.198-.065-.058-.162-.038-.23-.022-.098.023-1.662 1.056-4.69 3.11-.445.306-.846.455-1.205.448-.396-.008-1.154-.223-1.72-.407-.692-.225-1.242-.345-1.194-.727.025-.2.302-.407.83-.617 3.245-1.407 5.412-2.337 6.5-2.786 3.096-1.274 3.738-1.495 4.156-1.501.091-.002.296.021.432.128.115.089.147.21.162.296.015.084.034.276.019.424z" />
-    </svg>
-  );
-}
-
 function MenuIcon({ className = "h-6 w-6" }: { className?: string }) {
   return (
     <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -281,26 +262,13 @@ function Header() {
         </nav>
 
         {/* Desktop CTA */}
-        <div className="hidden items-center gap-2 md:flex">
-          <a
-            href="https://max.ru/id141002165689_bot"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 border border-hairline bg-surface px-4 py-2.5 font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-ink no-underline transition-colors hover:border-ink hover:bg-recessed"
-          >
-            <MaxIcon className="h-4 w-4" />
-            MAX
-          </a>
-          <a
-            href="https://t.me/AxiomUIBot"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 border border-hairline bg-surface px-4 py-2.5 font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-ink no-underline transition-colors hover:border-ink hover:bg-recessed"
-          >
-            <TelegramIcon className="h-4 w-4" />
-            Telegram
-          </a>
-        </div>
+        <a
+          href="#contact"
+          className="hidden items-center gap-2 border-2 border-ink bg-ink px-4 py-2 font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-paper no-underline transition-colors hover:border-signal hover:bg-signal md:inline-flex"
+        >
+          Оставить заявку
+          <ArrowIcon className="h-3.5 w-3.5" />
+        </a>
 
         {/* Mobile toggle */}
         <button
@@ -327,28 +295,14 @@ function Header() {
                 {l.label}
               </a>
             ))}
-            <div className="mt-3 flex flex-col gap-2">
-              <a
-                href="https://max.ru/id141002165689_bot"
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => setOpen(false)}
-                className="ax-btn ax-btn-ghost w-full"
-              >
-                <MaxIcon className="h-4 w-4" />
-                Написать в MAX
-              </a>
-              <a
-                href="https://t.me/AxiomUIBot"
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => setOpen(false)}
-                className="ax-btn ax-btn-solid w-full"
-              >
-                <TelegramIcon className="h-4 w-4" />
-                Написать в Telegram
-              </a>
-            </div>
+            <a
+              href="#contact"
+              onClick={() => setOpen(false)}
+              className="ax-btn ax-btn-solid mt-3 w-full"
+            >
+              Оставить заявку
+              <ArrowIcon />
+            </a>
           </nav>
         </div>
       )}
@@ -719,23 +673,21 @@ function FAQ() {
 function Contact() {
   const [form, setForm] = useState({ name: "", contact: "", message: "" });
   const [consent, setConsent] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
-  const [status, setStatus] = useState("idle"); // status
+  const [status, setStatus] = useState<"idle" | "sending" | "ok" | "error">("idle");
   const [statusMessage, setStatusMessage] = useState("");
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!consent) return;
+    if (!consent || status === "sending") return;
     if (!form.name.trim() || !form.contact.trim()) {
       setStatus("error");
       setStatusMessage("Пожалуйста, заполните имя и контактные данные.");
       return;
     }
-    setSubmitted(true);
-    setStatus("idle");
+    setStatus("sending");
     setStatusMessage("");
 
     try {
-      await fetch("/api/contact", {
+      const response = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -744,9 +696,11 @@ function Contact() {
           message: form.message,
         }),
       });
+      if (!response.ok) throw new Error("HTTP " + response.status);
+      setStatus("ok");
     } catch (_) {
       setStatus("error");
-      setStatusMessage("Произошла ошибка при отправке. Пожалуйста, попробуйте ещё раз или свяжитесь через Telegram/MAX.");
+      setStatusMessage("Не удалось отправить заявку. Проверьте подключение и попробуйте ещё раз.");
     }
   };
 
@@ -765,33 +719,13 @@ function Contact() {
             <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-[#B4AFA2]">
               Расскажите о ваших текущих задачах. На созвоне мы подскажем, с чего начать стабилизацию системы и как можно сократить расходы на команду.
             </p>
-            <div className="mt-8 border-t border-[#3D3A34] pt-6">
-              <div className="ax-mono text-[#8C877B]">Мессенджеры</div>
-              <div className="mt-3 flex flex-col gap-2.5">
-                <a
-                  href="https://t.me/AxiomUIBot"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2.5 self-start border-b border-[#55503F] pb-1 text-[16px] font-semibold text-paper no-underline hover:border-signal hover:text-white"
-                >
-                  <TelegramIcon className="h-4.5 w-4.5" />
-                  Написать в Telegram
-                </a>
-                <a
-                  href="https://max.ru/id141002165689_bot"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2.5 self-start border-b border-[#55503F] pb-1 text-[16px] font-semibold text-paper no-underline hover:border-signal hover:text-white"
-                >
-                  <MaxIcon className="h-4.5 w-4.5" />
-                  Написать в MAX
-                </a>
-              </div>
-            </div>
+            <p className="mt-6 border-t border-[#3D3A34] pt-6 text-[15px] leading-relaxed text-[#B4AFA2]">
+              Заполните форму — отвечу лично, обычно в течение 24 часов. Без обязательств.
+            </p>
           </div>
 
           <div className="bg-surface p-8 sm:p-11">
-            {submitted ? (
+            {status === "ok" ? (
               <div className="mt-4 border-2 border-mark-green bg-paper p-9">
                 <div className="flex items-center gap-3">
                   <span className="inline-block h-4 w-4 bg-mark-green" />
@@ -871,10 +805,10 @@ function Contact() {
 
                 <button
                   type="submit"
-                  disabled={!consent}
+                  disabled={!consent || status === "sending"}
                   className="ax-btn ax-btn-solid w-full"
                 >
-                  Отправить заявку
+                  {status === "sending" ? "Отправляем…" : "Отправить заявку"}
                   <ArrowIcon className="h-5 w-5" />
                 </button>
               </form>
@@ -936,14 +870,9 @@ export default function App() {
         <section className="border-b border-hairline bg-recessed py-10">
           <div className="mx-auto flex max-w-4xl flex-col items-center gap-5 px-5 text-center lg:px-8">
             <h3 className="text-xl font-black uppercase tracking-tight text-ink">Готовы обсудить ваш проект?</h3>
-            <a
-              href="https://t.me/AxiomUIBot"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="ax-btn ax-btn-solid"
-            >
-              <TelegramIcon className="h-4 w-4" />
-              Связаться в Telegram
+            <a href="#contact" className="ax-btn ax-btn-solid">
+              Оставить заявку
+              <ArrowIcon />
             </a>
           </div>
         </section>
