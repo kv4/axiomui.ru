@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import OneTimeServices from "./components/OneTimeServices";
+import CookieConsent from "./components/CookieConsent";
 import { Blueprint } from "./components/DesignElements";
 
 // ─── Icons ────────────────────────────────────────────────────────────────────
@@ -794,7 +795,10 @@ function Contact() {
                     className="mt-1 h-4 w-4 shrink-0 accent-[#161310]"
                   />
                   <span className="text-[13px] leading-relaxed text-ink-50">
-                    Я согласен на обработку моих персональных данных в соответствии с{' '}
+                    Я принимаю{' '}
+                    <a href="/terms.html" target="_blank" className="text-ink underline hover:text-signal">Условия использования</a>{' '}
+                    и даю согласие ИП Черняков К. В. на обработку моих персональных данных в
+                    соответствии с{' '}
                     <a href="/privacy.html" target="_blank" className="text-ink underline hover:text-signal">Политикой конфиденциальности</a>
                   </span>
                 </label>
@@ -823,23 +827,30 @@ function Contact() {
 function Footer() {
   return (
     <footer className="bg-paper py-8">
-      <div className="mx-auto flex max-w-6xl flex-col items-start justify-between gap-5 px-5 sm:flex-row sm:items-center lg:px-8">
-        <div className="flex items-center gap-3">
-          <span className="relative flex h-8 w-8 items-center justify-center border-2 border-ink font-mono text-[12px] font-bold text-ink">
-            Ax
-          </span>
-          <div className="text-[14px] font-medium text-ink-70">
-            <span className="font-black uppercase text-ink">AxiomUI</span>
-            <span className="mx-2 text-hairline">·</span>
-            © 2026 AxiomUI
+      <div className="mx-auto max-w-6xl px-5 lg:px-8">
+        <div className="flex flex-col items-start justify-between gap-5 sm:flex-row sm:items-center">
+          <div className="flex items-center gap-3">
+            <span className="relative flex h-8 w-8 items-center justify-center border-2 border-ink font-mono text-[12px] font-bold text-ink">
+              Ax
+            </span>
+            <div className="text-[14px] font-medium text-ink-70">
+              <span className="font-black uppercase text-ink">AxiomUI</span>
+              <span className="mx-2 text-hairline">·</span>
+              © 2026 AxiomUI
+            </div>
+          </div>
+
+          <div className="flex flex-wrap items-center gap-x-7 gap-y-2 font-mono text-[11px] uppercase tracking-[0.06em] text-ink-50">
+            <a href="/portfolio/index.html" className="no-underline hover:text-signal">Кейсы</a>
+            <a href="/security.html" className="no-underline hover:text-signal">Безопасность ИИ</a>
+            <a href="/privacy.html" className="no-underline hover:text-signal">Политика конфиденциальности</a>
+            <a href="/terms.html" className="no-underline hover:text-signal">Условия использования</a>
+            <a href="/requisites.html" className="no-underline hover:text-signal">Реквизиты</a>
           </div>
         </div>
 
-        <div className="flex flex-wrap items-center gap-x-7 gap-y-2 font-mono text-[11px] uppercase tracking-[0.06em] text-ink-50">
-          <a href="/portfolio/index.html" className="no-underline hover:text-signal">Кейсы</a>
-          <a href="/security.html" className="no-underline hover:text-signal">Безопасность ИИ</a>
-          <a href="/privacy.html" className="no-underline hover:text-signal">Политика конфиденциальности</a>
-          <a href="/terms.html" className="no-underline hover:text-signal">Условия использования</a>
+        <div className="mt-6 border-t border-hairline pt-4 font-mono text-[10.5px] uppercase leading-relaxed tracking-[0.05em] text-ink-50">
+          ИП Черняков К. В. · ИНН 141002165689 · ОГРНИП 317547600035361 · Новосибирская обл.
         </div>
       </div>
     </footer>
@@ -885,6 +896,7 @@ export default function App() {
         <Contact />
       </main>
       <Footer />
+      <CookieConsent />
     </div>
   );
 }

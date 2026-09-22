@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Реквизиты — AxiomUI</title>
+  <meta name="description" content="Реквизиты ИП Черняков К.В. (AxiomUI): ИНН, ОГРНИП, юридический адрес и банковские реквизиты для заключения договоров и оплаты." />
+  <link rel="canonical" href="https://axiomui.ru/requisites.html" />
+  <link rel="stylesheet" href="/subpage.css" />
+  <style>
+    .req-value { display: flex; align-items: baseline; justify-content: space-between; gap: .75rem; }
+    .req-value .val { font-family: var(--mono); font-size: 12.5px; color: var(--ink); word-break: break-word; }
+    .req-value .val.plain { font-family: var(--sans); font-size: 14.5px; color: var(--ink-70); }
+    .copy {
+      flex: none; font-family: var(--mono); font-size: 10px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: .07em;
+      background: var(--paper); color: var(--ink-50);
+      border: 1px solid var(--hairline); padding: .2rem .45rem; cursor: pointer;
+      transition: color .15s, border-color .15s;
+    }
+    .copy:hover { color: var(--ink); border-color: var(--ink-50); }
+    .copy.done { color: var(--green); border-color: var(--green); }
+    @media (max-width: 600px) { .req-value { flex-direction: column; gap: .35rem; } }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a class="back" href="/">← На главную</a>
+    <h1>Реквизиты</h1>
+    <p class="date">Данные для заключения договоров, счетов и оплаты</p>
+
+    <div class="highlight">
+      <p><strong>Коротко:</strong> ниже — полные реквизиты исполнителя. Данные соответствуют записям ЕГРИП и банковским сведениям. Для проверки контрагента используйте ОГРНИП в сервисе ФНС.</p>
+    </div>
+
+    <h2>Исполнитель</h2>
+    <table>
+      <tbody>
+        <tr>
+          <th>Полное наименование</th>
+          <td><div class="req-value"><span class="val plain">Индивидуальный предприниматель Черняков Константин Владимирович</span></div></td>
+        </tr>
+        <tr>
+          <th>Сокращённое наименование</th>
+          <td><div class="req-value"><span class="val plain">ИП Черняков К. В.</span></div></td>
+        </tr>
+        <tr>
+          <th>ИНН</th>
+          <td><div class="req-value"><span class="val">141002165689</span><button class="copy" type="button" data-copy="141002165689">Копировать</button></div></td>
+        </tr>
+        <tr>
+          <th>ОГРНИП</th>
+          <td><div class="req-value"><span class="val">317547600035361</span><button class="copy" type="button" data-copy="317547600035361">Копировать</button></div></td>
+        </tr>
+        <tr>
+          <th>Юридический адрес</th>
+          <td><div class="req-value"><span class="val plain">630555, Новосибирская обл., Новосибирский р-н</span><button class="copy" type="button" data-copy="630555, Новосибирская обл., Новосибирский р-н">Копировать</button></div></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p class="note">Полный адрес места нахождения предоставляется по запросу и указывается в договоре.</p>
+
+    <h2>Банковские реквизиты</h2>
+    <table>
+      <tbody>
+        <tr>
+          <th>Расчётный счёт</th>
+          <td><div class="req-value"><span class="val">40802810300000102698</span><button class="copy" type="button" data-copy="40802810300000102698">Копировать</button></div></td>
+        </tr>
+        <tr>
+          <th>Банк</th>
+          <td><div class="req-value"><span class="val plain">АО «ТБанк»</span></div></td>
+        </tr>
+        <tr>
+          <th>БИК</th>
+          <td><div class="req-value"><span class="val">044525974</span><button class="copy" type="button" data-copy="044525974">Копировать</button></div></td>
+        </tr>
+        <tr>
+          <th>Корреспондентский счёт</th>
+          <td><div class="req-value"><span class="val">30101810145250000974</span><button class="copy" type="button" data-copy="30101810145250000974">Копировать</button></div></td>
+        </tr>
+        <tr>
+          <th>ИНН банка</th>
+          <td><div class="req-value"><span class="val">7710140679</span><button class="copy" type="button" data-copy="7710140679">Копировать</button></div></td>
+        </tr>
+        <tr>
+          <th>Юридический адрес банка</th>
+          <td><div class="req-value"><span class="val plain">127287, г. Москва, ул. Хуторская 2-я, д. 38А, стр. 26</span></div></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>Контакты</h2>
+    <table>
+      <tbody>
+        <tr>
+          <th>Email</th>
+          <td><div class="req-value"><span class="val">chernyakov.k@yandex.ru</span><button class="copy" type="button" data-copy="chernyakov.k@yandex.ru">Копировать</button></div></td>
+        </tr>
+        <tr>
+          <th>Telegram</th>
+          <td><div class="req-value"><span class="val"><a href="https://t.me/chernyakov_kv" target="_blank" rel="noopener noreferrer">@chernyakov_kv</a> · <a href="https://t.me/AxiomUIBot" target="_blank" rel="noopener noreferrer">@AxiomUIBot</a></span></div></td>
+        </tr>
+        <tr>
+          <th>Сайт</th>
+          <td><div class="req-value"><span class="val">https://axiomui.ru</span></div></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>Проверка контрагента</h2>
+    <p>Сведения об ИП можно проверить в официальном сервисе ФНС России по ОГРНИП <strong>317547600035361</strong>:</p>
+    <p><a class="card-link" href="https://egrul.nalog.ru/index.html" target="_blank" rel="noopener noreferrer">ЕГРИП на сайте ФНС →</a></p>
+
+    <h2>Документы</h2>
+    <ul>
+      <li><a href="/terms.html">Условия использования</a></li>
+      <li><a href="/privacy.html">Политика конфиденциальности</a></li>
+      <li><a href="/security.html">Безопасность данных при работе с ИИ</a></li>
+    </ul>
+
+    <p class="date" style="margin-top:2rem">Реквизиты актуальны на дату публикации. При расхождении приоритет имеют сведения ЕГРИП.</p>
+  </div>
+
+  <script>
+    document.querySelectorAll('.copy').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var text = btn.getAttribute('data-copy');
+        var done = function () {
+          var prev = btn.textContent;
+          btn.textContent = 'Скопировано';
+          btn.classList.add('done');
+          setTimeout(function () { btn.textContent = prev; btn.classList.remove('done'); }, 1600);
+        };
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(done);
+        } else {
+          var ta = document.createElement('textarea');
+          ta.value = text;
+          document.body.appendChild(ta);
+          ta.select();
+          document.execCommand('copy');
+          document.body.removeChild(ta);
+          done();
+        }
+      });
+    });
+  </script>
+</body>
+</html>
